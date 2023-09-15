@@ -129,9 +129,7 @@
 									<th class="table-plus datatable-nosort">Instructor name</th>
 									<th>Email</th>
 									<th>Batch</th>
-									<th>Publish date</th>
-									<th>Start time</th>
-									<th>End time</th>
+									<th>Contact</th>
 									<th>Status</th>
 									<th class="datatable-nosort">Action</th>
 								</tr>
@@ -144,17 +142,16 @@
                                     <td class="table-plus">
                                         <ul>
                                             
-                                            @if (!empty($batch->bid))
-                                                @foreach(json_decode($batch->bid) as $item)
-                                                    <li>{{ getBatch($item)->bname }}</li>
-                                                @endforeach
-                                            @endif
+                                            
+                                               @foreach(json_decode($batch->batch) as $item)
+												<li>{{ getBatch($item)->bname }}</li>
+											 @endforeach
+                                           
                                             
                                         </ul>
                                     </td>
-									<td class="table-plus">{{ $batch->publish_date }}</td>
-									<td class="table-plus">{{ $batch->start_time }}</td>
-									<td class="table-plus">{{ $batch->end_time }}</td>
+									<td class="table-plus">{{ $batch->contact_number }}</td>
+									
 									
 									@if ($batch->status === 1)
 									<td><span class="badge badge-success">Plublish</span></td>		

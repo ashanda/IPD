@@ -9,4 +9,9 @@ class Batch extends Model
 {
     use HasFactory;
     protected $fillable = ['bname', 'status'];
+
+    public function instructors()
+    {
+        return $this->belongsToMany(User::class);
+    }
 }
