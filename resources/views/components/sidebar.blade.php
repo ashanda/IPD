@@ -33,7 +33,7 @@
 							<span class="micon dw dw-library"></span><span class="mtext">Students</span>
 						</a>
 						<ul class="submenu">
-							<li><a href="basic-table.html">Students</a></li>
+							<li><a href="{{  route('student.index')  }}">Students</a></li>
 							<li><a href="datatable.html">Batch wise Students</a></li>
                             <li><a href="datatable.html">Students Attendance</a></li>
 						</ul>
