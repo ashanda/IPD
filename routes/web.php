@@ -38,6 +38,7 @@ Route::get('/gallery', function() {
 Route::get('/workshop', function() {
     return view('workshop');
 });
+
 Route::get('/admin/login', function() {
     return view('auth.admin');
 });
