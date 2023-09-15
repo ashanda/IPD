@@ -39,7 +39,7 @@
 						</ul>
 					</li>
 					<li>
-						<a href="calendar.html" class="dropdown-toggle no-arrow">
+						<a href="{{  route('instructor.index')  }}" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-user"></span><span class="mtext">Instructors</span>
 						</a>
 					</li>

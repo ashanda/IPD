@@ -19,12 +19,14 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->integer('contact_number')->unique();
             $table->date('dob')->nullable();
-            $table->integer('batch')->nullable();
+            $table->json('batch')->nullable();
             $table->string('address')->nullable();
             $table->string('coupen_code')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->tinyInteger('type')->default(0);
+            $table->Integer('status')->default(1);
+            $table->string('cover')->nullable();
             /* Users: 0=>User, 1=>Admin, 2=>Instrctor */
             $table->rememberToken();
             $table->timestamps();

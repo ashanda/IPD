@@ -10,6 +10,8 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\WorkshopController;
 use App\Http\Controllers\CourseWorkController;
+use App\Http\Controllers\InstructorController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -79,6 +81,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::resource('/admin/lesson', LessonController::class);
     Route::resource('/admin/workshop', WorkshopController::class);
     Route::resource('/admin/course-work', CourseWorkController::class);
+    Route::resource('/admin/instructor', InstructorController::class);
 });
 
   
