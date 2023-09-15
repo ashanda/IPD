@@ -38,9 +38,12 @@ Route::get('/gallery', function() {
 Route::get('/workshop', function() {
     return view('workshop');
 });
-
+Route::get('/admin/login', function() {
+    return view('auth.admin');
+});
 Auth::routes();
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
 /*------------------------------------------
 
 --------------------------------------------
