@@ -64,7 +64,7 @@
 									<span class="micon dw dw-analytics-11"></span><span class="mtext">Course works</span>
 								</a>
 								<ul class="submenu child">
-									<li><a href="javascript:;">Add Course Work</a></li>
+									<li><a href="{{ route('course-work.index') }}">Add Course Work</a></li>
 									<li><a href="javascript:;">Student Submitted Course Work</a></li>
 								</ul>
 							</li>
