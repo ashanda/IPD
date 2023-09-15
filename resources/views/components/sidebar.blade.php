@@ -44,7 +44,7 @@
 						</a>
 					</li>
                     <li>
-						<a href="calendar.html" class="dropdown-toggle no-arrow">
+						<a href="{{ route('workshop.index') }}" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-deal"></span><span class="mtext">Workshop</span>
 						</a>
 					</li>
@@ -53,6 +53,11 @@
 							<span class="micon dw dw-list3"></span><span class="mtext">Course Materials</span>
 						</a>
 						<ul class="submenu">
+							<li>
+                                <a href="{{ route('lesson.index') }}" class="dropdown-toggle no-arrow">
+									<span class="micon dw dw dw-notepad-1"></span><span class="mtext">Programme Shedule</span>
+								</a>
+							</li>	
                             <li class="dropdown">
 								<a href="javascript:;" class="dropdown-toggle">
                                     
@@ -77,6 +82,7 @@
                                 <a href="javascript:;" class="dropdown-toggle no-arrow">
 									<span class="micon dw dw dw-notepad-1"></span><span class="mtext">Class Tute</span>
 								</a>
+							</li>	
 						</ul>
 					</li>
 

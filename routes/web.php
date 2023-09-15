@@ -7,6 +7,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BatchController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\LessonController;
+use App\Http\Controllers\WorkshopController;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,6 +76,8 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('/admin/home', [HomeController::class, 'adminHome'])->name('admin.home');
     Route::resource('/admin/batch', BatchController::class);
     Route::resource('/admin/course', CourseController::class);
+    Route::resource('/admin/lesson', LessonController::class);
+    Route::resource('/admin/workshop', WorkshopController::class);
 });
 
   

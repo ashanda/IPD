@@ -117,18 +117,18 @@
                         <div class="col-lg-4 col-md-6">
                             <div class="single-course-inner ws-box">
                                 <div class="thumb text-center p-4">
-                                    <img src="" alt="img">
+                                    <img src="{{ asset('storage/' . getWorkshop()->cover) }}" alt="img">
                                 </div>
                                 <div class="details pt-0">
                                     <div class="details-inner text-center p-2 mb-3 text-light bg-pur">
-                                        <h5 class="text-light"><a href=""></a></h5>
+                                        <h5 class="text-light"><a href="{{ route('register') }}">{{ getWorkshop()->lesson_name }}</a></h5>
                                     </div>
-                                    <h6 class="text-center bg-dark p-2 text-light mb-3" >Class date - </h6>
-                                    <h6 class="text-center bg-primary p-2 text-light mb-3" ></h6>
+                                    <h6 class="text-center bg-dark p-2 text-light mb-3" >Class date - {{ getWorkshop()->publish_date }}</h6>
+                                    <h6 class="text-center bg-primary p-2 text-light mb-3" >Start time - {{ getWorkshop()->start_time }}</h6>
                                     <div class="bottom-area">
                                         <div class="row d-flex align-items-center justify-content-center">
                                             <div class="text-center">
-                                                <a href="register.php"><i class="fa fa-play-circle mr-2"></i>Register Class</a>
+                                                <a href="{{ route('register') }}"><i class="fa fa-play-circle mr-2"></i>Register Class</a>
                                             </div>
                                         </div>
                                     </div>
