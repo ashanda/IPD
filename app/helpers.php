@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
 use App\Models\Batch;
-
+use App\Models\Workshop;
 //sms functionality
 function smsBalance(){
 	$curl = curl_init();
@@ -99,5 +99,9 @@ function certificate($id){
     return $certificate;
 }
 
+function getWorkshop(){
+	$data = Workshop::where('status', 1)->first();
+	return $data;
+}
 
 
