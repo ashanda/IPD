@@ -55,7 +55,7 @@ class PaperExamController extends Controller
 
         $coursework->save();
         
-        toast('Course Work Create successfully', 'success');
+        toast('Paper Exam Create successfully', 'success');
         return redirect()->route('exam.paper-exam.index');
     }
 
@@ -105,7 +105,7 @@ class PaperExamController extends Controller
             // Update the associations with batches
             $batchIds = $request->input('bid', []);
             
-            toast('Course Work Update successfully', 'success');
+            toast('Paper Exam Update successfully', 'success');
             return redirect()->route('exam.paper-exam.index')->with('success', 'Lesson updated successfully.');
     }
 
@@ -118,7 +118,7 @@ class PaperExamController extends Controller
         $item->delete();
 
     // Redirect back or to a different page after deletion
-    toast('Course Work Delete successfully', 'success');
+    toast('Paper Exam Delete successfully', 'success');
     return redirect()->route('exam.paper-exam.index');
     }
 }

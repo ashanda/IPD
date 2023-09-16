@@ -75,7 +75,7 @@
 								<ul class="submenu child">
 									<li><a href="javascript:;">MCQ Exams</a></li>
 									<li><a href="{{ route('paper-exam.index') }}">Paper Paper Exams</a></li>
-                                    <li><a href="javascript:;">Online Verbal Exams</a></li>
+                                    <li><a href="{{ route('verbal-exam.index') }}">Online Verbal Exams</a></li>
 								</ul>
 							</li>
 							<li>

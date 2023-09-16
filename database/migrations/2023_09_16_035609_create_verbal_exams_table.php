@@ -13,6 +13,15 @@ return new class extends Migration
     {
         Schema::create('verbal_exams', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->string('cname')->nullable();
+            $table->string('description');
+            $table->date('publish_date');
+            $table->time('start_time');
+            $table->time('end_time');
+            $table->json('bid');
+            $table->integer('status')->default(1);
+            $table->string('document');
             $table->timestamps();
         });
     }
