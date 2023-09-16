@@ -11,14 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('mcq_exams', function (Blueprint $table) {
+        Schema::create('questions', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-             $table->string('cname')->nullable();
-            $table->json('bid');
-            $table->integer('exam_time_duration');
-            $table->integer('exam_question');
-            $table->integer('status')->default(1);
+            $table->string('exam_id');
+            $table->string('descriptions');
+            $table->string('resourse');
+            $table->string('q1');
+            $table->string('q2');
+            $table->string('q3');
+            $table->string('q4');
+            $table->string('answer');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('mcq_exams');
+        Schema::dropIfExists('questions');
     }
 };

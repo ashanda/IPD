@@ -73,13 +73,13 @@
 									<span class="micon dw dw-presentation-2"></span><span class="mtext">Exams</span>
 								</a>
 								<ul class="submenu child">
-									<li><a href="javascript:;">MCQ Exams</a></li>
+									<li><a href="{{ route('mcq-exam.index') }}">MCQ Exams</a></li>
 									<li><a href="{{ route('paper-exam.index') }}">Paper Paper Exams</a></li>
                                     <li><a href="{{ route('verbal-exam.index') }}">Online Verbal Exams</a></li>
 								</ul>
 							</li>
 							<li>
-                                <a href="javascript:;" class="dropdown-toggle no-arrow">
+                                <a href="{{ route('tute.index') }}" class="dropdown-toggle no-arrow">
 									<span class="micon dw dw dw-notepad-1"></span><span class="mtext">Class Tute</span>
 								</a>
 							</li>	
