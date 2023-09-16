@@ -12,6 +12,9 @@ use App\Http\Controllers\WorkshopController;
 use App\Http\Controllers\CourseWorkController;
 use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\PaperExamController;
+use App\Http\Controllers\VerbalExamController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -87,6 +90,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::resource('/admin/course-work', CourseWorkController::class);
     Route::resource('/admin/instructor', InstructorController::class);
     Route::resource('/admin/paper-exam', PaperExamController::class);
+    Route::resource('/admin/verbal-exam', VerbalExamController::class);
 });
 
   
