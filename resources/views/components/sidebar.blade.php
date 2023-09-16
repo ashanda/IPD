@@ -93,7 +93,7 @@
 						<ul class="submenu">
  
 							<li>
-                                <a href="javascript:;" class="dropdown-toggle no-arrow">
+                                <a href="{{ route('payment.index') }}" class="dropdown-toggle no-arrow">
 									Bank payments
 								</a>
                             </li>

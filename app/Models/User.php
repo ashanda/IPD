@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
@@ -20,6 +21,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'fname',
+        'index_number',
         'lname',
         'email',
         'contact_number',
@@ -79,5 +81,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Batch::class);
     }
 
-    
+    public function payments()
+    {
+        return $this->hasMany(Payment::class, 'index_number', 'index_number');
+    }
+ 
+   
+
 }

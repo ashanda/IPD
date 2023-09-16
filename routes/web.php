@@ -15,6 +15,7 @@ use App\Http\Controllers\McqExamController;
 use App\Http\Controllers\PaperExamController;
 use App\Http\Controllers\TuteController;
 use App\Http\Controllers\VerbalExamController;
+use App\Http\Controllers\PaymentController;
 
 
 /*
@@ -44,7 +45,7 @@ Route::get('/workshop', function() {
     return view('workshop');
 });
 
-Route::get('/admin/login', function() {
+Route::get('/admin', function() {
     return view('auth.admin');
 });
 Auth::routes();
@@ -65,6 +66,7 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
   
 
     Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::post('/payment', [PaymentController::class, 'store'])->name('paycourse');
 
 });
 
@@ -98,6 +100,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::post('/mcq-exams/add_question/',[McqExamController::class,'add_question_db'])->name('add_question_db');
     Route::get('/mcq-exam/{id}', [McqExamController::class, 'mcq'])->name('mcq');
     Route::resource('/admin/tute',TuteController::class);
+    Route::resource('/admin/payment',PaymentController::class);
 
 });
 
