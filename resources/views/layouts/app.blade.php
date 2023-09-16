@@ -61,6 +61,7 @@
 	<!-- Datatable Setting js -->
 	<script src="{{ asset('assets/vendors/scripts/datatable-setting.js') }}"></script></body>
 	<script src="{{ asset('assets/scripts/dashboard.js') }}"></script>
+	
     @yield('scripts')
 </body>
 </html>
