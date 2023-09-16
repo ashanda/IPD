@@ -820,7 +820,7 @@ textarea.form-control {
 .input-group.custom>.custom-select:not(:first-child),
 .input-group.custom>.form-control:not(:first-child) {
     border-radius: .25rem;
-    
+
 }
 
 .input-group.custom>.custom-select:not(:last-child),
@@ -1459,7 +1459,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
     -ms-flex-align: center;
     align-items: center;
     height: 100%;
-    width: 50%
+    width: 80%
 }
 
 .brand-logo a .dark-logo,
@@ -1537,7 +1537,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
     -ms-flex-pack: end;
     justify-content: flex-end;
     height: 70px;
-    width: 50%
+    width: 20%
 }
 
 .header-left .brand-logo {
@@ -4832,4 +4832,77 @@ body.IE .register-page-wrap .container {
     .register-page-wrap .wizard-content .wizard .steps {
         display: none
     }
+}
+
+.circular-progress {
+    position: relative;
+    height: 250px;
+    width: 250px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+}
+
+.circular-progress:before {
+    content: "";
+    position: absolute;
+    height: 84%;
+    width: 84%;
+    background-color: #ffffff;
+    border-radius: 50%;
+}
+
+.value-container {
+    position: relative;
+    font-family: "Poppins", sans-serif;
+    font-size: 50px;
+    color: #231c3d;
+}
+
+.progress-user {
+    height: 400px;
+    width: 400px;
+    background-color: transparent;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    display: grid;
+    place-items: center;
+}
+
+.news {
+    width: 160px
+}
+
+.news-scroll a {
+    text-decoration: none
+}
+
+.dot {
+    height: 6px;
+    width: 6px;
+    margin-left: 3px;
+    margin-right: 3px;
+    margin-top: 2px !important;
+    background-color: rgb(207, 23, 23);
+    border-radius: 50%;
+    display: inline-block
+}
+.panel.date {
+    margin: 0px;
+    width: 60px;
+    text-align: center;
+}
+
+.panel.date .month {
+    padding: 2px 0px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.panel.date .day {
+    padding: 3px 0px;
+    font-weight: 700;
+    font-size: 1.5em;
 }

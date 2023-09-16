@@ -45,7 +45,7 @@ Route::get('/workshop', function() {
     return view('workshop');
 });
 
-Route::get('/admin/login', function() {
+Route::get('/admin', function() {
     return view('auth.admin');
 });
 Auth::routes();
@@ -66,6 +66,7 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
   
 
     Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::post('/payment', [PaymentController::class, 'store'])->name('paycourse');
 
 });
 

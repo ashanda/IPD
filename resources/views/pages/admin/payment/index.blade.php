@@ -43,7 +43,15 @@
 								@foreach ( $usersWithPayments as $usersWithPayment)
 								<tr>
 									
-									<td class="table-plus"> <a href="{{ $usersWithPayment->document }}" target="blank"><i class="micon dw dw-binocular"></i> </a></td>
+									<td class="table-plus">
+										 <a href="#" class="btn-block check-button" data-toggle="modal" data-target="#bd-example-modal-lg" type="button"
+										data-pid="{{ $usersWithPayment->id }}"
+										data-slip="{{ asset('storage/' . $usersWithPayment->file_name) }}"
+										data-amount="{{ $usersWithPayment->amount }}">
+											Check
+										</a>
+										
+									</td>
                                     <td class="table-plus">{{ $usersWithPayment->fname.' '.$usersWithPayment->lname }}</td>
                                     <td class="table-plus">
                                         <ul>
@@ -54,28 +62,26 @@
                                             
                                         </ul>
                                     </td>
-									<td class="table-plus">{{ $usersWithPayment->fname.' '.$usersWithPayment->lname }}</td>
-                                    <td class="table-plus">{{ $usersWithPayment->fname.' '.$usersWithPayment->lname }}</td>
-									@if ($batch->status === 1)
+									<td class="table-plus">{{ $usersWithPayment->amount }}</td>
+                                    <td class="table-plus">{{ $usersWithPayment->expired_date }}</td>
+									@if ($usersWithPayment->status === 1)
 									<td><span class="badge badge-success">Active</span></td>		
-									@elseif($batch->status === 2)
+									@elseif($usersWithPayment->status === 2)
 									<td><span class="badge badge-warning">Pending</span></td>
                                     @else
 									<td><span class="badge badge-denger">Reject</span></td>
 									@endif
-									<td>
-                                    <td class="table-plus"></td>
+									
+                                    
                                     <td>
-									<div class="row">
-										<div class="col">
+									
 											<form action="{{ route('tute.destroy', $usersWithPayment->id) }}" method="POST">
 												@csrf
 												@method('DELETE')
 												<button type="submit" class="btn btn-link"><i class="dw dw-delete-3"></i> Delete</button>
 											</form>
-										</div>
-									</div>
-								</td>
+									
+									</td>
 
 								</tr>
 								@endforeach
@@ -84,8 +90,87 @@
 					</div>
 				</div>
 			</div>
+<div class="modal fade bs-example-modal-lg" id="bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">    
+	<div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <!-- Left side with image and zoom -->
+                        <div class="col-md-6">
+                            <img id="modal-image" class="img-fluid slip" alt="Image">
+                            <div class="zoom-controls">
+                                <button id="zoom-in" class="btn btn-primary">Zoom In</button>
+                                <button id="zoom-out" class="btn btn-primary">Zoom Out</button>
+                            </div>
+                        </div>
 
+                        <!-- Right side with the form -->
+                        <div class="col-md-6">
+                            <form action="{{ route('payment.update',1)}}" method="POST">
+								@csrf
+								@method('PUT')
+                                <!-- Add your form fields here -->
+								<input type="hidden" id="modal-pid" name="pid" value="">
+								<input type="hidden" id="modal-amount" name='amount' value="">
+								
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">Payment slip expire date</label>
+										<input class="form-control date-picker" placeholder="Select Date" name="expiredate" type="text" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect1">Status</label>
+                                    <select class="form-control" id="exampleFormControlSelect1" name="status" required>
+                                        <option value="1">Active</option>
+                                        <option value="2">Reject</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">Change Payment value</label>
+										<input class="form-control" name="camount"  type="number">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+</div>
  @endsection           
  @section('scripts')
  <script src="{{ asset('vendors/scripts/advanced-components.js')}}"></script>
+ <script>
+		$(document).ready(function() {
+			let zoomLevel = 100; // Initial zoom level (percentage)
+			const $image = $('.modal-body img');
+
+			$('#zoom-in').click(function() {
+				zoomLevel += 10;
+				$image.css('width', zoomLevel + '%');
+			});
+
+			$('#zoom-out').click(function() {
+				zoomLevel -= 10;
+				$image.css('width', zoomLevel + '%');
+			});
+		});
+
+		
+			$(document).ready(function() {
+    $('.check-button').click(function() {
+        var slip = $(this).data('slip');
+		var pid = $(this).data('pid');
+        var amount = $(this).data('amount');
+        
+        // Set the 'src' attribute of the image element with the retrieved 'data-slip' value
+        $('#modal-image').attr('src', slip);
+		$('#modal-pid').val(pid);
+        $('#modal-amount').val(amount);
+    });
+});
+ </script>		
+
  @endsection

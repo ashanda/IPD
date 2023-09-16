@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-
+use App\Models\Course;
 class HomeController extends Controller
 {
    /**
@@ -40,8 +40,9 @@ class HomeController extends Controller
     public function index(): View
 
     {
+        $course = Course::first();
 
-        return view('pages.user.home');
+        return view('pages.user.home',compact('course'));
 
     } 
 

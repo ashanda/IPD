@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('index_number');
+            $table->string('index_number');
             $table->string('admin_name')->nullable();
             $table->bigInteger('course_id')->nullable();
-            $table->bigInteger('batch_id');
+            $table->json('batch_id');
             $table->string('payment_type');
             $table->integer('amount');
             $table->string('file_name')->nullable();
