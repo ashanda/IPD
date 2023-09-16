@@ -11,7 +11,9 @@ use App\Http\Controllers\LessonController;
 use App\Http\Controllers\WorkshopController;
 use App\Http\Controllers\CourseWorkController;
 use App\Http\Controllers\InstructorController;
+use App\Http\Controllers\McqExamController;
 use App\Http\Controllers\PaperExamController;
+use App\Http\Controllers\TuteController;
 use App\Http\Controllers\VerbalExamController;
 
 
@@ -91,6 +93,12 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::resource('/admin/instructor', InstructorController::class);
     Route::resource('/admin/paper-exam', PaperExamController::class);
     Route::resource('/admin/verbal-exam', VerbalExamController::class);
+    Route::resource('/admin/mcq-exam',McqExamController::class);
+    Route::get('/mcq-exams/add_question/{id}',[McqExamController::class,'add_question'])->name('add_question');
+    Route::post('/mcq-exams/add_question/',[McqExamController::class,'add_question_db'])->name('add_question_db');
+    Route::get('/mcq-exam/{id}', [McqExamController::class, 'mcq'])->name('mcq');
+    Route::resource('/admin/tute',TuteController::class);
+
 });
 
   

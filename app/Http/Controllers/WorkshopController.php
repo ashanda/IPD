@@ -46,7 +46,7 @@ class WorkshopController extends Controller
 
         // Handle the 'cover' file upload
         if ($request->hasFile('cover')) {
-            $coverPath = $request->file('cover')->store('covers', 'public');
+            $coverPath = $request->file('cover')->store('workshop', 'public');
             $workshop->cover = $coverPath;
         }
 
@@ -98,7 +98,7 @@ class WorkshopController extends Controller
 
             // Handle the 'cover' file upload
             if ($request->hasFile('cover')) {
-                $coverPath = $request->file('cover')->store('covers', 'public');
+                $coverPath = $request->file('cover')->store('workshop', 'public');
                 $workshop->cover = $coverPath;
             }
 

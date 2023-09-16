@@ -45,7 +45,7 @@ class PaperExamController extends Controller
 
         // Handle the 'cover' file upload
         if ($request->hasFile('document')) {
-            $coverPath = $request->file('document')->store('course_work', 'public');
+            $coverPath = $request->file('document')->store('paper-exam', 'public');
             $coursework->document = $coverPath;
         }
 
@@ -92,10 +92,11 @@ class PaperExamController extends Controller
             $coursework->description = $request->input('description');
             $coursework->start_time = date('H:i:s', strtotime($request->input('start_time')));
             $coursework->end_time = date('H:i:s', strtotime($request->input('end_time')));
-
+            $batchIds = $request->input('bid', []);
+            $coursework->bid = json_encode($batchIds);
             // Handle the 'cover' file upload
             if ($request->hasFile('document')) {
-                $coverPath = $request->file('document')->store('course_work', 'public');
+                $coverPath = $request->file('document')->store('paper-exam', 'public');
                 $coursework->document = $coverPath;
             }
 
@@ -103,7 +104,7 @@ class PaperExamController extends Controller
             $coursework->save();
 
             // Update the associations with batches
-            $batchIds = $request->input('bid', []);
+            
             
             toast('Paper Exam Update successfully', 'success');
             return redirect()->route('exam.paper-exam.index')->with('success', 'Lesson updated successfully.');
