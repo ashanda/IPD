@@ -8,7 +8,20 @@
 <div class="main-container">
 		<div class="pd-ltr-20">
 		  <div class="row">
-			
+			@php
+				$responseData = json_decode(upcoming()->getContent(), true);
+				
+				$eventTypes = [
+					'lt' => 'Lesson',
+					'mt' => 'MCQ Test',
+					'pt' => 'Paper Test',
+					'ct' => 'Course Work',
+					'vt' => 'Verbal Exam',
+				];
+				
+			@endphp
+
+
 			@if (endCourse() === 1)
 		   <div class="col-sm-12 mb-30">
 			@else
@@ -51,75 +64,52 @@
 							<hr>
 							<div class="panel-body">
 								<ul class="media-list font-14" style="overflow: hidden; max-height: 50%;">
-									 <li class="media">
-                            <div class="media-left">
-                                <div class="panel panel-danger text-center date">
-                                    <div class="panel-heading month font-14">
-                                        <span class="panel-title strong">
-                                            Mar
-                                        </span>
-                                    </div>
-                                    <div class="panel-body day text-danger font-14">
-                                        23
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading font-14">
-                                    Pulvinar Mauris Eu
-                                </h4>
-                                <p class="mb-0">
-                                    Vivamus pulvinar mauris eu placerat blandit. In euismod tellus vel ex vestibulum congue.
-                                </p>
-                            </div>
-                        </li>
-						<hr>
-                        <li class="media">
-                            <div class="media-left">
-                                <div class="panel panel-danger text-center date">
-                                    <div class="panel-heading month font-14">
-                                        <span class="panel-title strong">
-                                            Jan
-                                        </span>
-                                    </div>
-                                    <div class="panel-body text-danger day font-14">
-                                        16
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading font-14">
-                                    Aenean Consectetur Ultricies
-                                </h4>
-                                <p class="mb-0">
-                                    Curabitur vel malesuada tortor, sit amet ultricies mauris. Aenean consectetur ultricies luctus.
-                                </p>
-                            </div>
-                        </li>
-						<hr>
-                        <li class="media">
-                            <div class="media-left">
-                                <div class="panel panel-danger text-center date">
-                                    <div class="panel-heading month font-14">
-                                        <span class="panel-title strong all-caps">
-                                            Dec
-                                        </span>
-                                    </div>
-                                    <div class="panel-body text-danger day font-14">
-                                        8
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading font-14">
-                                    Praesent Tincidunt
-                                </h4>
-                                <p class="mb-0">
-                                    Sed convallis dignissim magna et dignissim. Praesent tincidunt sapien eu gravida dignissim.
-                                </p>
-                            </div>
-                        </li>
-<hr>
+								@php
+									$hasData = false;
+								@endphp
+
+								@foreach ($responseData as $dataType => $data)
+									@if (!empty($data))
+										@php
+											$hasData = true;
+										@endphp
+										@foreach ($data as $item)
+											<li class="media">
+												<div class="media-left">
+													<div class="panel panel-danger text-center date">
+														<div class="panel-heading month font-14">
+															<span class="panel-title strong">
+																{{ \Carbon\Carbon::parse($item['lp'] ?? $item['mp'] ?? $item['pp'] ?? $item['cp'] ?? $item['vpb'])->format('M') }}
+															</span>
+														</div>
+														<div class="panel-body day text-danger font-14">
+															{{ \Carbon\Carbon::parse($item['lp'] ?? $item['mp'] ?? $item['pp'] ?? $item['cp'] ?? $item['vpb'])->format('d') }}
+														</div>
+													</div>
+												</div>
+												<div class="media-body">
+													<h4 class="media-heading font-14">
+														@php
+															$eventTypeKey = array_key_first($item);
+															$eventName = $eventTypes[$eventTypeKey] ?? 'Unknown Event';
+														@endphp
+														{{ $eventName }}
+													</h4>
+													<p class="mb-0">
+														{{ $item['lt'] ?? $item['mt'] ?? $item['pt'] ?? $item['ct'] ?? $item['vt'] }}.
+													</p>
+												</div>
+											</li>
+										@endforeach
+									@endif
+								@endforeach
+
+								@if (!$hasData)
+									<li>{{ 'No activity' }}</li>
+								@endif
+
+							<hr>
+
 								</ul>
 							</div>
 						</div>
@@ -311,26 +301,65 @@ document.addEventListener('DOMContentLoaded', function() {
   var calendarEl = document.getElementById('calendar');
   var calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: 'dayGridMonth',
-    events: [
-      {
-        start: '2023-09-15',
-        color: 'red' // Customize the color for this date
-      },
-      {
-        start: '2023-09-20',
-        color: 'blue' // Customize the color for this date
-      },
-      {
-        start: '2023-09-25',
-        color: 'green' // Customize the color for this date
-      }
-      // Add more events with different dates and colors as needed
-    ],
-     // Set the height to 100px
+    // Set the height to 100px
   });
+
+  // Extract events from responseData and add them to FullCalendar
+  var responseData = <?php echo json_encode($responseData); ?>;
+  
+  // Create arrays for different sections
+  var lessonEvents = [];
+  var mcqExamEvents = [];
+  var paperExamEvents = [];
+  var courseWorkEvents = [];
+  var verbalExamEvents = [];
+
+  // Loop through and add events from each section
+  responseData['lessons'].forEach(function(lesson) {
+    lessonEvents.push({
+      start: lesson.lp,
+      color: 'orange' // Customize the color for lessons
+    });
+  });
+
+  responseData['mcq_exams'].forEach(function(mcqExam) {
+    mcqExamEvents.push({
+      start: mcqExam.mp,
+      color: 'purple' // Customize the color for MCQ exams
+    });
+  });
+
+  responseData['paper_exams'].forEach(function(paperExam) {
+    mcqExamEvents.push({
+      start: paperExam.pp,
+      color: 'green' // Customize the color for MCQ exams
+    });
+  });
+
+ responseData['course_works'].forEach(function(courseWork) {
+    mcqExamEvents.push({
+      start: courseWork.cp,
+      color: 'blue' // Customize the color for MCQ exams
+    });
+  });
+
+  responseData['verbal_exams'].forEach(function(verbalExam) {
+    mcqExamEvents.push({
+      start: verbalExam.vp,
+      color: 'black' // Customize the color for MCQ exams
+    });
+  });
+  // Add more sections as needed
+
+  // Add section events to the FullCalendar events array
+  calendar.addEventSource(lessonEvents);
+  calendar.addEventSource(mcqExamEvents);
+  // Add more sections as needed
 
   calendar.render();
 });
+
+
 
 let progressBar = document.querySelector(".circular-progress");
 let valueContainer = document.querySelector(".value-container");

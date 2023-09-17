@@ -65,6 +65,7 @@ class LessonController extends Controller
 
         // Convert selected batch IDs to a JSON array
         $batchIds = $request->input('bid', []);
+        
         $lesson->bid = json_encode($batchIds);
 
         $lesson->save();
@@ -112,12 +113,14 @@ class LessonController extends Controller
                 $coverPath = $request->file('cover')->store('covers', 'public');
                 $lesson->cover = $coverPath;
             }
-
+            $batchIds = $request->input('bid', []);
+        
+            $lesson->bid = json_encode($batchIds);
             // Save the updated lesson
             $lesson->save();
 
             // Update the associations with batches
-            $batchIds = $request->input('bid', []);
+           
             
             toast('Lesson Update successfully', 'success');
             return redirect()->route('lesson.index')->with('success', 'Lesson updated successfully.');

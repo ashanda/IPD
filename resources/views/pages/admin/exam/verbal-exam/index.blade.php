@@ -21,7 +21,7 @@
 					</div>
 				</div>
                 	<div class="page-header">
-                        <form action="{{ route('paper-exam.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('verbal-exam.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
 							<div class="row">
                         
@@ -164,10 +164,10 @@
                                     <td>
 									<div class="row">
 										<div class="col">
-											<a class="dropdown-item" href="{{ route('paper-exam.edit', $batch->id) }}"><i class="dw dw-edit2"></i> Edit</a>
+											<a class="dropdown-item" href="{{ route('verbal-exam.edit', $batch->id) }}"><i class="dw dw-edit2"></i> Edit</a>
 										</div>
 										<div class="col">
-											<form action="{{ route('paper-exam.destroy', $batch->id) }}" method="POST">
+											<form action="{{ route('verbal-exam.destroy', $batch->id) }}" method="POST">
 												@csrf
 												@method('DELETE')
 												<button type="submit" class="btn btn-link"><i class="dw dw-delete-3"></i> Delete</button>

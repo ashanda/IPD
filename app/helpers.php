@@ -198,3 +198,137 @@ function notice() {
 
     return $usersWithBatchesAndBids;
 }
+
+
+function debug(){
+
+	$batch = json_decode(Auth::user()->batch, true);
+	$currentDate = Carbon::now();
+
+	$upcomingDataLessons = User::join('lessons', function ($join) use ($batch, $currentDate) {
+    $join->on(function ($query) use ($batch) {
+        foreach ($batch as $value) {
+            $query->orWhereJsonContains('lessons.bid', $value);
+        }
+    })
+    ->where('users.type', '=', 0)
+    ->where('lessons.publish_date', '>', $currentDate)
+    ->where('lessons.status', '=', 1);
+})
+->select(
+    'lessons.lesson_name as lt',
+    'lessons.publish_date as lp'
+)
+->distinct()
+->get();
+
+return $upcomingDataLessons;
+}
+
+
+function upcoming() {
+	
+$batch = json_decode(Auth::user()->batch, true);
+$currentDate = Carbon::now();
+
+	$upcomingDataLessons = User::join('lessons', function ($join) use ($batch, $currentDate) {
+    $join->on(function ($query) use ($batch) {
+        foreach ($batch as $value) {
+            $query->orWhereJsonContains('lessons.bid', $value);
+        }
+			})
+			->where('users.type', '=', 0)
+			->where('lessons.publish_date', '>', $currentDate)
+			->where('lessons.status', '=', 1);
+		})
+		->select(
+			'lessons.lesson_name as lt',
+			'lessons.publish_date as lp'
+		)
+		->distinct()
+		->get();
+
+
+
+		$upcomingDataMCQExams = User::join('mcq_exams', function ($join) use ($batch, $currentDate) {
+			$join->on(function ($query) use ($batch) {
+				foreach ($batch as $value) {
+					$query->orWhereJsonContains('mcq_exams.bid', $value);
+				}
+			})
+			->where('users.type', '=', 0)
+			->where('mcq_exams.publish_date', '>', $currentDate)
+			->where('mcq_exams.status', '=', 1);
+		})
+		->select(
+			'mcq_exams.title as mt',
+			'mcq_exams.publish_date as mp'
+		)
+		->distinct()
+		->get();
+
+		$upcomingDataPaperExams = User::join('paper_exams', function ($join) use ($batch, $currentDate) {
+			$join->on(function ($query) use ($batch) {
+				foreach ($batch as $value) {
+					$query->orWhereJsonContains('paper_exams.bid', $value);
+				}
+			})
+			->where('users.type', '=', 0)
+			->where('paper_exams.publish_date', '>', $currentDate)
+			->where('paper_exams.status', '=', 1);
+		})
+		->select(
+			'paper_exams.title as pt',
+			'paper_exams.publish_date as pp'
+		)
+		->distinct()
+		->get();
+
+		$upcomingDataCourseWorks = User::join('course_works', function ($join) use ($batch, $currentDate) {
+			$join->on(function ($query) use ($batch) {
+				foreach ($batch as $value) {
+					$query->orWhereJsonContains('course_works.bid', $value);
+				}
+			})
+			->where('users.type', '=', 0)
+			->where('course_works.publish_date', '>', $currentDate)
+			->where('course_works.status', '=', 1);
+		})
+		->select(
+			'course_works.title as ct',
+			'course_works.publish_date as cp'
+		)
+		->distinct()
+		->get();
+
+		$upcomingDataVerbalExams = User::join('verbal_exams', function ($join) use ($batch, $currentDate) {
+			$join->on(function ($query) use ($batch) {
+				foreach ($batch as $value) {
+					$query->orWhereJsonContains('verbal_exams.bid', $value);
+				}
+			})
+			->where('users.type', '=', 0)
+			->where('verbal_exams.publish_date', '>', $currentDate)
+			->where('verbal_exams.status', '=', 1);
+		})
+		->select(
+			'verbal_exams.title as vt',
+			'verbal_exams.publish_date as vpb'
+		)
+		->distinct()
+		->get();
+
+		// Combine the results into one JSON response
+		$combinedData = [
+			'lessons' => $upcomingDataLessons,
+			'mcq_exams' => $upcomingDataMCQExams,
+			'paper_exams' => $upcomingDataPaperExams,
+			'course_works' => $upcomingDataCourseWorks,
+			'verbal_exams' => $upcomingDataVerbalExams,
+		];
+
+	return response()->json($combinedData);
+
+}
+
+

@@ -56,7 +56,7 @@ class PaperExamController extends Controller
         $coursework->save();
         
         toast('Paper Exam Create successfully', 'success');
-        return redirect()->route('exam.paper-exam.index');
+        return redirect()->route('paper-exam.index');
     }
 
     /**
@@ -107,7 +107,7 @@ class PaperExamController extends Controller
             
             
             toast('Paper Exam Update successfully', 'success');
-            return redirect()->route('exam.paper-exam.index')->with('success', 'Lesson updated successfully.');
+            return redirect()->route('paper-exam.index')->with('success', 'Lesson updated successfully.');
     }
 
     /**
@@ -120,6 +120,6 @@ class PaperExamController extends Controller
 
     // Redirect back or to a different page after deletion
     toast('Paper Exam Delete successfully', 'success');
-    return redirect()->route('exam.paper-exam.index');
+    return redirect()->route('paper-exam.index');
     }
 }
