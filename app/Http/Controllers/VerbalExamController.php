@@ -56,7 +56,7 @@ class VerbalExamController extends Controller
         $coursework->save();
         
         toast('Verbal Exam Create successfully', 'success');
-        return redirect()->route('exam.verbal-exam.index');
+        return redirect()->route('verbal-exam.index');
     }
 
     /**
@@ -106,7 +106,7 @@ class VerbalExamController extends Controller
             // Update the associations with batches
             
             toast('Verbal Exam Update successfully', 'success');
-            return redirect()->route('exam.verbal-exam.index')->with('success', 'Lesson updated successfully.');
+            return redirect()->route('verbal-exam.index')->with('success', 'Lesson updated successfully.');
     }
 
     /**
@@ -119,6 +119,6 @@ class VerbalExamController extends Controller
 
     // Redirect back or to a different page after deletion
     toast('Verbal Exam Delete successfully', 'success');
-    return redirect()->route('exam.verbal-exam.index');
+    return redirect()->route('verbal-exam.index');
     }
 }

@@ -47,6 +47,7 @@ class McqExamController extends Controller
             'title' => 'required|string',
             'lms_exam_time_duration' => 'required|numeric',
             'lms_exam_question' => 'required|numeric',
+            'publish_date' => 'required',
         ]);
 
         // Create a new MCQExam instance
@@ -54,6 +55,7 @@ class McqExamController extends Controller
         $mcqExam->title = $validatedData['title'];
         $mcqExam->exam_time_duration = $validatedData['lms_exam_time_duration'];
         $mcqExam->exam_question = $validatedData['lms_exam_question'];
+        $mcqExam->publish_date = Carbon::parse($validatedData['publish_date'])->format('Y-m-d');
         $batchIds = $request->input('bid', []);
         $mcqExam->bid = json_encode($batchIds);
         // Save the MCQExam instance
@@ -124,6 +126,7 @@ class McqExamController extends Controller
         $exam->title = $request->input('title');
         $exam->exam_time_duration = $request->input('lms_exam_time_duration');
         $exam->exam_question = $request->input('lms_exam_question');
+        $exam->publish_date = Carbon::parse($request->input('publish_date'))->format('Y-m-d');
         $batchIds = $request->input('bid', []);
         $exam->bid = json_encode($batchIds);
         // Save the updated exam object

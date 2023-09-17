@@ -13,7 +13,7 @@
         }
 
         body {
-            background-image: url("images/print_background.jpg");
+            background: url("http://127.0.0.1:8000/assets/images/print_background.jpg");
             color: black;
             display: table;
             font-family: Georgia, serif;
@@ -147,10 +147,12 @@ div.dotted {
 </head>
 
 <body>
+
+
     <div class="container">
 
-        <img class="logo" src="images/logo.png" alt="">
-        <img class="icon" src="images/icon.png" alt="">
+        <img class="logo" src="{{ asset('assets/images/logo-c.png') }}" alt="">
+        <img class="icon" src="{{ asset('assets/images/icon-c.png') }}" alt="">
 
         <div class="title">
             INSTITUTE FOR PROFESSIONAL
@@ -170,7 +172,7 @@ div.dotted {
         </div>
 
         <div class="person dotted">
-            {{ auth::user()->fname.' '.auth::user()->lname }}
+            {{ $usersWithCertificates->fname.' '.$usersWithCertificates->lname }}
         </div>
 
         <div class="reason">
@@ -178,7 +180,7 @@ div.dotted {
             <br>
             the Presentation & Announcing Course.
             <br>
-            Awarded <span class="dotted">{{ certificate(auth::user()->id)->issue_date }}</span>
+            Awarded <span class="dotted">{{ $usersWithCertificates->issue_date }}</span>
             <br>
             The approved programme at IPD
         </div>
@@ -186,7 +188,7 @@ div.dotted {
             <tr>
                 <td>
                     <div class="dotted">
-                    <img class="sign" src="images/signs/sign1.png" alt="">
+                    <img class="sign" src="{{ asset('assets/images/signs/sign1.png') }}" alt="">
                     </div>
 
                     <div class="sign-preson">
@@ -198,7 +200,7 @@ div.dotted {
                 </td>
                 <td>
                     <div class="dotted">
-                    <img class="sign" src="images/signs/sign3.png" alt="">
+                    <img class="sign" src="{{ asset('assets/images/signs/sign3.png') }}" alt="">
                     </div>
 
                     <div class="sign-preson">
@@ -212,7 +214,7 @@ div.dotted {
                 </td>
                 <td>
                     <div class="dotted">
-                    <img class="sign" src="images/signs/sign2.png" alt="">
+                    <img class="sign" src="{{ asset('assets/images/signs/sign2.png') }}" alt="">
                     </div>
 
                     <div class="sign-preson">
@@ -227,73 +229,9 @@ div.dotted {
     </div>
 <script>
     window.print();
-    window.history.back();
+
 </script>
 
 </body>
 
 </html>
-
-    
-    {{-- <html>
-
-<head>
-    <title>Certificate Not Found</title>
-    <style>
-        * {
-            transition: all 0.6s;
-        }
-
-        html {
-            height: 100%;
-        }
-
-        body {
-            font-family: "Lato", sans-serif;
-            color: #888;
-            margin: 0;
-        }
-
-        #main {
-            display: table;
-            width: 100%;
-            height: 100vh;
-            text-align: center;
-        }
-
-        .fof {
-            display: table-cell;
-            vertical-align: middle;
-        }
-
-        .fof h1 {
-            font-size: 50px;
-            display: inline-block;
-            padding-right: 12px;
-            animation: type .2s alternate infinite;
-        }
-
-        @keyframes type {
-            from {
-                box-shadow: inset -3px 0px 0px #888;
-            }
-
-            to {
-                box-shadow: inset -3px 0px 0px transparent;
-            }
-        }
-    </style>
-</head>
-
-<body>
-    <div id="main">
-        <div class="fof">
-            <h1>Certificate Not Found</h1>
-        </div>
-    </div>
-    <script>
-    setTimeout("history.go(-1)", 1000);
-</script>
-</body>
-
-</html> --}}

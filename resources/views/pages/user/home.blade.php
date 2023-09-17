@@ -4,25 +4,71 @@
 <style type="text/css">
 	
 </style>
+@section('preload')
+	<div class="pre-loader">
+		<div class="pre-loader-box">
+			<div class="loader-logo"><img src="{{ asset('assets/images/logo.jpg') }}" alt=""></div>
+			<div class='loader-progress' id="progress_div">
+				<div class='bar' id='bar1'></div>
+			</div>
+			<div class='percent' id='percent1'>0%</div>
+			<div class="loading-text">
+				Loading...
+			</div>
+		</div>
+	</div>
+@endsection
 <div class="main-container">
 		<div class="pd-ltr-20">
 		  <div class="row">
-		   <div class="col-sm-8 mb-30">
-			
+			@php
+				$responseData = json_decode(upcoming()->getContent(), true);
+				
+				$eventTypes = [
+					'lt' => 'Lesson',
+					'mt' => 'MCQ Test',
+					'pt' => 'Paper Test',
+					'ct' => 'Course Work',
+					'vt' => 'Verbal Exam',
+				];
+				
+			@endphp
+
+
+			@if (endCourse() === 1)
+		   <div class="col-sm-12 mb-30">
+			@else
+			<div class="col-sm-8 mb-30">
+			@endif
 			<div class="card-box pd-20 height-100-p mb-30">
-				<div class="alert alert-danger alert-dismissible fade show mb-30" role="alert">
+				@if (endCourse() === 0)
+					@if (expireCheck() === 0 && paymentCheck() === 0)
+					<div class="alert alert-danger alert-dismissible fade show mb-30" role="alert">
 								<strong>Payment due.</strong>Please make payment promptly. Thank you.
 								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
-								</button>
+					 </button>
 				</div>
+				@else
+					
+				@endif
+				@endif
+				
+				
 				<div class="row align-items-center">
 					
-					<div class="col-md-7">
+					
 						
 
-						
-						   <div class="panel panel-danger">
+						@if (endCourse() === 1)
+						<div class="col-md-7">
+							<div style="text-align: center;">
+								<img src="{{ asset('assets/images/certificate.png') }}" alt="">
+							</div>
+
+						@else
+						<div class="col-md-7">
+							<div class="panel panel-danger">
 							<div class="panel-heading">
 								<h3 class="panel-title font-14">
 									<span class="glyphicon  glyphicon-calendar"></span> Upcomming Activity
@@ -31,92 +77,88 @@
 							<hr>
 							<div class="panel-body">
 								<ul class="media-list font-14" style="overflow: hidden; max-height: 50%;">
-									 <li class="media">
-                            <div class="media-left">
-                                <div class="panel panel-danger text-center date">
-                                    <div class="panel-heading month font-14">
-                                        <span class="panel-title strong">
-                                            Mar
-                                        </span>
-                                    </div>
-                                    <div class="panel-body day text-danger font-14">
-                                        23
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading font-14">
-                                    Pulvinar Mauris Eu
-                                </h4>
-                                <p class="mb-0">
-                                    Vivamus pulvinar mauris eu placerat blandit. In euismod tellus vel ex vestibulum congue.
-                                </p>
-                            </div>
-                        </li>
-						<hr>
-                        <li class="media">
-                            <div class="media-left">
-                                <div class="panel panel-danger text-center date">
-                                    <div class="panel-heading month font-14">
-                                        <span class="panel-title strong">
-                                            Jan
-                                        </span>
-                                    </div>
-                                    <div class="panel-body text-danger day font-14">
-                                        16
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading font-14">
-                                    Aenean Consectetur Ultricies
-                                </h4>
-                                <p class="mb-0">
-                                    Curabitur vel malesuada tortor, sit amet ultricies mauris. Aenean consectetur ultricies luctus.
-                                </p>
-                            </div>
-                        </li>
-						<hr>
-                        <li class="media">
-                            <div class="media-left">
-                                <div class="panel panel-danger text-center date">
-                                    <div class="panel-heading month font-14">
-                                        <span class="panel-title strong all-caps">
-                                            Dec
-                                        </span>
-                                    </div>
-                                    <div class="panel-body text-danger day font-14">
-                                        8
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading font-14">
-                                    Praesent Tincidunt
-                                </h4>
-                                <p class="mb-0">
-                                    Sed convallis dignissim magna et dignissim. Praesent tincidunt sapien eu gravida dignissim.
-                                </p>
-                            </div>
-                        </li>
-<hr>
+								@php
+									$hasData = false;
+								@endphp
+
+								@foreach ($responseData as $dataType => $data)
+									@if (!empty($data))
+										@php
+											$hasData = true;
+										@endphp
+										@foreach ($data as $item)
+											<li class="media">
+												<div class="media-left">
+													<div class="panel panel-danger text-center date">
+														<div class="panel-heading month font-14">
+															<span class="panel-title strong">
+																{{ \Carbon\Carbon::parse($item['lp'] ?? $item['mp'] ?? $item['pp'] ?? $item['cp'] ?? $item['vpb'])->format('M') }}
+															</span>
+														</div>
+														<div class="panel-body day text-danger font-14">
+															{{ \Carbon\Carbon::parse($item['lp'] ?? $item['mp'] ?? $item['pp'] ?? $item['cp'] ?? $item['vpb'])->format('d') }}
+														</div>
+													</div>
+												</div>
+												<div class="media-body">
+													<h4 class="media-heading font-14">
+														@php
+															$eventTypeKey = array_key_first($item);
+															$eventName = $eventTypes[$eventTypeKey] ?? 'Unknown Event';
+														@endphp
+														{{ $eventName }}
+													</h4>
+													<p class="mb-0">
+														{{ $item['lt'] ?? $item['mt'] ?? $item['pt'] ?? $item['ct'] ?? $item['vt'] }}.
+													</p>
+												</div>
+											</li>
+										@endforeach
+									@endif
+								@endforeach
+
+								@if (!$hasData)
+									<li>{{ 'No activity' }}</li>
+								@endif
+
+							<hr>
+
 								</ul>
 							</div>
 						</div>
+						@endif
+						   
+
 
 					</div>
+					@if (endCourse() === 1)
+					<div class="col-md-5">
+						<h4 class="font-20 weight-500 mb-10 text-capitalize">
+							<div class="weight-600 font-30 text-blue">Congratulation!</div>
+						</h4>
+						<a href='{{ route('download') }}' type="button" class="btn btn-warning">Download Your Certificate</a>
+					</div>
+					@else
 					<div class="col-md-5">
 						<img src="{{ asset('assets/images/user-dash.png') }}" alt="">
 					</div>
+					@endif
 				</div>
 				
 			</div>
 		   </div>
-		   <div class="col-sm-4 mb-30">
-			<div class="card-box pd-20 height-100-p mb-30">
-						<div id='calendar'></div>
-			</div>
-		   </div>
+		   
+				
+				@if (endCourse() === 1)
+					
+				@else
+				<div class="col-sm-4 mb-30">
+					<div class="card-box pd-20 height-100-p mb-30">
+					<div id='calendar'></div>
+					</div>
+		   		</div>
+				@endif		
+			
 		  </div>
 			<div class="row">
 				<div class="col-xl-3 mb-30">
@@ -127,9 +169,9 @@
 							</div>
                             
 							<div class="widget-data">
-                                <a href="">
-								<div class="h4 mb-0">Programme Shedule</div>
-								<div class="weight-600 font-14"> + Programme Shedule</div>
+                                <a href="{{ route('userlesson') }}">
+								<div class="h4 mb-0">Lessons</div>
+								<div class="weight-600 font-14">New lessons <span class="badge badge-primary badge-pill">14</span></div>
                                 </a>
 							</div>
                             
@@ -144,9 +186,9 @@
 							</div>
                             
 							<div class="widget-data">
-                                <a href="">
-								<div class="h4 mb-0">Payments</div>
-								<div class="weight-600 font-14">Payments <span class="badge badge-primary badge-pill">14</span></div>
+                                <a href="{{ route('usercoursework') }}">
+								<div class="h4 mb-0">Course work</div>
+								<div class="weight-600 font-14">New course work <span class="badge badge-primary badge-pill">14</span></div>
                                 </a>
 							</div>
                              
@@ -162,8 +204,8 @@
                             
 							<div class="widget-data">
                                 <a href="">
-								<div class="h4 mb-0">Course metrials</div>
-								<div class="weight-600 font-14">+ Course metrials</div>
+								<div class="h4 mb-0">Exams</div>
+								<div class="weight-600 font-14">New exams <span class="badge badge-primary badge-pill">14</span></div>
                                 </a>
 							</div>
                              
@@ -179,8 +221,8 @@
                             
 							<div class="widget-data">
                                 <a href="">
-								<div class="h4 mb-0">Certificate</div>
-								<div class="weight-600 font-14">Certificate  <span class="badge badge-primary badge-pill">14</span></div>
+								<div class="h4 mb-0">Tutes</div>
+								<div class="weight-600 font-14">New tutes <span class="badge badge-primary badge-pill">14</span></div>
                                  </a>
 							</div>
                            
@@ -251,11 +293,17 @@
 							<div class="value-container">0%</div>
 						</div>
 						</div>
+						
 					</div>
+					
 				</div>
 			</div>
-
-
+			@if (Auth::user()->type === 'user')
+				{{-- @include('components.hurray') --}}
+			@else
+				
+			@endif
+			
 			
 
 			
@@ -266,26 +314,65 @@ document.addEventListener('DOMContentLoaded', function() {
   var calendarEl = document.getElementById('calendar');
   var calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: 'dayGridMonth',
-    events: [
-      {
-        start: '2023-09-15',
-        color: 'red' // Customize the color for this date
-      },
-      {
-        start: '2023-09-20',
-        color: 'blue' // Customize the color for this date
-      },
-      {
-        start: '2023-09-25',
-        color: 'green' // Customize the color for this date
-      }
-      // Add more events with different dates and colors as needed
-    ],
-     // Set the height to 100px
+    // Set the height to 100px
   });
+
+  // Extract events from responseData and add them to FullCalendar
+  var responseData = <?php echo json_encode($responseData); ?>;
+  
+  // Create arrays for different sections
+  var lessonEvents = [];
+  var mcqExamEvents = [];
+  var paperExamEvents = [];
+  var courseWorkEvents = [];
+  var verbalExamEvents = [];
+
+  // Loop through and add events from each section
+  responseData['lessons'].forEach(function(lesson) {
+    lessonEvents.push({
+      start: lesson.lp,
+      color: 'orange' // Customize the color for lessons
+    });
+  });
+
+  responseData['mcq_exams'].forEach(function(mcqExam) {
+    mcqExamEvents.push({
+      start: mcqExam.mp,
+      color: 'purple' // Customize the color for MCQ exams
+    });
+  });
+
+  responseData['paper_exams'].forEach(function(paperExam) {
+    mcqExamEvents.push({
+      start: paperExam.pp,
+      color: 'green' // Customize the color for MCQ exams
+    });
+  });
+
+ responseData['course_works'].forEach(function(courseWork) {
+    mcqExamEvents.push({
+      start: courseWork.cp,
+      color: 'blue' // Customize the color for MCQ exams
+    });
+  });
+
+  responseData['verbal_exams'].forEach(function(verbalExam) {
+    mcqExamEvents.push({
+      start: verbalExam.vp,
+      color: 'black' // Customize the color for MCQ exams
+    });
+  });
+  // Add more sections as needed
+
+  // Add section events to the FullCalendar events array
+  calendar.addEventSource(lessonEvents);
+  calendar.addEventSource(mcqExamEvents);
+  // Add more sections as needed
 
   calendar.render();
 });
+
+
 
 let progressBar = document.querySelector(".circular-progress");
 let valueContainer = document.querySelector(".value-container");

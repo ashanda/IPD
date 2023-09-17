@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
              $table->string('cname')->nullable();
             $table->json('bid');
+            $table->date('publish_date');
             $table->integer('exam_time_duration');
             $table->integer('exam_question');
             $table->integer('status')->default(1);

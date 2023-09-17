@@ -86,6 +86,9 @@ class User extends Authenticatable
         return $this->hasMany(Payment::class, 'index_number', 'index_number');
     }
  
-   
+   public function certificate()
+    {
+        return $this->hasOne(Certificate::class, 'index_number', 'index_number');
+    }
 
 }

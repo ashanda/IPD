@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\Course;
+use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
    /**
@@ -84,5 +85,13 @@ class HomeController extends Controller
 
         return view('pages.instructor.instructorHome');
 
+    }
+
+    public function profile(){
+        return view('pages.user.profile.index');
+    }
+
+    public function groupchat(){
+        return view('pages.user.chat.index');
     }
 }

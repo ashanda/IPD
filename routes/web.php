@@ -6,12 +6,16 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BatchController;
+use App\Http\Controllers\CertificateController;
+use App\Http\Controllers\CoupenController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\WorkshopController;
 use App\Http\Controllers\CourseWorkController;
+use App\Http\Controllers\ExpenceController;
 use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\McqExamController;
+use App\Http\Controllers\NoticeController;
 use App\Http\Controllers\PaperExamController;
 use App\Http\Controllers\TuteController;
 use App\Http\Controllers\VerbalExamController;
@@ -67,7 +71,11 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
 
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::post('/payment', [PaymentController::class, 'store'])->name('paycourse');
-
+    Route::get('/download-certificate',[CertificateController::class,'download'])->name('download');
+    Route::get('/lesson',[LessonController::class,'index'])->name('userlesson');
+    Route::get('/course-work',[WorkshopController::class,'index'])->name('usercoursework');
+    Route::get('/edit-profile',[HomeController::class,'profile'])->name('profile');
+    Route::get('/groupchat',[HomeController::class,'groupchat'])->name('groupchat');
 });
 
   
@@ -101,6 +109,12 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('/mcq-exam/{id}', [McqExamController::class, 'mcq'])->name('mcq');
     Route::resource('/admin/tute',TuteController::class);
     Route::resource('/admin/payment',PaymentController::class);
+    Route::resource('/admin/expence',ExpenceController::class);
+    Route::resource('/admin/certificate',CertificateController::class);
+    Route::get('/admin/certificateissue/{id}',[CertificateController::class,'certificate'])->name('issue_certificate');
+    Route::post('/certificates', [CertificateController::class,'store'])->name('certificates.store');
+    Route::resource('/admin/coupen',CoupenController::class);
+    Route::resource('/admin/notice',NoticeController::class);
 
 });
 
