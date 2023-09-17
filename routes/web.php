@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BatchController;
 use App\Http\Controllers\CertificateController;
+use App\Http\Controllers\CoupenController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\WorkshopController;
@@ -107,6 +108,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::resource('/admin/certificate',CertificateController::class);
     Route::get('/admin/certificateissue/{id}',[CertificateController::class,'certificate'])->name('issue_certificate');
     Route::post('/certificates', [CertificateController::class,'store'])->name('certificates.store');
+     Route::resource('/admin/coupen',CoupenController::class);
 
 });
 

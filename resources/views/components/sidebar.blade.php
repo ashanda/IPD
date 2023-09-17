@@ -131,15 +131,11 @@
 						</a>
 					</li>
 					<li>
-						<a href="chat.html" class="dropdown-toggle no-arrow">
+						<a href="{{ route('coupen.index') }}" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-chat3"></span><span class="mtext">Coupon</span>
 						</a>
 					</li>
-					<li>
-						<a href="invoice.html" class="dropdown-toggle no-arrow">
-							<span class="micon dw dw-settings"></span><span class="mtext">Settings</span>
-						</a>
-					</li>
+					
                     @elseif (Auth::user()->type === 'instructor')
 
                     @else
