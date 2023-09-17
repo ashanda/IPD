@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use App\Models\Batch;
 use App\Models\Payment;
 use App\Models\Workshop;
+use App\Models\Certificate;
 use Illuminate\Support\Facades\DB;
 
 
@@ -151,6 +152,13 @@ function expireCheck(){
 }
 
 function endCourse(){
-	
+	$checkend = Certificate::where('status', 1)->where('index_number', Auth::user()->index_number)->first();
+	if( $checkend != null){
+		$endCourse = 1;
+	}else{
+		$endCourse = 0;
+	}
+
+	return $endCourse;
 }
 

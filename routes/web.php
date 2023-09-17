@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BatchController;
+use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\WorkshopController;
@@ -68,7 +69,7 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
 
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::post('/payment', [PaymentController::class, 'store'])->name('paycourse');
-
+    Route::get('/download-certificate',[CertificateController::class,'download'])->name('download');
 });
 
   
@@ -103,6 +104,9 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::resource('/admin/tute',TuteController::class);
     Route::resource('/admin/payment',PaymentController::class);
     Route::resource('/admin/expence',ExpenceController::class);
+    Route::resource('/admin/certificate',CertificateController::class);
+    Route::get('/admin/certificateissue/{id}',[CertificateController::class,'certificate'])->name('issue_certificate');
+    Route::post('/certificates', [CertificateController::class,'store'])->name('certificates.store');
 
 });
 

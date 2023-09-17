@@ -125,7 +125,7 @@
 					</li>
 
 					<li>
-						<a href="sitemap.html" class="dropdown-toggle no-arrow">
+						<a href="{{ route('certificate.index') }}" class="dropdown-toggle no-arrow">
                             
 							<span class="micon dw dw-certificate"></span><span class="mtext">Certificate</span>
 						</a>

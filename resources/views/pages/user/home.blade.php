@@ -9,13 +9,14 @@
 		<div class="pd-ltr-20">
 		  <div class="row">
 			
-			@if (Auth::user()->type === 'user')
+			@if (endCourse() === 1)
 		   <div class="col-sm-12 mb-30">
 			@else
 			<div class="col-sm-8 mb-30">
 			@endif
 			<div class="card-box pd-20 height-100-p mb-30">
-				@if (expireCheck() === 0 && paymentCheck() === 0)
+				@if (endCourse() === 0)
+					@if (expireCheck() === 0 && paymentCheck() === 0)
 					<div class="alert alert-danger alert-dismissible fade show mb-30" role="alert">
 								<strong>Payment due.</strong>Please make payment promptly. Thank you.
 								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -25,13 +26,15 @@
 				@else
 					
 				@endif
+				@endif
+				
 				
 				<div class="row align-items-center">
 					
 					
 						
 
-						@if (Auth::user()->type === 'user')
+						@if (endCourse() === 1)
 						<div class="col-md-7">
 							<div style="text-align: center;">
 								<img src="{{ asset('assets/images/certificate.png') }}" alt="">
@@ -125,12 +128,12 @@
 
 
 					</div>
-					@if (Auth::user()->type === 'user')
+					@if (endCourse() === 1)
 					<div class="col-md-5">
 						<h4 class="font-20 weight-500 mb-10 text-capitalize">
 							<div class="weight-600 font-30 text-blue">Congratulation!</div>
 						</h4>
-						<a href='#' type="button" class="btn btn-warning">Download Your Certificate</a>
+						<a href='{{ route('download') }}' type="button" class="btn btn-warning">Download Your Certificate</a>
 					</div>
 					@else
 					<div class="col-md-5">
@@ -143,7 +146,7 @@
 		   </div>
 		   
 				
-				@if (Auth::user()->type === 'user')
+				@if (endCourse() === 1)
 					
 				@else
 				<div class="col-sm-4 mb-30">
