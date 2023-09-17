@@ -1,6 +1,15 @@
+					@php
+					if (Auth::user()->type === 'admin'){
+						$homeurl = '/admin/home';
+					}elseif (Auth::user()->type === 'user'){
+						$homeurl = '/home';
+					}else{
+						$homeurl = 'instructor/home';	
+					}
+					@endphp
 <div class="left-side-bar">
 		<div class="brand-logo">
-			<a href="index.html">
+			<a href="{{ $homeurl }}">
 				<img src="{{ asset('assets/images/logo.png') }}" alt="" class="dark-logo">
 				<img src="{{ asset('assets/images/logo.png') }}" alt="" class="light-logo">
 			</a>
@@ -11,8 +20,10 @@
 		<div class="menu-block customscroll">
 			<div class="sidebar-menu">
 				<ul id="accordion-menu">
+					
+					
 					<li class="dropdown">
-						<a href="javascript:;" class="dropdown-toggle no-arrow">
+						<a href="{{ $homeurl }}" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-house-1"></span><span class="mtext">Home</span>
 						</a>
 						
@@ -145,7 +156,7 @@
 
                     @else
 					<li>
-						<a href="sitemap.html" class="dropdown-toggle no-arrow">
+						<a href="{{ route('profile') }}" class="dropdown-toggle no-arrow">
                             
 							<span class="micon dw dw-edit2"></span><span class="mtext">Edit My Profile</span>
 						</a>
@@ -158,7 +169,7 @@
 						</a>
 					</li>
 					<li>
-						<a href="chat.html" class="dropdown-toggle no-arrow">
+						<a href="{{ route('groupchat') }}" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-chat3"></span><span class="mtext">Group Chat</span>
 						</a>
 					</li>

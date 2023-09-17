@@ -4,7 +4,20 @@
 <style type="text/css">
 	
 </style>
-
+@section('preload')
+	<div class="pre-loader">
+		<div class="pre-loader-box">
+			<div class="loader-logo"><img src="{{ asset('assets/images/logo.jpg') }}" alt=""></div>
+			<div class='loader-progress' id="progress_div">
+				<div class='bar' id='bar1'></div>
+			</div>
+			<div class='percent' id='percent1'>0%</div>
+			<div class="loading-text">
+				Loading...
+			</div>
+		</div>
+	</div>
+@endsection
 <div class="main-container">
 		<div class="pd-ltr-20">
 		  <div class="row">
@@ -156,9 +169,9 @@
 							</div>
                             
 							<div class="widget-data">
-                                <a href="">
-								<div class="h4 mb-0">Programme Shedule</div>
-								<div class="weight-600 font-14"> + Programme Shedule</div>
+                                <a href="{{ route('userlesson') }}">
+								<div class="h4 mb-0">Lessons</div>
+								<div class="weight-600 font-14">New lessons <span class="badge badge-primary badge-pill">14</span></div>
                                 </a>
 							</div>
                             
@@ -173,9 +186,9 @@
 							</div>
                             
 							<div class="widget-data">
-                                <a href="">
-								<div class="h4 mb-0">Payments</div>
-								<div class="weight-600 font-14">Payments <span class="badge badge-primary badge-pill">14</span></div>
+                                <a href="{{ route('usercoursework') }}">
+								<div class="h4 mb-0">Course work</div>
+								<div class="weight-600 font-14">New course work <span class="badge badge-primary badge-pill">14</span></div>
                                 </a>
 							</div>
                              
@@ -191,8 +204,8 @@
                             
 							<div class="widget-data">
                                 <a href="">
-								<div class="h4 mb-0">Course metrials</div>
-								<div class="weight-600 font-14">+ Course metrials</div>
+								<div class="h4 mb-0">Exams</div>
+								<div class="weight-600 font-14">New exams <span class="badge badge-primary badge-pill">14</span></div>
                                 </a>
 							</div>
                              
@@ -208,8 +221,8 @@
                             
 							<div class="widget-data">
                                 <a href="">
-								<div class="h4 mb-0"></div>
-								<div class="weight-600 font-14">Certificate  <span class="badge badge-primary badge-pill">14</span></div>
+								<div class="h4 mb-0">Tutes</div>
+								<div class="weight-600 font-14">New tutes <span class="badge badge-primary badge-pill">14</span></div>
                                  </a>
 							</div>
                            

@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Lesson;
 use App\Models\Batch;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 class LessonController extends Controller
 {
@@ -14,9 +16,37 @@ class LessonController extends Controller
      */
     public function index()
     {
+        if(Auth::user()->type === 'admin'){
+
         $data = Lesson::all();
         $batchData = Batch::where('status', 1)->get();
         return view('pages.admin.lesson.index',compact('data','batchData'));
+
+        }elseif(Auth::user()->type === 'user'){
+            $batch = json_decode(Auth::user()->batch, true);
+            $currentDate = Carbon::now();
+
+            $upcomingDataLessons = User::join('lessons', function ($join) use ($batch, $currentDate) {
+                $join->on(function ($query) use ($batch) {
+                    foreach ($batch as $value) {
+                        $query->orWhereJsonContains('lessons.bid', $value);
+                    }
+                        })
+                        ->where('users.type', '=', 0)
+                        ->where('lessons.publish_date', '>', $currentDate)
+                        ->where('lessons.status', '=', 1);
+                    })
+                    ->select(
+                        'lessons.*',
+                    )
+                    ->distinct()
+                    ->get();
+
+        return view('pages.user.lesson.index',compact('upcomingDataLessons'));
+        }else{
+
+        }
+        
     }
 
     /**
