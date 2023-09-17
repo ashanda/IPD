@@ -41,7 +41,7 @@
 										<div class="form-group row">
 											<label class="col-sm-4 col-form-label">Contact Number*</label>
 											<div class="col-sm-8">
-												<input type="tel" name="contact_number" class="form-control" required autocomplete="contact_number" autofocus>
+												<input type="text" name="contact_number" class="form-control" required autocomplete="contact_number" autofocus pattern="[0-9][0-9]*">
 											</div>
 										</div>
                                       <div class="form-wrap max-width-600 mx-auto">
