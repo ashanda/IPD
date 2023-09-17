@@ -107,7 +107,8 @@
     </div>
     <!-- counter end -->
  <!--course-area start-->
- <div class="course-area pd-top-20 pd-top-100 pd-bottom-50">
+ @if (getWorkshop() === null)
+      <div class="course-area pd-top-20 pd-top-100 pd-bottom-50">
         <div class="container">
             <div class="text-center">
                 <h3 class="sub-title mb-5">Work Shop</h3>
@@ -145,6 +146,10 @@
 
         </div>
     </div>
+ @else
+     
+ @endif
+
     <!--course-area end-->
     <!-- about area start -->
     <div class="about-area pd-top-90 pd-bottom-90">
