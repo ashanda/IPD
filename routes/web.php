@@ -10,6 +10,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\WorkshopController;
 use App\Http\Controllers\CourseWorkController;
+use App\Http\Controllers\ExpenceController;
 use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\McqExamController;
 use App\Http\Controllers\PaperExamController;
@@ -101,6 +102,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('/mcq-exam/{id}', [McqExamController::class, 'mcq'])->name('mcq');
     Route::resource('/admin/tute',TuteController::class);
     Route::resource('/admin/payment',PaymentController::class);
+    Route::resource('/admin/expence',ExpenceController::class);
 
 });
 

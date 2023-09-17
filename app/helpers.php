@@ -5,7 +5,12 @@ use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
 use App\Models\Batch;
+use App\Models\Payment;
 use App\Models\Workshop;
+use Illuminate\Support\Facades\DB;
+
+
+
 //sms functionality
 function smsBalance(){
 	$curl = curl_init();
@@ -104,4 +109,48 @@ function getWorkshop(){
 	return $data;
 }
 
+function paymentCheck(){
+$indexNumber = Auth::user()->index_number;
+$status = 1; // Change this to the desired status value
+
+$totalAmount = Payment::sumAmountForStatusAndIndexNumber($indexNumber, $status);
+
+$payments = Payment::join('courses', 'payments.batch_id', '=', 'courses.bid')
+	->where('status', 1)
+	->where('index_number', Auth::user()->index_number)
+    ->whereJsonContains('payments.batch_id', json_decode(Auth::user()->batch, true))
+    ->first();
+
+if($totalAmount >= $payments->fee){
+	$pay = 1;
+}else{
+	$pay = 0;
+}
+
+
+return $pay;
+}
+
+
+function expireCheck(){
+	$expireCheck = Payment::where('status', 1)
+    ->where('index_number', Auth::user()->index_number)
+    ->latest()
+    ->first();
+
+
+	if ($expireCheck && Carbon::now() <= Carbon::parse($expireCheck->expired_date)) {
+        // The payment is not expired
+		$expireCheckdata = 1;
+    } else {
+        // The payment is expired or $expireCheck is null
+		$expireCheckdata = 0;
+    }
+
+	return $expireCheckdata;
+}
+
+function endCourse(){
+	
+}
 

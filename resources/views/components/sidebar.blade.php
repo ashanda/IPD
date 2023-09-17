@@ -111,14 +111,9 @@
 						</a>
 						<ul class="submenu">
  
-							<li>
-                                <a href="javascript:;" class="dropdown-toggle no-arrow">
-									Instructor payments
-								</a>
-                            </li>
                             <li>
-                                <a href="javascript:;" class="dropdown-toggle no-arrow">
-									Other Payments
+                                <a href="{{ route('expence.index') }}" class="dropdown-toggle no-arrow">
+									Add Expense
 								</a>
                             </li> 
                             <li>

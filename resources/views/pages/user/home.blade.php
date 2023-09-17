@@ -4,25 +4,42 @@
 <style type="text/css">
 	
 </style>
+
 <div class="main-container">
 		<div class="pd-ltr-20">
 		  <div class="row">
-		   <div class="col-sm-8 mb-30">
 			
+			@if (Auth::user()->type === 'user')
+		   <div class="col-sm-12 mb-30">
+			@else
+			<div class="col-sm-8 mb-30">
+			@endif
 			<div class="card-box pd-20 height-100-p mb-30">
-				<div class="alert alert-danger alert-dismissible fade show mb-30" role="alert">
+				@if (expireCheck() === 0 && paymentCheck() === 0)
+					<div class="alert alert-danger alert-dismissible fade show mb-30" role="alert">
 								<strong>Payment due.</strong>Please make payment promptly. Thank you.
 								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
-								</button>
+					 </button>
 				</div>
+				@else
+					
+				@endif
+				
 				<div class="row align-items-center">
 					
-					<div class="col-md-7">
+					
 						
 
-						
-						   <div class="panel panel-danger">
+						@if (Auth::user()->type === 'user')
+						<div class="col-md-7">
+							<div style="text-align: center;">
+								<img src="{{ asset('assets/images/certificate.png') }}" alt="">
+							</div>
+
+						@else
+						<div class="col-md-7">
+							<div class="panel panel-danger">
 							<div class="panel-heading">
 								<h3 class="panel-title font-14">
 									<span class="glyphicon  glyphicon-calendar"></span> Upcomming Activity
@@ -103,20 +120,39 @@
 								</ul>
 							</div>
 						</div>
+						@endif
+						   
+
 
 					</div>
+					@if (Auth::user()->type === 'user')
+					<div class="col-md-5">
+						<h4 class="font-20 weight-500 mb-10 text-capitalize">
+							<div class="weight-600 font-30 text-blue">Congratulation!</div>
+						</h4>
+						<a href='#' type="button" class="btn btn-warning">Download Your Certificate</a>
+					</div>
+					@else
 					<div class="col-md-5">
 						<img src="{{ asset('assets/images/user-dash.png') }}" alt="">
 					</div>
+					@endif
 				</div>
 				
 			</div>
 		   </div>
-		   <div class="col-sm-4 mb-30">
-			<div class="card-box pd-20 height-100-p mb-30">
-						<div id='calendar'></div>
-			</div>
-		   </div>
+		   
+				
+				@if (Auth::user()->type === 'user')
+					
+				@else
+				<div class="col-sm-4 mb-30">
+					<div class="card-box pd-20 height-100-p mb-30">
+					<div id='calendar'></div>
+					</div>
+		   		</div>
+				@endif		
+			
 		  </div>
 			<div class="row">
 				<div class="col-xl-3 mb-30">
@@ -179,7 +215,7 @@
                             
 							<div class="widget-data">
                                 <a href="">
-								<div class="h4 mb-0">Certificate</div>
+								<div class="h4 mb-0"></div>
 								<div class="weight-600 font-14">Certificate  <span class="badge badge-primary badge-pill">14</span></div>
                                  </a>
 							</div>
@@ -251,11 +287,17 @@
 							<div class="value-container">0%</div>
 						</div>
 						</div>
+						
 					</div>
+					
 				</div>
 			</div>
-
-
+			@if (Auth::user()->type === 'user')
+				{{-- @include('components.hurray') --}}
+			@else
+				
+			@endif
+			
 			
 
 			

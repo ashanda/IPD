@@ -3,7 +3,7 @@
 			
 			
 				@if (Auth::user()->type ==='user')
-					@include('components.topbar');
+					@include('components.topbar')
 				@else
 					
 				@endif
