@@ -15,6 +15,7 @@ use App\Http\Controllers\CourseWorkController;
 use App\Http\Controllers\ExpenceController;
 use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\McqExamController;
+use App\Http\Controllers\NoticeController;
 use App\Http\Controllers\PaperExamController;
 use App\Http\Controllers\TuteController;
 use App\Http\Controllers\VerbalExamController;
@@ -108,7 +109,8 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::resource('/admin/certificate',CertificateController::class);
     Route::get('/admin/certificateissue/{id}',[CertificateController::class,'certificate'])->name('issue_certificate');
     Route::post('/certificates', [CertificateController::class,'store'])->name('certificates.store');
-     Route::resource('/admin/coupen',CoupenController::class);
+    Route::resource('/admin/coupen',CoupenController::class);
+    Route::resource('/admin/notice',NoticeController::class);
 
 });
 

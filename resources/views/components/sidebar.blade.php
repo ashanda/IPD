@@ -135,7 +135,12 @@
 							<span class="micon dw dw-chat3"></span><span class="mtext">Coupon</span>
 						</a>
 					</li>
-					
+					<li>
+						<a href="{{ route('notice.index') }}" class="dropdown-toggle no-arrow">
+							<span class="micon dw dw-board"></span><span class="mtext">Notice</span>
+						</a>
+					</li>
+					notice
                     @elseif (Auth::user()->type === 'instructor')
 
                     @else

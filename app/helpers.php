@@ -3,7 +3,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
-
+use App\Models\User;
 use App\Models\Batch;
 use App\Models\Payment;
 use App\Models\Workshop;
@@ -122,7 +122,15 @@ $payments = Payment::join('courses', 'payments.batch_id', '=', 'courses.bid')
     ->whereJsonContains('payments.batch_id', json_decode(Auth::user()->batch, true))
     ->first();
 
-if($totalAmount >= $payments->fee){
+
+if($payments == null){
+	$fee = 0;
+}else{
+     $fee = $payments->fee;
+}
+
+
+if($totalAmount >= $fee){
 	$pay = 1;
 }else{
 	$pay = 0;
@@ -173,3 +181,20 @@ function generateRandomString($length = 10) {
     return $randomString;
 }
 
+
+function notice() {
+    $batch = json_decode(Auth::user()->batch, true);
+
+    $usersWithBatchesAndBids = User::join('notices', 'users.batch', '=', 'notices.bid')
+        ->whereJsonContains('users.batch', $batch)
+        ->where('users.type', '=', 0)
+        ->select('notices.*')
+        ->get();
+
+    // Check if $usersWithBatchesAndBids is empty
+    if ($usersWithBatchesAndBids->isEmpty()) {
+        return 0; // Return 0 when empty
+    }
+
+    return $usersWithBatchesAndBids;
+}
