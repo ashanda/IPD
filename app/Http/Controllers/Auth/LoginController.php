@@ -104,6 +104,13 @@ class LoginController extends Controller
 if (isset($input['email']) && filter_var($input['email'], FILTER_VALIDATE_EMAIL)) {
     $loginField = 'email';
 } elseif (isset($input['contact_number'])) {
+    $contactNumber = $input['contact_number'];
+    
+    // Check if the contact number starts with '0' and has at least two digits.
+    if (strlen($contactNumber) >= 2 && $contactNumber[0] === '0') {
+        $contactNumber = substr($contactNumber, 1); // Remove the first character '0'.
+    }
+
     $loginField = 'contact_number';
 }
 
