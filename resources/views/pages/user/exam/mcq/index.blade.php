@@ -24,6 +24,8 @@
 						</div>
 					</div>
 					<div class="contact-directory-list">
+                        @if ( examcheck($upcomingDataMCQExams[0]->eid) < 1)
+                            
 						<div id="quiz">
     <div class="quiz-header" style="margin-bottom: 50px;">
       <h3>Get your question</h3>
@@ -47,8 +49,15 @@
                             </p>
                             <p><button type="submit">Submit</button></p>
                         </form>
-                        </div>
+                  </div>
+
+
                     </div>
+                    @else
+                    <div class="quiz-header" style="margin-bottom: 50px;">
+                      <h3>All ready get or No exam</h3> 
+                    </div>
+                    @endif
 					</div>
 				</div>
 			</div>
@@ -63,7 +72,14 @@
   $('#results-form').on('submit', function(e) {
     // Prevent the default form submission behavior
     e.preventDefault();
+        var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
+        // Include the CSRF token in the AJAX request headers
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': csrfToken
+            }
+        });
     // Get the text value from the element with class "quiz-results"
     var resultText = $(".quiz-results").text();
     var resultValues = resultText.split(',');
@@ -84,23 +100,26 @@
         var indexNumber = formDataObj['index_number'];
         var examId = formDataObj['exam_id'];
         var batchId = formDataObj['bid'];
-
+        var mcq = 'MCQ Test';
 
     var combinedData = {
-            score: value1,
-            totalQuiz: value2,
-            indexNumber: indexNumber,
-            examId: examId,
-            batchId: batchId
+            marks: value1,
+            total_question: value2,
+            index_number: indexNumber,
+            exam_id: examId,
+            bid: batchId,
+            type: mcq
         };
     // Perform an AJAX request to send the resultText to the server
     $.ajax({
         type: 'POST', // You can change this to 'GET' or any other HTTP method
-        url: '/your-server-endpoint', // Specify the URL where you want to send the data
+        url: '/submisson', // Specify the URL where you want to send the data
         data: combinedData, // The data you want to send to the server
         success: function(response) {
             // Handle the server's response here, if needed
             console.log('AJAX request successful', response);
+            // Redirect to the /result page
+            window.location.href = '/result';
         },
         error: function(error) {
             // Handle any errors that occur during the AJAX request

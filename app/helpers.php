@@ -8,6 +8,7 @@ use App\Models\Batch;
 use App\Models\Payment;
 use App\Models\Workshop;
 use App\Models\Certificate;
+use App\Models\Submission;
 use Illuminate\Support\Facades\DB;
 
 
@@ -329,6 +330,13 @@ $currentDate = Carbon::now();
 
 	return response()->json($combinedData);
 
+}
+
+
+
+function examcheck($id){
+	$data = Submission::where('exam_id', '=', $id)->where('index_number',Auth::user()->index_number)->count();
+	return $data;
 }
 
 

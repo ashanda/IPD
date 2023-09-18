@@ -20,6 +20,7 @@ use App\Http\Controllers\PaperExamController;
 use App\Http\Controllers\TuteController;
 use App\Http\Controllers\VerbalExamController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\SubmissionController;
 
 
 /*
@@ -81,6 +82,8 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::get('/mcqexam',[HomeController::class,'mcqexam'])->name('usermcqexam');
     Route::get('/paperexam',[HomeController::class,'paperexam'])->name('userpaperexam');
     Route::get('/verbalexam',[HomeController::class,'verbalexam'])->name('userverbalexam');
+    Route::post('/submisson',[SubmissionController::class,'submisson'])->name('mcq-submisson');
+    Route::post('/result',[HomeController::class,'result'])->name('result');
 });
 
   
