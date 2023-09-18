@@ -77,6 +77,10 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::get('/tute',[TuteController::class,'index'])->name('usertute');
     Route::get('/edit-profile',[HomeController::class,'profile'])->name('profile');
     Route::get('/groupchat',[HomeController::class,'groupchat'])->name('groupchat');
+    Route::get('/exam',[HomeController::class,'exam'])->name('userexam');
+    Route::get('/mcqexam',[HomeController::class,'mcqexam'])->name('usermcqexam');
+    Route::get('/paperexam',[HomeController::class,'paperexam'])->name('userpaperexam');
+    Route::get('/verbalexam',[HomeController::class,'verbalexam'])->name('userverbalexam');
 });
 
   
