@@ -134,5 +134,7 @@ class HomeController extends Controller
         return view('pages.user.exam.verbal.index');
     }
 
-
+    public function result(){
+        return view('pages.user.result.index');
+    }
 }

@@ -26,10 +26,34 @@ class SubmissionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        //
-    }
+    public function submisson(Request $request)
+{
+    // Validate the incoming request data
+    $validatedData = $request->validate([
+        'index_number' => 'required|string',
+        'marks' => 'required|integer',
+        'total_question' => 'required|integer',
+        'exam_id' => 'required|integer',
+        'bid' => 'required',
+        'type' => 'required',
+    ]);
+
+    // Create a new instance of your model and populate it with the request data
+    $newRecord = new Submission(); // Replace 'YourModel' with the actual model name
+
+    $newRecord->index_number = $validatedData['index_number'];
+    $newRecord->marks = $validatedData['marks'];
+    $newRecord->total_question = $validatedData['total_question'];
+    $newRecord->exam_id = $validatedData['exam_id'];
+    $newRecord->bid = $validatedData['bid']; // Convert JSON to PHP array
+    $newRecord->type = $validatedData['type']; // Convert JSON to PHP array
+
+    // Save the new record to the database
+    $newRecord->save();
+
+    // You can return a response here if needed
+    return response()->json(['message' => 'Record stored successfully'], 200);
+}
 
     /**
      * Display the specified resource.

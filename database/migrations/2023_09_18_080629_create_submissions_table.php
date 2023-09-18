@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('submissions', function (Blueprint $table) {
             $table->id();
+            $table->string('index_number');
+            $table->integer('marks');
+            $table->integer('total_question');
+            $table->integer('exam_id');
+            $table->string('document')->nullable();
+            $table->string('type');
+            $table->json('bid');
             $table->timestamps();
         });
     }
