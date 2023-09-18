@@ -31,28 +31,49 @@ class SubmissionController extends Controller
     // Validate the incoming request data
     $validatedData = $request->validate([
         'index_number' => 'required|string',
-        'marks' => 'required|integer',
-        'total_question' => 'required|integer',
         'exam_id' => 'required|integer',
-        'bid' => 'required',
         'type' => 'required',
+        'bid' => 'required',
     ]);
 
     // Create a new instance of your model and populate it with the request data
     $newRecord = new Submission(); // Replace 'YourModel' with the actual model name
 
     $newRecord->index_number = $validatedData['index_number'];
-    $newRecord->marks = $validatedData['marks'];
-    $newRecord->total_question = $validatedData['total_question'];
+    $newRecord->marks = $request->input('marks');
+    $newRecord->total_question = $request->input('total_question');
     $newRecord->exam_id = $validatedData['exam_id'];
-    $newRecord->bid = $validatedData['bid']; // Convert JSON to PHP array
-    $newRecord->type = $validatedData['type']; // Convert JSON to PHP array
+    $newRecord->type = $validatedData['type'];
+   
+    if($validatedData['type'] === 'MCQ Test'){
+
+        $newRecord->bid = $validatedData['bid'];
+
+    }else{
+        
+        $newRecord->bid = $validatedData['bid'];
+    }
+
+    
+
+    // Convert JSON to PHP array
+
+    if ($request->hasFile('document')) {
+                $coverPath = $request->file('document')->store('submission', 'public');
+                $newRecord->document = $coverPath;
+     }
+
+            // Save the updated coursework
 
     // Save the new record to the database
     $newRecord->save();
-
+    if($validatedData['type'] === 'MCQ Test'){
     // You can return a response here if needed
     return response()->json(['message' => 'Record stored successfully'], 200);
+    } else{
+        toast('Course work submitted successfully.', 'success');
+        return redirect()->back()->with('success', 'Course work submitted successfully.');
+    }
 }
 
     /**

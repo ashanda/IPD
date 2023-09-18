@@ -36,6 +36,7 @@ class VerbalExamController extends Controller
         $coursework->title = $request->input('title');
         $coursework->cname = ''; // You need to define where 'cname' comes from
         $coursework->description = $request->input('description');
+        $coursework->vlink = $request->input('vlink');
         $coursework->publish_date = Carbon::parse($request->input('publish_date'))->format('Y-m-d');
         $coursework->start_time = date('H:i:s', strtotime($request->input('start_time')));
         $coursework->end_time = date('H:i:s', strtotime($request->input('end_time')));
@@ -90,6 +91,7 @@ class VerbalExamController extends Controller
             $coursework->status = $request->input('status');
             $coursework->publish_date = Carbon::parse($request->input('publish_date'))->format('Y-m-d');
             $coursework->description = $request->input('description');
+            $coursework->vlink = $request->input('vlink');
             $coursework->start_time = date('H:i:s', strtotime($request->input('start_time')));
             $coursework->end_time = date('H:i:s', strtotime($request->input('end_time')));
             $batchIds = $request->input('bid', []);

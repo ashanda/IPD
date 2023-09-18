@@ -334,8 +334,8 @@ $currentDate = Carbon::now();
 
 
 
-function examcheck($id){
-	$data = Submission::where('exam_id', '=', $id)->where('index_number',Auth::user()->index_number)->count();
+function examcheck($id,$type){
+	$data = Submission::where('exam_id', '=', $id)->where('type',$type)->where('index_number',Auth::user()->index_number)->count();
 	return $data;
 }
 
