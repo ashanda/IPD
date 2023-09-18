@@ -83,7 +83,8 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::get('/paperexam',[HomeController::class,'paperexam'])->name('userpaperexam');
     Route::get('/verbalexam',[HomeController::class,'verbalexam'])->name('userverbalexam');
     Route::post('/submisson',[SubmissionController::class,'submisson'])->name('submisson');
-    Route::post('/result',[HomeController::class,'result'])->name('result');
+    Route::get('/result',[HomeController::class,'result'])->name('result');
+    Route::get('/my-payment',[HomeController::class,'mypayment'])->name('mypayment');
 });
 
   
