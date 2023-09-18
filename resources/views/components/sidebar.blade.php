@@ -1,6 +1,15 @@
+					@php
+					if (Auth::user()->type === 'admin'){
+						$homeurl = '/admin/home';
+					}elseif (Auth::user()->type === 'user'){
+						$homeurl = '/home';
+					}else{
+						$homeurl = 'instructor/home';	
+					}
+					@endphp
 <div class="left-side-bar">
 		<div class="brand-logo">
-			<a href="index.html">
+			<a href="{{ $homeurl }}">
 				<img src="{{ asset('assets/images/logo.png') }}" alt="" class="dark-logo">
 				<img src="{{ asset('assets/images/logo.png') }}" alt="" class="light-logo">
 			</a>
@@ -11,8 +20,10 @@
 		<div class="menu-block customscroll">
 			<div class="sidebar-menu">
 				<ul id="accordion-menu">
+					
+					
 					<li class="dropdown">
-						<a href="javascript:;" class="dropdown-toggle no-arrow">
+						<a href="{{ $homeurl }}" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-house-1"></span><span class="mtext">Home</span>
 						</a>
 						
@@ -73,13 +84,13 @@
 									<span class="micon dw dw-presentation-2"></span><span class="mtext">Exams</span>
 								</a>
 								<ul class="submenu child">
-									<li><a href="javascript:;">MCQ Exams</a></li>
-									<li><a href="javascript:;">Online Paper Exams</a></li>
-                                    <li><a href="javascript:;">Online Verbal Exams</a></li>
+									<li><a href="{{ route('mcq-exam.index') }}">MCQ Exams</a></li>
+									<li><a href="{{ route('paper-exam.index') }}">Paper Paper Exams</a></li>
+                                    <li><a href="{{ route('verbal-exam.index') }}">Online Verbal Exams</a></li>
 								</ul>
 							</li>
 							<li>
-                                <a href="javascript:;" class="dropdown-toggle no-arrow">
+                                <a href="{{ route('tute.index') }}" class="dropdown-toggle no-arrow">
 									<span class="micon dw dw dw-notepad-1"></span><span class="mtext">Class Tute</span>
 								</a>
 							</li>	
@@ -93,7 +104,7 @@
 						<ul class="submenu">
  
 							<li>
-                                <a href="javascript:;" class="dropdown-toggle no-arrow">
+                                <a href="{{ route('payment.index') }}" class="dropdown-toggle no-arrow">
 									Bank payments
 								</a>
                             </li>
@@ -111,14 +122,9 @@
 						</a>
 						<ul class="submenu">
  
-							<li>
-                                <a href="javascript:;" class="dropdown-toggle no-arrow">
-									Instructor payments
-								</a>
-                            </li>
                             <li>
-                                <a href="javascript:;" class="dropdown-toggle no-arrow">
-									Other Payments
+                                <a href="{{ route('expence.index') }}" class="dropdown-toggle no-arrow">
+									Add Expense
 								</a>
                             </li> 
                             <li>
@@ -130,26 +136,27 @@
 					</li>
 
 					<li>
-						<a href="sitemap.html" class="dropdown-toggle no-arrow">
+						<a href="{{ route('certificate.index') }}" class="dropdown-toggle no-arrow">
                             
 							<span class="micon dw dw-certificate"></span><span class="mtext">Certificate</span>
 						</a>
 					</li>
 					<li>
-						<a href="chat.html" class="dropdown-toggle no-arrow">
+						<a href="{{ route('coupen.index') }}" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-chat3"></span><span class="mtext">Coupon</span>
 						</a>
 					</li>
 					<li>
-						<a href="invoice.html" class="dropdown-toggle no-arrow">
-							<span class="micon dw dw-settings"></span><span class="mtext">Settings</span>
+						<a href="{{ route('notice.index') }}" class="dropdown-toggle no-arrow">
+							<span class="micon dw dw-board"></span><span class="mtext">Notice</span>
 						</a>
 					</li>
+					notice
                     @elseif (Auth::user()->type === 'instructor')
 
                     @else
 					<li>
-						<a href="sitemap.html" class="dropdown-toggle no-arrow">
+						<a href="{{ route('profile') }}" class="dropdown-toggle no-arrow">
                             
 							<span class="micon dw dw-edit2"></span><span class="mtext">Edit My Profile</span>
 						</a>
@@ -162,7 +169,7 @@
 						</a>
 					</li>
 					<li>
-						<a href="chat.html" class="dropdown-toggle no-arrow">
+						<a href="{{ route('groupchat') }}" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-chat3"></span><span class="mtext">Group Chat</span>
 						</a>
 					</li>

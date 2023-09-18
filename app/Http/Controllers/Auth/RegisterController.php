@@ -60,6 +60,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'fname' => ['required'],
             'lname' => ['required'],
+            'index_number' => ['required'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'contact_number' => ['required','max:10', 'unique:users'],
             'dob' => ['required'],
@@ -78,13 +79,15 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $formattedDob = Carbon::createFromFormat('d F Y', $data['dob'])->format('Y-m-d');
+        
         return User::create([
             
             'fname' => $data['fname'],
+            'index_number' => $data['index_number'],
             'lname' => $data['lname'],
             'contact_number' => $data['contact_number'],
             'dob' => $formattedDob,
-            'batch' => $data['batch'],
+            'batch' =>  json_encode([$data['batch']]),
             'address' => $data['address'],
             'email' => $data['email'],
             'password' => Hash::make($data['contact_number']),
@@ -108,5 +111,6 @@ class RegisterController extends Controller
       
     }
 
+    
     
 }

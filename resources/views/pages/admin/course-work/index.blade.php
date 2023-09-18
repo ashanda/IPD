@@ -120,13 +120,13 @@
 				<!-- Simple Datatable start -->
 				<div class="card-box mb-30">
 					<div class="pd-20">
-						<h4 class="text-blue h4">Lessons</h4>
+						<h4 class="text-blue h4">Course Work</h4>
 					</div>
 					<div class="pb-20">
 						<table class="data-table table stripe hover nowrap">
 							<thead>
 								<tr>
-									<th class="table-plus datatable-nosort">Course Work name</th>
+									<th class="table-plus datatable-nosort">Course work name</th>
 									<th>Document</th>
 									<th>Batch</th>
 									<th>Publish date</th>

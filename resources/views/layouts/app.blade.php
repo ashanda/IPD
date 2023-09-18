@@ -3,7 +3,7 @@
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
-	<title>DeskApp - Bootstrap Admin Dashboard HTML Template</title>
+	<title>{{ env('APP_NAME') }}</title>
 
 	<!-- Site favicon -->
 	<link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/apple-touch-icon.png') }}">
@@ -21,9 +21,9 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('assets/src/plugins/datatables/css/dataTables.bootstrap4.min.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('assets/src/plugins/datatables/css/responsive.bootstrap4.min.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('assets/styles/style.css') }}">
+	<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
+	
 
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
 	@yield('header')
     
 </head>
@@ -38,8 +38,10 @@
 
     @include('components.footer')
 
-
+	
     	<!-- js -->
+	
+	
 	<script src="{{ asset('assets/scripts/core.js') }}"></script>
 	<script src="{{ asset('assets/scripts/script.min.js') }}"></script>
 	<script src="{{ asset('assets/scripts/process.js') }}"></script>
@@ -61,6 +63,14 @@
 	<!-- Datatable Setting js -->
 	<script src="{{ asset('assets/vendors/scripts/datatable-setting.js') }}"></script></body>
 	<script src="{{ asset('assets/scripts/dashboard.js') }}"></script>
+	
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js'></script>
+	<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+	
+	
+	
+
+	
     @yield('scripts')
 </body>
 </html>

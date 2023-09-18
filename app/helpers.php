@@ -3,9 +3,15 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
-
+use App\Models\User;
 use App\Models\Batch;
+use App\Models\Payment;
 use App\Models\Workshop;
+use App\Models\Certificate;
+use Illuminate\Support\Facades\DB;
+
+
+
 //sms functionality
 function smsBalance(){
 	$curl = curl_init();
@@ -102,6 +108,227 @@ function certificate($id){
 function getWorkshop(){
 	$data = Workshop::where('status', 1)->first();
 	return $data;
+}
+
+function paymentCheck(){
+$indexNumber = Auth::user()->index_number;
+$status = 1; // Change this to the desired status value
+
+$totalAmount = Payment::sumAmountForStatusAndIndexNumber($indexNumber, $status);
+
+$payments = Payment::join('courses', 'payments.batch_id', '=', 'courses.bid')
+	->where('status', 1)
+	->where('index_number', Auth::user()->index_number)
+    ->whereJsonContains('payments.batch_id', json_decode(Auth::user()->batch, true))
+    ->first();
+
+
+if($payments == null){
+	$fee = 0;
+}else{
+     $fee = $payments->fee;
+}
+
+
+if($totalAmount >= $fee){
+	$pay = 1;
+}else{
+	$pay = 0;
+}
+
+
+return $pay;
+}
+
+
+function expireCheck(){
+	$expireCheck = Payment::where('status', 1)
+    ->where('index_number', Auth::user()->index_number)
+    ->latest()
+    ->first();
+
+
+	if ($expireCheck && Carbon::now() <= Carbon::parse($expireCheck->expired_date)) {
+        // The payment is not expired
+		$expireCheckdata = 1;
+    } else {
+        // The payment is expired or $expireCheck is null
+		$expireCheckdata = 0;
+    }
+
+	return $expireCheckdata;
+}
+
+function endCourse(){
+	$checkend = Certificate::where('status', 1)->where('index_number', Auth::user()->index_number)->first();
+	if( $checkend != null){
+		$endCourse = 1;
+	}else{
+		$endCourse = 0;
+	}
+
+	return $endCourse;
+}
+
+function generateRandomString($length = 10) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $randomString = '';
+    
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, strlen($characters) - 1)];
+    }
+    
+    return $randomString;
+}
+
+
+function notice() {
+    $batch = json_decode(Auth::user()->batch, true);
+
+    $usersWithBatchesAndBids = User::join('notices', 'users.batch', '=', 'notices.bid')
+        ->whereJsonContains('users.batch', $batch)
+        ->where('users.type', '=', 0)
+        ->select('notices.*')
+        ->get();
+
+    // Check if $usersWithBatchesAndBids is empty
+    if ($usersWithBatchesAndBids->isEmpty()) {
+        return 0; // Return 0 when empty
+    }
+
+    return $usersWithBatchesAndBids;
+}
+
+
+function debug(){
+
+	$batch = json_decode(Auth::user()->batch, true);
+	$currentDate = Carbon::now();
+
+	$upcomingDataLessons = User::join('lessons', function ($join) use ($batch, $currentDate) {
+    $join->on(function ($query) use ($batch) {
+        foreach ($batch as $value) {
+            $query->orWhereJsonContains('lessons.bid', $value);
+        }
+    })
+    ->where('users.type', '=', 0)
+    ->where('lessons.publish_date', '>', $currentDate)
+    ->where('lessons.status', '=', 1);
+})
+->select(
+    'lessons.lesson_name as lt',
+    'lessons.publish_date as lp'
+)
+->distinct()
+->get();
+
+return $upcomingDataLessons;
+}
+
+
+function upcoming() {
+	
+$batch = json_decode(Auth::user()->batch, true);
+$currentDate = Carbon::now();
+
+	$upcomingDataLessons = User::join('lessons', function ($join) use ($batch, $currentDate) {
+    $join->on(function ($query) use ($batch) {
+        foreach ($batch as $value) {
+            $query->orWhereJsonContains('lessons.bid', $value);
+        }
+			})
+			->where('users.type', '=', 0)
+			->where('lessons.publish_date', '>', $currentDate)
+			->where('lessons.status', '=', 1);
+		})
+		->select(
+			'lessons.lesson_name as lt',
+			'lessons.publish_date as lp'
+		)
+		->distinct()
+		->get();
+
+
+
+		$upcomingDataMCQExams = User::join('mcq_exams', function ($join) use ($batch, $currentDate) {
+			$join->on(function ($query) use ($batch) {
+				foreach ($batch as $value) {
+					$query->orWhereJsonContains('mcq_exams.bid', $value);
+				}
+			})
+			->where('users.type', '=', 0)
+			->where('mcq_exams.publish_date', '>', $currentDate)
+			->where('mcq_exams.status', '=', 1);
+		})
+		->select(
+			'mcq_exams.title as mt',
+			'mcq_exams.publish_date as mp'
+		)
+		->distinct()
+		->get();
+
+		$upcomingDataPaperExams = User::join('paper_exams', function ($join) use ($batch, $currentDate) {
+			$join->on(function ($query) use ($batch) {
+				foreach ($batch as $value) {
+					$query->orWhereJsonContains('paper_exams.bid', $value);
+				}
+			})
+			->where('users.type', '=', 0)
+			->where('paper_exams.publish_date', '>', $currentDate)
+			->where('paper_exams.status', '=', 1);
+		})
+		->select(
+			'paper_exams.title as pt',
+			'paper_exams.publish_date as pp'
+		)
+		->distinct()
+		->get();
+
+		$upcomingDataCourseWorks = User::join('course_works', function ($join) use ($batch, $currentDate) {
+			$join->on(function ($query) use ($batch) {
+				foreach ($batch as $value) {
+					$query->orWhereJsonContains('course_works.bid', $value);
+				}
+			})
+			->where('users.type', '=', 0)
+			->where('course_works.publish_date', '>', $currentDate)
+			->where('course_works.status', '=', 1);
+		})
+		->select(
+			'course_works.title as ct',
+			'course_works.publish_date as cp'
+		)
+		->distinct()
+		->get();
+
+		$upcomingDataVerbalExams = User::join('verbal_exams', function ($join) use ($batch, $currentDate) {
+			$join->on(function ($query) use ($batch) {
+				foreach ($batch as $value) {
+					$query->orWhereJsonContains('verbal_exams.bid', $value);
+				}
+			})
+			->where('users.type', '=', 0)
+			->where('verbal_exams.publish_date', '>', $currentDate)
+			->where('verbal_exams.status', '=', 1);
+		})
+		->select(
+			'verbal_exams.title as vt',
+			'verbal_exams.publish_date as vpb'
+		)
+		->distinct()
+		->get();
+
+		// Combine the results into one JSON response
+		$combinedData = [
+			'lessons' => $upcomingDataLessons,
+			'mcq_exams' => $upcomingDataMCQExams,
+			'paper_exams' => $upcomingDataPaperExams,
+			'course_works' => $upcomingDataCourseWorks,
+			'verbal_exams' => $upcomingDataVerbalExams,
+		];
+
+	return response()->json($combinedData);
+
 }
 
 

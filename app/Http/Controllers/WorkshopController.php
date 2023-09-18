@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Workshop;
 use App\Models\Batch;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use RealRashid\SweetAlert\Facades\Alert;
-
+use Illuminate\Support\Facades\Auth;
 class WorkshopController extends Controller
 {
     /**
@@ -15,9 +16,34 @@ class WorkshopController extends Controller
      */
     public function index()
     {
+        if(Auth::user()->type === 'admin'){
         $data = Workshop::all();
         $batchData = Batch::where('status', 1)->get();
         return view('pages.admin.workshop.index',compact('data','batchData'));
+        }elseif(Auth::user()->type === 'user'){
+            $batch = json_decode(Auth::user()->batch, true);
+            $currentDate = Carbon::now();
+
+            $upcomingDataCourseWorks = User::join('course_works', function ($join) use ($batch, $currentDate) {
+			$join->on(function ($query) use ($batch) {
+				foreach ($batch as $value) {
+					$query->orWhereJsonContains('course_works.bid', $value);
+				}
+			})
+			->where('users.type', '=', 0)
+			->where('course_works.publish_date', '>', $currentDate)
+			->where('course_works.status', '=', 1);
+		})
+		->select(
+			'course_works.*',
+			
+		)
+		->distinct()
+		->get();
+        return view('pages.user.course-work.index',compact('upcomingDataCourseWorks'));
+        }else{
+
+        }    
         
     }
 
@@ -46,7 +72,7 @@ class WorkshopController extends Controller
 
         // Handle the 'cover' file upload
         if ($request->hasFile('cover')) {
-            $coverPath = $request->file('cover')->store('covers', 'public');
+            $coverPath = $request->file('cover')->store('workshop', 'public');
             $workshop->cover = $coverPath;
         }
 
@@ -98,7 +124,7 @@ class WorkshopController extends Controller
 
             // Handle the 'cover' file upload
             if ($request->hasFile('cover')) {
-                $coverPath = $request->file('cover')->store('covers', 'public');
+                $coverPath = $request->file('cover')->store('workshop', 'public');
                 $workshop->cover = $coverPath;
             }
 

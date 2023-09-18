@@ -820,7 +820,7 @@ textarea.form-control {
 .input-group.custom>.custom-select:not(:first-child),
 .input-group.custom>.form-control:not(:first-child) {
     border-radius: .25rem;
-    
+
 }
 
 .input-group.custom>.custom-select:not(:last-child),
@@ -1459,7 +1459,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
     -ms-flex-align: center;
     align-items: center;
     height: 100%;
-    width: 50%
+    width: 80%
 }
 
 .brand-logo a .dark-logo,
@@ -1537,7 +1537,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
     -ms-flex-pack: end;
     justify-content: flex-end;
     height: 70px;
-    width: 50%
+    width: 20%
 }
 
 .header-left .brand-logo {
@@ -4832,4 +4832,311 @@ body.IE .register-page-wrap .container {
     .register-page-wrap .wizard-content .wizard .steps {
         display: none
     }
+}
+
+.circular-progress {
+    position: relative;
+    height: 250px;
+    width: 250px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+}
+
+.circular-progress:before {
+    content: "";
+    position: absolute;
+    height: 84%;
+    width: 84%;
+    background-color: #ffffff;
+    border-radius: 50%;
+}
+
+.value-container {
+    position: relative;
+    font-family: "Poppins", sans-serif;
+    font-size: 50px;
+    color: #231c3d;
+}
+
+.progress-user {
+    height: 400px;
+    width: 400px;
+    background-color: transparent;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    display: grid;
+    place-items: center;
+}
+
+.news {
+    width: 160px
+}
+
+.news-scroll a {
+    text-decoration: none
+}
+
+.dot {
+    height: 6px;
+    width: 6px;
+    margin-left: 3px;
+    margin-right: 3px;
+    margin-top: 2px !important;
+    background-color: rgb(207, 23, 23);
+    border-radius: 50%;
+    display: inline-block
+}
+.panel.date {
+    margin: 0px;
+    width: 60px;
+    text-align: center;
+}
+
+.panel.date .month {
+    padding: 2px 0px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.panel.date .day {
+    padding: 3px 0px;
+    font-weight: 700;
+    font-size: 1.5em;
+}
+
+ #Layer_1 {
+            position: fixed;
+            top: 0;
+            left: 0;
+           
+        }
+
+.conf0{fill:#FC6394;}
+.conf1{fill:#EF3C8A;}
+.conf2{fill:#5ADAEA;}
+.conf3{fill:#974CBE;}
+.conf4{fill:#3CBECD;}
+.conf5{fill:#813BBE;}
+.conf6{fill:#F9B732;}
+.conf7{display:none;fill:none;stroke:#000000;stroke-miterlimit:10;}
+.conf8{fill:none;stroke:#F9B732;stroke-width:9;stroke-linecap:round;stroke-miterlimit:10;}
+
+ @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+.confetti-cone{
+    display: none !important;
+  transform-origin: 200px 50px;
+  animation:confetti-cone1 1.2s ease forwards;
+}
+@keyframes confetti-cone1{
+0%{
+   transform:translate(40px, 95px)  rotate(45deg) scale(1, 1);
+}
+15%{
+   transform:translate(10px, 145px)  rotate(45deg) scale(1.1, 0.85);
+
+}
+100%{
+  transform:translate(40px, 105px)  rotate(45deg) scale(1, 1);
+}
+  }
+
+#yellow-strip {
+  fill:none;
+  stroke:#F9B732;
+  stroke-width:9;
+  stroke-linecap:round;
+  stroke-miterlimit:10;
+  animation: confdash 1.2s ease forwards;
+}
+
+
+@keyframes confdash {
+0%{
+  stroke-dasharray:1000;
+  stroke-dashoffset:500;
+  transform:translate(-30px, 30px);
+  opacity:0;
+}
+2%{
+  stroke-dasharray:1000;
+  stroke-dashoffset:500;
+  transform:translate(-30px, 30px);
+  opacity:0;
+}
+35%{
+stroke-dasharray:1000;
+stroke-dashoffset:900;
+transform:translate(-2px, 0px);
+opacity:1;
+}
+
+85%{
+  stroke-dasharray:1000;
+  stroke-dashoffset:1000;
+  transform:translate(1px, -5px);
+  opacity:1;
+}
+  90%{
+  stroke-dashoffset:1000;
+   stroke-dashoffset:1000;
+  transform:translate(2px, -8px);
+  opacity:0;
+}
+  100%{
+  stroke-dashoffset:1000;
+   stroke-dashoffset:500;
+  transform:translate(2px, -8px);
+  opacity:0;
+}
+}
+
+
+
+#a2{
+  transform-origin: 310.9px 241px;
+  animation: confa 1.2s ease-out forwards;
+}
+
+#a1
+{transform-origin: 276px 246px;
+  animation: confa 1.2s ease-out forwards;
+}
+
+@keyframes confa {
+0%{
+  opacity:0;
+  transform: translate(-30px, 20px) rotate(0);
+}
+15%{
+  opacity:1;
+  transform: translate(25px, -10px) rotate(60deg);
+}
+80%{
+  opacity:1;
+  transform: translate(33px, -18px) rotate(180deg);
+}
+100%{
+  opacity:0;
+  transform: translate(37px, -23px) scale(0.5)rotate(230deg);
+}
+}
+
+
+#b1{
+  transform-origin: 195.2px 232.6px;
+  animation: confb 1.2s ease-out forwards;
+}
+
+#b2{
+  transform-origin: 230.8px 219.8px;
+  animation: confb 1.2s ease-out forwards;
+}
+#b3 {transform-origin: 222.8px 190.6px;
+  animation: confb 1.2s ease-out forwards;
+}
+
+#b4 {transform-origin: 262px 188.5px;
+  animation: confb 1.2s ease-out forwards;
+}
+
+#b5 {transform-origin: 282.3px 170.6px;
+  animation: confb 1.2s ease-out forwards;
+}
+
+
+@keyframes confb {
+0%{
+  opacity:0;
+  transform: translate(-30px, 20px) rotate(0);
+}
+12%{
+  opacity:1;
+  transform: translate(25px, -10px) rotate(60deg);
+}
+76%{
+  opacity:1;
+  transform: translate(33px, -18px) rotate(180deg);
+}
+100%{
+  opacity:0;
+  transform: translate(37px, -23px) scale(0.5) rotate(240deg);
+}
+}
+
+#c1 {transform-origin: 174.8px 183.4px;
+  animation: confc 1.2s ease-out forwards;
+}
+#c2{
+  transform-origin: 178.9px 156.2px;
+  animation: confc 1.2s ease-out forwards;
+}
+
+#c3{
+  transform-origin: 206.7px 140px;
+  animation: confc 1.2s ease-out forwards;
+}
+
+#c4{
+  transform-origin: 213.5px 120.2px;
+  animation: confc 1.2s ease-out forwards;
+}
+
+@keyframes confc {
+0%{
+  opacity:0.7;
+  transform: translate(-30px, 20px) rotate(0);
+}
+18%{
+  opacity:1;
+  transform: translate(5px, -10px) rotate(60deg);
+}
+76%{
+  opacity:1;
+  transform: translate(13px, -18px) rotate(180deg);
+}
+100%{
+  opacity:0;
+  transform: translate(17px, -23px) scale(0.5) rotate(230deg);
+}
+}
+
+#d1{
+  transform-origin: 127px 176px;
+  animation: confd 1.2s ease-out forwards;
+}
+#d2 {transform-origin: 133px 118px;
+  animation: confd 1.2s ease-out forwards;
+}
+#d3{ transform-origin: 152px 100px;
+  animation: confd 1.2s ease-out forwards;
+}
+
+@keyframes confd {
+0%{
+  opacity:0.7;
+  transform: translate(-20px, 20px) rotate(0);
+}
+18%{
+  opacity:1;
+  transform: translate(-5px, -10px) rotate(60deg);
+}
+76%{
+  opacity:1;
+  transform: translate(-8px, -18px) rotate(180deg);
+}
+100%{
+  opacity:0;
+  transform: translate(-10px, -23px) scale(0.5) rotate(230deg);
+}
 }

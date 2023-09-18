@@ -7,7 +7,7 @@
 		<div class="container-fluid d-flex justify-content-between align-items-center">
 			<div class="brand-logo">
 				<a href="{{ env('APP_URL') }}">
-					<img src="{{ asset('assets/images/deskapp-logo.svg') }}" alt="">
+					<img src="{{ asset('assets/images/app-logo.png') }}" alt="">
 				</a>
 			</div>
 			<div class="login-menu">
@@ -41,7 +41,7 @@
 										<div class="form-group row">
 											<label class="col-sm-4 col-form-label">Contact Number*</label>
 											<div class="col-sm-8">
-												<input type="text" name="contact_number" class="form-control" required autocomplete="contact_number" autofocus>
+												<input type="text" name="contact_number" class="form-control" required autocomplete="contact_number" autofocus pattern="[0-9][0-9]*">
 											</div>
 										</div>
                                       <div class="form-wrap max-width-600 mx-auto">
@@ -68,12 +68,14 @@
 											<label class="col-sm-4 col-form-label">Birth Day*</label>
 											<div class="col-sm-8">
 												<input class="form-control date-picker" placeholder="Select Date" type="text" name="dob" required>
+												<input type="hidden" name="index_number" value="{{ substr(Illuminate\Support\Str::uuid(), 0, 10) }}" required>
+												
 											</div>
 										</div>
 										<div class="form-group row align-items-center">
 											<label class="col-sm-4 col-form-label">Batch*</label>
 											<div class="col-sm-8">
-                                                <select class="custom-select form-control" data-np-autofill-field-type="city" name="batch" required>
+                                                <select class="custom-select form-control" data-np-autofill-field-type="batch" name="batch" required>
 													
 													
 													@foreach (getAllactiveBatch() as $batch)
