@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Tute;
 use App\Models\Batch;
+use App\Models\User;
 use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class TuteController extends Controller
 {
     /**
@@ -14,9 +15,38 @@ class TuteController extends Controller
      */
     public function index()
     {
+        if(Auth::user()->type === 'admin'){
+
         $data = Tute::all();
         $batchData = Batch::where('status', 1)->get();
         return view('pages.admin.tute.index',compact('data','batchData'));
+
+        }elseif(Auth::user()->type === 'user'){
+            $batch = json_decode(Auth::user()->batch, true);
+            $currentDate = Carbon::now();
+
+            $tutes = User::join('tutes', function ($join) use ($batch, $currentDate) {
+			$join->on(function ($query) use ($batch) {
+				foreach ($batch as $value) {
+					$query->orWhereJsonContains('tutes.bid', $value);
+				}
+			})
+			->where('users.type', '=', 0)
+			->where('tutes.status', '=', 1);
+		})
+		->select(
+			'tutes.*',
+			
+		)
+		->distinct()
+		->get();
+
+
+
+        return view('pages.user.tute.index',compact('tutes',));
+        }else{
+
+        }    
     }
 
     /**
