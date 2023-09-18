@@ -3,6 +3,7 @@
 			@if (empty(notice()))
 				
 			@else
+			@if (Auth::user()->type === 'user' && paycount() != 0)
 			<div class="row">
 				<div class="col-md-12">
 					<div class="d-flex justify-content-between align-items-center breaking-news bg-white">
@@ -18,6 +19,7 @@
 					</div>
 				</div>
     		</div>
+			@endif	
 			@endif	
 
      </div>
