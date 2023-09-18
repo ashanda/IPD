@@ -29,14 +29,14 @@
                         
                             <div class="col-md-6 col-sm-12 mt-20">
                                 <div class="form-group row">
-                                    <label class="col-sm-12 col-md-2 col-form-label">Verbal Exam Name</label>
+                                    <label class="col-sm-12 col-md-2 col-form-label">Title</label>
                                     <div class="col-sm-12 col-md-10">
                                         <input class="form-control" type="text" value="{{ $findData->title }}" name="title"  required>
                                     </div>
                                 </div>
                             </div>
                            
-                              <div class="col-md-2 col-sm-12 mt-20">
+                              <div class="col-md-3 col-sm-12 mt-20">
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-form-label">Batch</label>
                                     <div class="col-sm-8">
@@ -90,17 +90,28 @@
 
 						 <div class="row">
                               <div class="col-md-3 col-sm-12 mt-20">
+	
+                                <div class="form-group row">
+                                    <label class="col-sm-12 col-md-2 col-form-label">Video Link</label>
+                                    <div class="col-sm-12 col-md-10">
+                                        <input class="form-control" type="text" name="vlink" value="{{ $findData->vlink }}" required>
+                                    </div>
+                                </div>
+                            
+								</div>
+                                <div class="col-md-3 col-sm-12 mt-20">
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-form-label">Status</label>
                                     <div class="col-sm-8">
                                         <select class="custom-select form-control" name="status" required>
                                             <option value="1">Publish</option>
-                                            <option value="0">Unpublish</option>
+                                            <option value="2">Unpublish</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
-							<div class="col-md-5 col-sm-12 mt-20">
+                            
+							<div class="col-md-3 col-sm-12 mt-20">
                             <div class="form-group row">
 							
 								<label class="col-sm-4 col-form-label">Document</label>
@@ -110,7 +121,7 @@
 								</div>
 							</div>
                             </div>
-                            <div class="col-md-4 col-sm-12 text-right">
+                            <div class="col-md-3 col-sm-12 text-right">
                                 <div class="dropdown">
                                     <button type="submit" class="btn btn-primary dropdown-toggle no-arrow">Update Verbal Exam</button>
                                 </div>

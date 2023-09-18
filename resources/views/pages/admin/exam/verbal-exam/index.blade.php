@@ -85,7 +85,15 @@
 						 </div>
 
 						 <div class="row">
-                            <div class="col-md-4 col-sm-12 mt-20">
+							<div class="col-md-3 col-sm-12 mt-20">
+                                <div class="form-group row">
+                                    <label class="col-sm-12 col-md-2 col-form-label">Video Link</label>
+                                    <div class="col-sm-12 col-md-10">
+                                        <input class="form-control" type="text" name="vlink"  required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-12 mt-20">
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-form-label">Status</label>
                                     <div class="col-sm-8">
@@ -96,18 +104,18 @@
                                     </div>
                                 </div>
                             </div>
-							<div class="col-md-4 col-sm-12 mt-20">
+							<div class="col-md-3 col-sm-12 mt-20">
                             <div class="form-group row">
 							
 								<label class="col-sm-4 col-form-label">Document</label>
 								<div class="col-sm-8">
-								<input type="file" class="custom-file-input" name="document" required>
+								<input type="file" class="custom-file-input" name="document" >
 								<label class="custom-file-label">Choose file</label>
 								</div>
 						
 							</div>
                             </div>
-                            <div class="col-md-4 col-sm-12 text-right">
+                            <div class="col-md-3 col-sm-12 text-right">
                                 <div class="dropdown">
                                     <button type="submit" class="btn btn-primary dropdown-toggle no-arrow">Add Verbal Exam</button>
                                 </div>

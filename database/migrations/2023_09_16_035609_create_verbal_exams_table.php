@@ -16,12 +16,13 @@ return new class extends Migration
             $table->string('title');
             $table->string('cname')->nullable();
             $table->string('description');
+            $table->string('vlink');
             $table->date('publish_date');
             $table->time('start_time');
             $table->time('end_time');
             $table->json('bid');
             $table->integer('status')->default(1);
-            $table->string('document');
+            $table->string('document')->nullable();
             $table->timestamps();
         });
     }

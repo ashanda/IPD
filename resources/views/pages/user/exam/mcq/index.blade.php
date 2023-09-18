@@ -24,7 +24,7 @@
 						</div>
 					</div>
 					<div class="contact-directory-list">
-                        @if ( examcheck($upcomingDataMCQExams[0]->eid) < 1)
+                        @if ( examcheck($upcomingDataMCQExams[0]->eid,'MCQ Test') < 1)
                             
 						<div id="quiz">
     <div class="quiz-header" style="margin-bottom: 50px;">

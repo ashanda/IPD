@@ -127,11 +127,51 @@ class HomeController extends Controller
         
         return view('pages.user.exam.mcq.index',compact('upcomingDataMCQExams'));
     }
+
     public function paperexam(){
-        return view('pages.user.exam.paper.index');
+
+        $batch = json_decode(Auth::user()->batch, true);
+        $currentDate = Carbon::now();
+
+        $upcomingDataPaperExams = User::join('paper_exams', function ($join) use ($batch, $currentDate) {
+			$join->on(function ($query) use ($batch) {
+				foreach ($batch as $value) {
+					$query->orWhereJsonContains('paper_exams.bid', $value);
+				}
+			})
+			->where('users.type', '=', 0)
+			->where('paper_exams.publish_date', '>', $currentDate)
+			->where('paper_exams.status', '=', 1);
+		})
+		->select(
+			'paper_exams.*',
+		)
+		->distinct()
+		->get();
+        
+        return view('pages.user.exam.paper.index',compact('upcomingDataPaperExams'));
     }
+
     public function verbalexam(){
-        return view('pages.user.exam.verbal.index');
+        $batch = json_decode(Auth::user()->batch, true);
+        $currentDate = Carbon::now();
+        
+        $upcomingDataVerbalExams = User::join('verbal_exams', function ($join) use ($batch, $currentDate) {
+			$join->on(function ($query) use ($batch) {
+				foreach ($batch as $value) {
+					$query->orWhereJsonContains('verbal_exams.bid', $value);
+				}
+			})
+			->where('users.type', '=', 0)
+			->where('verbal_exams.publish_date', '>', $currentDate)
+			->where('verbal_exams.status', '=', 1);
+		})
+		->select(
+			'verbal_exams.*',
+		)
+		->distinct()
+		->get();
+        return view('pages.user.exam.verbal.index',compact('upcomingDataVerbalExams'));
     }
 
     public function result(){
