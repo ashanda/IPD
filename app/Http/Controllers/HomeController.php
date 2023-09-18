@@ -97,7 +97,25 @@ class HomeController extends Controller
     }
 
     public function groupchat(){
-        return view('pages.user.chat.index');
+        $batch = json_decode(Auth::user()->batch, true);
+        $currentDate = Carbon::now();
+
+        $chats = User::join('chats', function ($join) use ($batch, $currentDate) {
+			$join->on(function ($query) use ($batch) {
+				foreach ($batch as $value) {
+					$query->orWhereJsonContains('chats.bid', $value);
+				}
+			})
+			->where('users.type', '=', 0);
+		})
+		->select(
+			'chats.*'
+		)
+		->distinct()
+        ->orderBy('chats.created_at', 'desc')
+		->get();
+        
+        return view('pages.user.chat.index',compact('chats'));
     }
 
     public function exam(){

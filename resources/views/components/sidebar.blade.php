@@ -153,8 +153,12 @@
 					</li>
 					notice
                     @elseif (Auth::user()->type === 'instructor')
+					
 
-                    @else
+
+
+				@elseif (Auth::user()->type === 'user' && paycount() != 0)
+                    
 					<li>
 						<a href="{{ route('profile') }}" class="dropdown-toggle no-arrow">
                             
@@ -185,6 +189,8 @@
 							<span class="micon dw dw-user-3"></span><span class="mtext">My Attendance</span>
 						</a>
 					</li>
+					@else
+					
                     @endif
 					
 				

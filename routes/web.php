@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BatchController;
 use App\Http\Controllers\CertificateController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\CoupenController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\LessonController;
@@ -85,6 +86,9 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::post('/submisson',[SubmissionController::class,'submisson'])->name('submisson');
     Route::get('/result',[HomeController::class,'result'])->name('result');
     Route::get('/my-payment',[HomeController::class,'mypayment'])->name('mypayment');
+    Route::post('/chat',[ChatController::class,'store'])->name('mychat');
+
+    Route::get('/getChatMessages', [ChatController::class,'getChatMessages']);
 });
 
   

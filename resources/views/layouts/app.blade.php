@@ -29,12 +29,18 @@
 </head>
 <body>
     @include('sweetalert::alert')
-	@yield('preload')
+	@include('components.header')
+	@include('components.sidebar')
+	@if (Auth::user()->type === 'user' && paycount() === 0)
+		@include('components.default-user')
+	@else
+		@yield('preload')
 
-    @include('components.header')
-    @include('components.sidebar')
-
-    @yield('content')
+		
+		
+		@yield('content')
+	@endif
+    
 
     @include('components.footer')
 

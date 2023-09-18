@@ -184,18 +184,23 @@ function generateRandomString($length = 10) {
 
 
 function notice() {
-    $batch = json_decode(Auth::user()->batch, true);
 
-    $usersWithBatchesAndBids = User::join('notices', 'users.batch', '=', 'notices.bid')
-        ->whereJsonContains('users.batch', $batch)
-        ->where('users.type', '=', 0)
-        ->select('notices.*')
-        ->get();
 
-    // Check if $usersWithBatchesAndBids is empty
-    if ($usersWithBatchesAndBids->isEmpty()) {
-        return 0; // Return 0 when empty
-    }
+	$batch = json_decode(Auth::user()->batch, true);
+	$currentDate = Carbon::now();
+
+	$usersWithBatchesAndBids = User::join('notices', function ($join) use ($batch, $currentDate) {
+		$join->on(function ($query) use ($batch) {
+			foreach ($batch as $value) {
+				$query->orWhereJsonContains('notices.bid', $value);
+			}
+		})
+		->where('users.type', '=', 0);
+	})
+	->select('notices.*')
+	->distinct()
+	->orderBy('notices.created_at', 'desc') // Add this line to order by created_at in descending order
+	->get();
 
     return $usersWithBatchesAndBids;
 }
@@ -340,3 +345,35 @@ function examcheck($id,$type){
 }
 
 
+function user_data($id){
+ $data = User::where('index_number',$id)->first();
+ return $data;
+}
+
+
+function paycount(){
+	$data = Payment::where('index_number',Auth::user()->index_number)->where('status',1)->count();
+	return $data;
+}
+
+
+function lastPay(){
+	$data = Payment::where('index_number', Auth::user()->index_number)->latest()->first();
+	if($data === null){
+		$lastPay = 0;
+	}else{
+	if($data->status === 2){
+		$lastPay = 2; 
+	}else if($data->status === 1){
+		$lastPay = 1;
+	}else if($data->status === 3){
+		$lastPay = 3;
+	}else{
+		$lastPay = 0;
+	}	
+
+	}
+	
+
+	return $lastPay;
+}
