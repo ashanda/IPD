@@ -203,7 +203,7 @@
 							</div>
                             
 							<div class="widget-data">
-                                <a href="">
+                                <a href="{{ route('userexam') }}">
 								<div class="h4 mb-0">Exams</div>
 								<div class="weight-600 font-14">New exams <span class="badge badge-primary badge-pill">14</span></div>
                                 </a>

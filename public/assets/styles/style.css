@@ -3861,7 +3861,7 @@ body.IE .register-page-wrap .container {
 
 .contact-directory-box {
     background: #fff;
-    min-height: 400px;
+    min-height: 100px;
     -webkit-box-shadow: 0 0 28px rgba(0, 0, 0, .08);
     box-shadow: 0 0 28px rgba(0, 0, 0, .08);
     border-radius: 10px
@@ -5139,4 +5139,8 @@ opacity:1;
   opacity:0;
   transform: translate(-10px, -23px) scale(0.5) rotate(230deg);
 }
+}
+
+.quiz-results {
+  display: none !important;
 }
