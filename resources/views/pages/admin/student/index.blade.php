@@ -24,7 +24,7 @@
             <!-- Simple Datatable start -->
             <div class="card-box mb-30">
                 <div class="pd-20">
-                    <h4 class="text-blue h4">Instructor</h4>
+                    <h4 class="text-blue h4">Student</h4>
                 </div>
                 <div class="pb-20">
                     <table class="data-table table stripe hover nowrap">
@@ -41,16 +41,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ( $data as $batch)
+                            @foreach ( $data as $student)
                             <tr>
-                                <td class="table-plus">{{ $batch->fname.' '.$batch->lname }}</td>
-                                <td class="table-plus">{{ $batch->email }}</td>
-                                <td class="table-plus">{{ $batch->contact_number }}</td>
-                                <td class="table-plus">{{ $batch->dob }}</td>
-                                <td class="table-plus">{{ $batch->batch }}</td>
-                                <td class="table-plus">{{ $batch->created_at }}</td>
+                                <td class="table-plus">{{ $student->fname.' '.$student->lname }}</td>
+                                <td class="table-plus">{{ $student->email }}</td>
+                                <td class="table-plus">{{ $student->contact_number }}</td>
+                                <td class="table-plus">{{ $student->dob }}</td>
+                                <td class="table-plus">{{ $student->batch->bname }}</td>
+                                <td class="table-plus">{{ $student->created_at }}</td>
                                 <td>
-                                    @if ($batch->status === 1)
+                                    @if ($student->status === 1)
                                     <span class="badge badge-success">Plublish</span>
                                     @else
                                     <span class="badge badge-warning">Unplublish</span>
@@ -59,10 +59,10 @@
                                 <td>
                                     <div class="row">
                                         <div class="col">
-                                            <a class="dropdown-item" href="{{ route('instructor.edit', $batch->id) }}"><i class="dw dw-edit2"></i> Edit</a>
+                                            <a class="dropdown-item" href="{{ route('student.edit', $student->id) }}"><i class="dw dw-edit2"></i> Edit</a>
                                         </div>
                                         <div class="col">
-                                            <form action="{{ route('instructor.destroy', $batch->id) }}" method="POST">
+                                            <form action="{{ route('student.destroy', $student->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-link"><i class="dw dw-delete-3"></i> Delete</button>

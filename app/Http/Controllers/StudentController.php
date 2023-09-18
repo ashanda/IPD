@@ -14,6 +14,8 @@ class StudentController extends Controller
     public function index()
     {
         $data = User::where('type',0)->get();
-        return view('pages.admin.student.index',compact('data'));
+        $batchData = Batch::where('status', 1)->get();
+        return view('pages.admin.student.index',compact('data', 'batchData'));
     }
+
 }
