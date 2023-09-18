@@ -74,6 +74,7 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::get('/download-certificate',[CertificateController::class,'download'])->name('download');
     Route::get('/lesson',[LessonController::class,'index'])->name('userlesson');
     Route::get('/course-work',[WorkshopController::class,'index'])->name('usercoursework');
+    Route::get('/tute',[TuteController::class,'index'])->name('usertute');
     Route::get('/edit-profile',[HomeController::class,'profile'])->name('profile');
     Route::get('/groupchat',[HomeController::class,'groupchat'])->name('groupchat');
 });
