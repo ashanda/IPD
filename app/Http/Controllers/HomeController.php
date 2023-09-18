@@ -8,6 +8,8 @@ use App\Models\Course;
 use App\Models\User;
 use Illuminate\Support\Carbon;
 use App\Models\McqExam;
+use App\Models\Payment;
+use App\Models\Submission;
 use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
@@ -175,6 +177,12 @@ class HomeController extends Controller
     }
 
     public function result(){
-        return view('pages.user.result.index');
+        $results = Submission::where('index_number',Auth::user()->index_number)->get();
+        return view('pages.user.result.index',compact('results'));
+    }
+
+    public function mypayment(){
+         $results = Payment::where('index_number', Auth::user()->index_number)->orderBy('updated_at', 'desc')->get();
+          return view('pages.user.payment.index',compact('results'));
     }
 }

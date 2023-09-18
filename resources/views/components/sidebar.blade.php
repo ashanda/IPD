@@ -163,7 +163,7 @@
 					</li>
 
 					<li>
-						<a href="sitemap.html" class="dropdown-toggle no-arrow">
+						<a href="{{ route('result') }}" class="dropdown-toggle no-arrow">
                             
 							<span class="micon dw dw-certificate"></span><span class="mtext">Results</span>
 						</a>
@@ -174,7 +174,7 @@
 						</a>
 					</li>
                     <li>
-						<a href="sitemap.html" class="dropdown-toggle no-arrow">
+						<a href="{{ route('mypayment') }}" class="dropdown-toggle no-arrow">
                             
 							<span class="micon dw dw-money-2"></span><span class="mtext">My Payments</span>
 						</a>
