@@ -13,11 +13,6 @@ use Illuminate\Support\Facades\DB;
 
 
 
-use App\Models\Certificate;
-use Illuminate\Support\Facades\DB;
-
-
-
 //sms functionality
 function smsBalance(){
 	$curl = curl_init();

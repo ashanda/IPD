@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\Course;
-use Illuminate\Support\Facades\Auth;use App\Models\Course;
 use App\Models\User;
 use Illuminate\Support\Carbon;
 use App\Models\McqExam;
@@ -203,13 +202,5 @@ class HomeController extends Controller
     public function mypayment(){
          $results = Payment::where('index_number', Auth::user()->index_number)->orderBy('updated_at', 'desc')->get();
           return view('pages.user.payment.index',compact('results'));
-    }
-
-    public function profile(){
-        return view('pages.user.profile.index');
-    }
-
-    public function groupchat(){
-        return view('pages.user.chat.index');
     }
 }
