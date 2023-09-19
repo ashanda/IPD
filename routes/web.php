@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BatchController;
 use App\Http\Controllers\CertificateController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\CoupenController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\LessonController;
@@ -20,6 +21,7 @@ use App\Http\Controllers\PaperExamController;
 use App\Http\Controllers\TuteController;
 use App\Http\Controllers\VerbalExamController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\SubmissionController;
 
 use App\Http\Controllers\StudentController;
 
@@ -74,12 +76,22 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
 
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::post('/payment', [PaymentController::class, 'store'])->name('paycourse');
-    Route::get('/download-certificate', [CertificateController::class, 'download'])->name('download');
-    Route::get('/lesson', [LessonController::class, 'index'])->name('userlesson');
-    Route::get('/course-work', [WorkshopController::class, 'index'])->name('usercoursework');
-    Route::get('/tute', [TuteController::class, 'index'])->name('usertute');
-    Route::get('/edit-profile', [HomeController::class, 'profile'])->name('profile');
-    Route::get('/groupchat', [HomeController::class, 'groupchat'])->name('groupchat');
+    Route::get('/download-certificate',[CertificateController::class,'download'])->name('download');
+    Route::get('/lesson',[LessonController::class,'index'])->name('userlesson');
+    Route::get('/course-work',[WorkshopController::class,'index'])->name('usercoursework');
+    Route::get('/tute',[TuteController::class,'index'])->name('usertute');
+    Route::get('/edit-profile',[HomeController::class,'profile'])->name('profile');
+    Route::get('/groupchat',[HomeController::class,'groupchat'])->name('groupchat');
+    Route::get('/exam',[HomeController::class,'exam'])->name('userexam');
+    Route::get('/mcqexam',[HomeController::class,'mcqexam'])->name('usermcqexam');
+    Route::get('/paperexam',[HomeController::class,'paperexam'])->name('userpaperexam');
+    Route::get('/verbalexam',[HomeController::class,'verbalexam'])->name('userverbalexam');
+    Route::post('/submisson',[SubmissionController::class,'submisson'])->name('submisson');
+    Route::get('/result',[HomeController::class,'result'])->name('result');
+    Route::get('/my-payment',[HomeController::class,'mypayment'])->name('mypayment');
+    Route::post('/chat',[ChatController::class,'store'])->name('mychat');
+
+    Route::get('/getChatMessages', [ChatController::class,'getChatMessages']);
 });
 
 
@@ -107,22 +119,20 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::resource('/admin/instructor', InstructorController::class);
     Route::resource('/admin/paper-exam', PaperExamController::class);
     Route::resource('/admin/verbal-exam', VerbalExamController::class);
-    Route::resource('/admin/mcq-exam', McqExamController::class);
-    Route::get('/mcq-exams/add_question/{id}', [McqExamController::class, 'add_question'])->name('add_question');
-    Route::post('/mcq-exams/add_question/', [McqExamController::class, 'add_question_db'])->name('add_question_db');
+    Route::resource('/admin/mcq-exam',McqExamController::class);
+    Route::get('/mcq-exams/add_question/{id}',[McqExamController::class,'add_question'])->name('add_question');
+    Route::post('/mcq-exams/add_question/',[McqExamController::class,'add_question_db'])->name('add_question_db');
     Route::get('/mcq-exam/{id}', [McqExamController::class, 'mcq'])->name('mcq');
-    Route::resource('/admin/tute', TuteController::class);
-    Route::resource('/admin/payment', PaymentController::class);
-    Route::resource('/admin/expence', ExpenceController::class);
-    Route::resource('/admin/certificate', CertificateController::class);
-    Route::get('/admin/certificateissue/{id}', [CertificateController::class, 'certificate'])->name('issue_certificate');
-    Route::post('/certificates', [CertificateController::class, 'store'])->name('certificates.store');
-    Route::resource('/admin/coupen', CoupenController::class);
-    Route::resource('/admin/notice', NoticeController::class);
-    
+    Route::resource('/admin/tute',TuteController::class);
+    Route::resource('/admin/payment',PaymentController::class);
+    Route::resource('/admin/expence',ExpenceController::class);
+    Route::resource('/admin/certificate',CertificateController::class);
+    Route::get('/admin/certificateissue/{id}',[CertificateController::class,'certificate'])->name('issue_certificate');
+    Route::post('/certificates', [CertificateController::class,'store'])->name('certificates.store');
+    Route::resource('/admin/coupen',CoupenController::class);
+    Route::resource('/admin/notice',NoticeController::class);
     Route::get('/admin/student/batchwise', [StudentController::class, 'batchwise'])->name('batchwise');
     Route::resource('/admin/student', StudentController::class);
-    
 });
 
 

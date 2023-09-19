@@ -115,52 +115,52 @@
 
 
 					</div>
-				</form>
-			</div>
-			<!-- Simple Datatable start -->
-			<div class="card-box mb-30">
-				<div class="pd-20">
-					<h4 class="text-blue h4">Instructor</h4>
+                    </form>
 				</div>
-				<div class="pb-20">
-					<table class="data-table table stripe hover nowrap">
-						<thead>
-							<tr>
-								<th class="table-plus datatable-nosort">Instructor name</th>
-								<th>Email</th>
-								<th>Batch</th>
-								<th>Contact</th>
-								<th>Status</th>
-								<th class="datatable-nosort">Action</th>
-							</tr>
-						</thead>
-						<tbody>
-							@foreach ( $data as $batch)
-							<tr>
-								<td class="table-plus">{{ $batch->fname.' '.$batch->lname }}</td>
-								<td class="table-plus">{{ $batch->email }}</td>
-								<td class="table-plus">
-									<ul>
-
-
-										@foreach(json_decode($batch->batch) as $item)
-										<li>{{ getBatch($item)->bname }}</li>
-										@endforeach
-
-
-									</ul>
-								</td>
-								<td class="table-plus">{{ $batch->contact_number }}</td>
-
-
-								@if ($batch->status === 1)
-								<td><span class="badge badge-success">Plublish</span></td>
-								@else
-								<td><span class="badge badge-warning">Unplublish</span></td>
-								@endif
-								<td>
-								<td class="table-plus"></td>
-								<td>
+				<!-- Simple Datatable start -->
+				<div class="card-box mb-30">
+					<div class="pd-20">
+						<h4 class="text-blue h4">Instructor</h4>
+					</div>
+					<div class="pb-20">
+						<table class="data-table table stripe hover nowrap">
+							<thead>
+								<tr>
+									<th class="table-plus datatable-nosort">Instructor name</th>
+									<th>Email</th>
+									<th>Batch</th>
+									<th>Contact</th>
+									<th>Status</th>
+									<th class="datatable-nosort">Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach ( $data as $batch)
+								<tr>
+									<td class="table-plus">{{ $batch->fname.' '.$batch->lname }}</td>
+									<td class="table-plus">{{ $batch->email }}</td>
+                                    <td class="table-plus">
+                                        <ul>
+                                            
+                                            
+                                               @foreach(json_decode($batch->batch) as $item)
+												<li>{{ getBatch($item)->bname }}</li>
+											 @endforeach
+                                           
+                                            
+                                        </ul>
+                                    </td>
+									<td class="table-plus">{{ $batch->contact_number }}</td>
+									
+									
+									@if ($batch->status === 1)
+									<td><span class="badge badge-success">Plublish</span></td>		
+									@else
+									<td><span class="badge badge-warning">Unplublish</span></td>
+									@endif
+									<td>
+                                    <td class="table-plus"></td>
+                                    <td>
 									<div class="row">
 										<div class="col">
 											<a class="dropdown-item" href="{{ route('instructor.edit', $batch->id) }}"><i class="dw dw-edit2"></i> Edit</a>

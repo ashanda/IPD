@@ -12,7 +12,7 @@
 
 	<!-- Mobile Specific Metas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<!-- Google Font -->
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 	<!-- CSS -->
@@ -29,12 +29,18 @@
 </head>
 <body>
     @include('sweetalert::alert')
-	@yield('preload')
+	@include('components.header')
+	@include('components.sidebar')
+	@if (Auth::user()->type === 'user' && paycount() === 0)
+		@include('components.default-user')
+	@else
+		@yield('preload')
 
-    @include('components.header')
-    @include('components.sidebar')
-
-    @yield('content')
+		
+		
+		@yield('content')
+	@endif
+    
 
     @include('components.footer')
 
