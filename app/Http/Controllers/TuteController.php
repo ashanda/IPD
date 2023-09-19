@@ -44,9 +44,20 @@ class TuteController extends Controller
 
 
         return view('pages.user.tute.index',compact('tutes',));
-        }else{
 
-        }    
+        }else if(Auth::user()->type === 'instructor'){
+            $userBatchArray = json_decode(auth::user()->batch, true);
+
+            $data = Tute::whereJsonContains('bid', $userBatchArray)
+                ->get();
+            
+
+            // Filter Batch records based on matching batch IDs
+            $batchData = Batch::where('status', 1)
+                ->whereIn('id', $userBatchArray)
+                ->get();
+           return view('pages.admin.tute.index',compact('data','batchData'));     
+       }
     }
 
     /**
@@ -99,9 +110,25 @@ class TuteController extends Controller
      */
     public function edit($id)
     {
-        $data = Tute::all();
-        $batchData = Batch::where('status',1)->get();
+        
         $findData = Tute::where('id', $id)->first();
+
+        if(Auth::user()->type === 'admin'){
+            $data = Tute::all();
+            $batchData = Batch::where('status',1)->get();
+        }else if(Auth::user()->type === 'instructor'){
+            $userBatchArray = json_decode(auth::user()->batch, true);
+
+            $data = Tute::whereJsonContains('bid', $userBatchArray)
+                ->get();
+            
+
+            // Filter Batch records based on matching batch IDs
+            $batchData = Batch::where('status', 1)
+                ->whereIn('id', $userBatchArray)
+                ->get();
+        }
+
         return view('pages.admin.tute.edit',compact('data', 'findData','batchData'));
     }
 

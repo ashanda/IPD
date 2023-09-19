@@ -43,8 +43,21 @@ class LessonController extends Controller
                     ->get();
 
         return view('pages.user.lesson.index',compact('upcomingDataLessons'));
-        }else{
 
+        }elseif(Auth::user()->type === 'instructor'){
+
+            $userBatchArray = json_decode(auth::user()->batch, true);
+
+            $data = Lesson::whereJsonContains('bid', $userBatchArray)
+                ->get();
+            
+
+            // Filter Batch records based on matching batch IDs
+            $batchData = Batch::where('status', 1)
+                ->whereIn('id', $userBatchArray)
+                ->get();
+
+            return view('pages.admin.lesson.index',compact('data','batchData'));
         }
         
     }
@@ -117,9 +130,27 @@ class LessonController extends Controller
      */
     public function edit($id)
     {
+        if(Auth::user()->type === 'admin'){
+
         $data = Lesson::all();
         $batchData = Batch::where('status',1)->get();
+        
+        } elseif(Auth::user()->type === 'instructor'){
+
+        $userBatchArray = json_decode(auth::user()->batch, true);
+
+         $data = Lesson::where('status', 1)
+                ->whereJsonContains('bid', $userBatchArray)
+                ->get();
+            
+
+            // Filter Batch records based on matching batch IDs
+            $batchData = Batch::where('status', 1)
+                ->whereIn('id', $userBatchArray)
+                ->get();
+        }
         $findData = Lesson::where('id', $id)->first();
+       
         return view('pages.admin.lesson.edit',compact('data', 'findData','batchData'));
     }
 

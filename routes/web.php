@@ -77,9 +77,9 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::post('/payment', [PaymentController::class, 'store'])->name('paycourse');
     Route::get('/download-certificate',[CertificateController::class,'download'])->name('download');
-    Route::get('/lesson',[LessonController::class,'index'])->name('userlesson');
-    Route::get('/course-work',[WorkshopController::class,'index'])->name('usercoursework');
-    Route::get('/tute',[TuteController::class,'index'])->name('usertute');
+    Route::get('/lessons',[LessonController::class,'index'])->name('userlesson');
+    Route::get('/course-works',[WorkshopController::class,'index'])->name('usercoursework');
+    Route::get('/tutes',[TuteController::class,'index'])->name('usertute');
     Route::get('/edit-profile',[HomeController::class,'profile'])->name('profile');
     Route::get('/groupchat',[HomeController::class,'groupchat'])->name('groupchat');
     Route::get('/exam',[HomeController::class,'exam'])->name('userexam');
@@ -113,17 +113,12 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('/admin/home', [HomeController::class, 'adminHome'])->name('admin.home');
     Route::resource('/admin/batch', BatchController::class);
     Route::resource('/admin/course', CourseController::class);
-    Route::resource('/admin/lesson', LessonController::class);
+    
     Route::resource('/admin/workshop', WorkshopController::class);
-    Route::resource('/admin/course-work', CourseWorkController::class);
+    
     Route::resource('/admin/instructor', InstructorController::class);
-    Route::resource('/admin/paper-exam', PaperExamController::class);
-    Route::resource('/admin/verbal-exam', VerbalExamController::class);
-    Route::resource('/admin/mcq-exam',McqExamController::class);
-    Route::get('/mcq-exams/add_question/{id}',[McqExamController::class,'add_question'])->name('add_question');
-    Route::post('/mcq-exams/add_question/',[McqExamController::class,'add_question_db'])->name('add_question_db');
-    Route::get('/mcq-exam/{id}', [McqExamController::class, 'mcq'])->name('mcq');
-    Route::resource('/admin/tute',TuteController::class);
+    
+    
     Route::resource('/admin/payment',PaymentController::class);
     Route::resource('/admin/expence',ExpenceController::class);
     Route::resource('/admin/certificate',CertificateController::class);
@@ -149,7 +144,31 @@ All Instructor Routes List
 
 Route::middleware(['auth', 'user-access:instructor'])->group(function () {
 
+     Route::get('/instructor/home', [HomeController::class, 'instructorHome'])->name('instructor.home');
+
+}); 
 
 
-    Route::get('/instructor/home', [HomeController::class, 'instructorHome'])->name('instructor.home');
-});
+/*------------------------------------------
+
+--------------------------------------------
+
+All Instructor and Admin Routes List
+
+--------------------------------------------
+
+--------------------------------------------*/
+Route::middleware(['auth'])->group(function () {
+
+    Route::resource('/lesson', LessonController::class);
+    Route::resource('/course-work', CourseWorkController::class);
+    Route::resource('/paper-exam', PaperExamController::class);
+    Route::resource('/verbal-exam', VerbalExamController::class);
+    Route::resource('/mcq-exam',McqExamController::class);
+    Route::get('/mcq-exams/add_question/{id}',[McqExamController::class,'add_question'])->name('add_question');
+    Route::post('/mcq-exams/add_question/',[McqExamController::class,'add_question_db'])->name('add_question_db');
+    Route::get('/mcq-exam/{id}', [McqExamController::class, 'mcq'])->name('mcq');
+    Route::resource('/tute',TuteController::class);
+
+});    
+

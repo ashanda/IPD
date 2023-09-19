@@ -8,6 +8,7 @@ use App\Models\Batch;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Auth;
 
 class CourseWorkController extends Controller
 {
@@ -16,9 +17,31 @@ class CourseWorkController extends Controller
      */
     public function index()
     {
+       
+
+        if(Auth::user()->type === 'admin'){
         $data = CourseWork::all();
         $batchData = Batch::where('status', 1)->get();
-        return view('pages.admin.course-work.index',compact('data','batchData'));
+
+        
+
+        }else if(Auth::user()->type === 'instructor'){
+
+            $userBatchArray = json_decode(auth::user()->batch, true);
+
+            $data = CourseWork::where('status', 1)
+                ->whereJsonContains('bid', $userBatchArray)
+                ->get();
+            
+
+            // Filter Batch records based on matching batch IDs
+            $batchData = Batch::where('status', 1)
+                ->whereIn('id', $userBatchArray)
+                ->get();
+
+               
+        }
+      return view('pages.admin.course-work.index',compact('data','batchData')); 
     }
 
     /**
@@ -74,9 +97,26 @@ class CourseWorkController extends Controller
      */
     public function edit($id)
     {
+        $findData = CourseWork::where('id', $id)->first();
+        if(Auth::user()->type === 'admin'){
         $data = CourseWork::all();
         $batchData = Batch::where('status',1)->get();
-        $findData = CourseWork::where('id', $id)->first();
+        
+
+        }else if(Auth::user()->type === 'instructor'){
+
+            $userBatchArray = json_decode(auth::user()->batch, true);
+
+            $data = CourseWork::where('status', 1)
+                ->whereJsonContains('bid', $userBatchArray)
+                ->get();
+            
+
+            // Filter Batch records based on matching batch IDs
+            $batchData = Batch::where('status', 1)
+                ->whereIn('id', $userBatchArray)
+                ->get();
+        }       
         return view('pages.admin.course-work.edit',compact('data', 'findData','batchData'));
     }
 

@@ -7,6 +7,7 @@ use App\Models\Batch;
 use App\Models\Question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 class McqExamController extends Controller
 {
     /**
@@ -14,8 +15,25 @@ class McqExamController extends Controller
      */
     public function index()
     {
+        if(Auth::user()->type === 'admin'){
         $data = McqExam::all();
         $batchData = Batch::where('status', 1)->get();
+
+        }else if(Auth::user()->type === 'instructor'){
+            $userBatchArray = json_decode(auth::user()->batch, true);
+
+            $data = McqExam::where('status', 1)
+                ->whereJsonContains('bid', $userBatchArray)
+                ->get();
+            
+
+            // Filter Batch records based on matching batch IDs
+            $batchData = Batch::where('status', 1)
+                ->whereIn('id', $userBatchArray)
+                ->get();
+        }
+          
+        
         return view('pages.admin.exam.mcq-exam.index',compact('data','batchData'));
     }
 
@@ -29,12 +47,28 @@ class McqExamController extends Controller
 
 
      public function edit(Request $request, $id)
-
     {
 
-        $batchData = Batch::where('status',1)->get();
-        $data = McqExam::all();
         $findData = McqExam::where('id', $id)->first();
+
+        if(Auth::user()->type === 'admin'){
+        $data = McqExam::all();
+        $batchData = Batch::where('status', 1)->get();
+
+        }else if(Auth::user()->type === 'instructor'){
+            $userBatchArray = json_decode(auth::user()->batch, true);
+
+            $data = McqExam::where('status', 1)
+                ->whereJsonContains('bid', $userBatchArray)
+                ->get();
+            
+
+            // Filter Batch records based on matching batch IDs
+            $batchData = Batch::where('status', 1)
+                ->whereIn('id', $userBatchArray)
+                ->get();
+        }
+
         return view('pages.admin.exam.mcq-exam.edit', compact('data', 'findData','batchData'));
     }
     /**
