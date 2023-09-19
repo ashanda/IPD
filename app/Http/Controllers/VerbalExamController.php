@@ -6,7 +6,7 @@ use App\Models\VerbalExam;
 use App\Models\Batch;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-
+use Illuminate\Support\Facades\Auth;
 class VerbalExamController extends Controller
 {
     /**
@@ -14,8 +14,25 @@ class VerbalExamController extends Controller
      */
     public function index()
     {
-        $data = VerbalExam::all();
-        $batchData = Batch::where('status', 1)->get();
+        
+
+        if(Auth::user()->type === 'admin'){
+            $data = VerbalExam::all();
+            $batchData = Batch::where('status', 1)->get();
+        }else if(Auth::user()->type === 'instructor'){
+            $userBatchArray = json_decode(auth::user()->batch, true);
+
+            $data = VerbalExam::where('status', 1)
+                ->whereJsonContains('bid', $userBatchArray)
+                ->get();
+            
+
+            // Filter Batch records based on matching batch IDs
+            $batchData = Batch::where('status', 1)
+                ->whereIn('id', $userBatchArray)
+                ->get();
+
+        }
         return view('pages.admin.exam.verbal-exam.index',compact('data','batchData'));
     }
 
@@ -73,9 +90,27 @@ class VerbalExamController extends Controller
      */
     public function edit($id)
     {
-        $data = VerbalExam::all();
-        $batchData = Batch::where('status',1)->get();
+        
         $findData = VerbalExam::where('id', $id)->first();
+        if(Auth::user()->type === 'admin'){
+            
+            $data = VerbalExam::all();
+            $batchData = Batch::where('status', 1)->get();
+
+        }else if(Auth::user()->type === 'instructor'){
+            $userBatchArray = json_decode(auth::user()->batch, true);
+
+            $data = VerbalExam::where('status', 1)
+                ->whereJsonContains('bid', $userBatchArray)
+                ->get();
+            
+
+            // Filter Batch records based on matching batch IDs
+            $batchData = Batch::where('status', 1)
+                ->whereIn('id', $userBatchArray)
+                ->get();
+
+        }
         return view('pages.admin.exam.verbal-exam.edit',compact('data', 'findData','batchData'));
     }
 
