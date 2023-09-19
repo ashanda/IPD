@@ -23,6 +23,7 @@ use App\Http\Controllers\VerbalExamController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SubmissionController;
 
+use App\Http\Controllers\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,22 +39,24 @@ use App\Http\Controllers\SubmissionController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/about-us', function() {
+Route::get('/about-us', function () {
     return view('about');
 });
-Route::get('/courses', function() {
+Route::get('/courses', function () {
     return view('course');
 });
-Route::get('/gallery', function() {
+Route::get('/gallery', function () {
     return view('gallery');
 });
-Route::get('/workshop', function() {
+Route::get('/workshop', function () {
     return view('workshop');
 });
 
-Route::get('/admin', function() {
+Route::get('/admin', function () {
     return view('auth.admin');
 });
+
+
 Auth::routes();
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
@@ -69,7 +72,7 @@ All Normal Users Routes List
 
 Route::middleware(['auth', 'user-access:user'])->group(function () {
 
-  
+
 
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::post('/payment', [PaymentController::class, 'store'])->name('paycourse');
@@ -91,7 +94,7 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::get('/getChatMessages', [ChatController::class,'getChatMessages']);
 });
 
-  
+
 
 /*------------------------------------------
 
@@ -105,7 +108,7 @@ All Admin Routes List
 
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
-  
+
 
     Route::get('/admin/home', [HomeController::class, 'adminHome'])->name('admin.home');
     Route::resource('/admin/batch', BatchController::class);
@@ -128,10 +131,11 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::post('/certificates', [CertificateController::class,'store'])->name('certificates.store');
     Route::resource('/admin/coupen',CoupenController::class);
     Route::resource('/admin/notice',NoticeController::class);
-
+    Route::get('/admin/student/batchwise', [StudentController::class, 'batchwise'])->name('batchwise');
+    Route::resource('/admin/student', StudentController::class);
 });
 
-  
+
 
 /*------------------------------------------
 
@@ -145,8 +149,7 @@ All Instructor Routes List
 
 Route::middleware(['auth', 'user-access:instructor'])->group(function () {
 
-  
+
 
     Route::get('/instructor/home', [HomeController::class, 'instructorHome'])->name('instructor.home');
-
 });
