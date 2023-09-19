@@ -482,3 +482,31 @@ function lastPay(){
 
 	return $lastPay;
 }
+
+
+
+function courseWorkSubmission(){
+    $userBatchArray = json_decode(auth::user()->batch, true);
+	$data = Submission::WhereJsonContains('bid',$userBatchArray)->where('type','Course Work')->where('marks',NULL)->count();
+
+	return $data;	
+}
+
+function coursePaperSubmission(){
+
+	$userBatchArray = json_decode(auth::user()->batch, true);
+	$data = Submission::WhereJsonContains('bid',$userBatchArray)->where('type','Paper Test')->where('marks',NULL)->count();
+
+	return $data;
+
+
+}
+
+function courseVerbalSubmission(){
+
+	$userBatchArray = json_decode(auth::user()->batch, true);
+	$data = Submission::WhereJsonContains('bid',$userBatchArray)->where('type','Verbal Test')->where('marks', NULL)->count();
+	
+	return $data;
+
+}

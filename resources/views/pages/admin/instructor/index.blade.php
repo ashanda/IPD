@@ -28,6 +28,7 @@
 						<div class="col-md-3 col-sm-12 mt-20">
 							<div class="form-group row">
 								<label class="col-sm-12 col-md-2 col-form-label">First name</label>
+								<input type="hidden" name="index_number" value="{{ substr(Illuminate\Support\Str::uuid(), 0, 10) }}" required>
 								<div class="col-sm-12 col-md-10">
 									<input class="form-control" type="text" name="fname" required>
 								</div>
