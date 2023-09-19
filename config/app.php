@@ -186,7 +186,7 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
-        // 'Example' => App\Facades\Example::class,
+        'Example' => App\Facades\Example::class,
     ])->toArray(),
 
 ];
