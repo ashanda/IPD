@@ -64,7 +64,7 @@
 							<span class="micon dw dw-list3"></span><span class="mtext">Course Materials</span>
 						</a>
 						<ul class="submenu">
-							<li>
+							<li class="dropdown">
                                 <a href="{{ route('lesson.index') }}" class="dropdown-toggle no-arrow">
 									<span class="micon dw dw dw-notepad-1"></span><span class="mtext">Programme Shedule</span>
 								</a>
