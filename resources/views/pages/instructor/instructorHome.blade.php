@@ -52,12 +52,10 @@
 		   	</div>
 			</div>
 			<div class="row">
-				<div class="col-xl-3 mb-30">
+				<div class="col-xl-4 mb-30">
 					<div class="card-box height-100-p widget-style1">
 						<div class="d-flex flex-wrap align-items-center">
-							<div class="progress-data">
-								<div id="chart"></div>
-							</div>
+							
                             
 							<div class="widget-data">
                                 <a href="{{ route('lesson.index') }}">
@@ -69,72 +67,87 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-xl-3 mb-30">
+				<div class="col-xl-4 mb-30">
 					<div class="card-box height-100-p widget-style1">
 						<div class="d-flex flex-wrap align-items-center">
-							<div class="progress-data">
-								<div id="chart2"></div>
-							</div>
+							
                             
 							<div class="widget-data">
                                 <a href="{{ route('course-work.index') }}">
 								<div class="h4 mb-0">Course Work</div>
-								<div class="weight-600 font-14">Payments <span class="badge badge-primary badge-pill">14</span></div>
+								<div class="weight-600 font-14">Course Work <span class="badge badge-primary badge-pill">14</span></div>
                                 </a>
 							</div>
                              
 						</div>
-					</div>
-				</div>
-				<div class="col-xl-3 mb-30">
-					<div class="card-box height-100-p widget-style1">
-						<div class="d-flex flex-wrap align-items-center">
-							<div class="progress-data">
-								<div id="chart3"></div>
-							</div>
-                            
-							<div class="widget-data">
-                                <a href="">
-								<div class="h4 mb-0">Course metrials</div>
-								<div class="weight-600 font-14">+ Course metrials</div>
-                                </a>
-							</div>
-                             
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-3 mb-30">
-					<div class="card-box height-100-p widget-style1">
-						<div class="d-flex flex-wrap align-items-center">
-							<div class="progress-data">
-								<div id="chart4"></div>
-							</div>
-                            
-							<div class="widget-data">
-                                <a href="">
-								<div class="h4 mb-0">Certificate</div>
-								<div class="weight-600 font-14">Certificate  <span class="badge badge-primary badge-pill">14</span></div>
-                                 </a>
-							</div>
-                           
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xl-8 mb-30">
-					<div class="card-box height-100-p pd-20">
-						<h2 class="h4 mb-20">Activity</h2>
-						<div id="chart5"></div>
 					</div>
 				</div>
 				<div class="col-xl-4 mb-30">
-					<div class="card-box height-100-p pd-20">
-						<h2 class="h4 mb-20">Lead Target</h2>
-						<div id="chart6"></div>
+					<div class="card-box height-100-p widget-style1">
+						<div class="d-flex flex-wrap align-items-center">
+							
+                            
+							<div class="widget-data">
+                                <a href="{{ route('tute.index') }}">
+								<div class="h4 mb-0">Course Tute</div>
+								<div class="weight-600 font-14">+ Course Tute</div>
+                                </a>
+							</div>
+                             
+						</div>
 					</div>
 				</div>
+				
 			</div>
+			<div class="row">
+				<div class="col-xl-4 mb-30">
+					<div class="card-box height-100-p widget-style1">
+						<div class="d-flex flex-wrap align-items-center">
+							
+                            
+							<div class="widget-data">
+                                <a href="{{ route('lesson.index') }}">
+								<div class="h4 mb-0">Course Work Submission</div>
+								<div class="weight-600 font-14">Course Work Submission <span class="badge badge-primary badge-pill">14</span></div>
+                                </a>
+							</div>
+                            
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-4 mb-30">
+					<div class="card-box height-100-p widget-style1">
+						<div class="d-flex flex-wrap align-items-center">
+							
+                            
+							<div class="widget-data">
+                                <a href="{{ route('course-work.index') }}">
+								<div class="h4 mb-0">Paper Exam Submission</div>
+								<div class="weight-600 font-14">Paper Exam Submission <span class="badge badge-primary badge-pill">14</span></div>
+                                </a>
+							</div>
+                             
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-4 mb-30">
+					<div class="card-box height-100-p widget-style1">
+						<div class="d-flex flex-wrap align-items-center">
+							
+                            
+							<div class="widget-data">
+                                <a href="">
+								<div class="h4 mb-0">Verbal Exam Submisson</div>
+								<div class="weight-600 font-14">Verbal Exam Submisson <span class="badge badge-primary badge-pill">14</span></div>
+                                </a>
+							</div>
+                             
+						</div>
+					</div>
+				</div>
+			
+			</div>
+			
 			
  @endsection          
  @section('scripts')
