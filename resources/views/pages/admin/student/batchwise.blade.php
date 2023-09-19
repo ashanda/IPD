@@ -4,7 +4,7 @@
 <div class="main-container">
     <div class="pd-ltr-20 xs-pd-20-10">
         <div class="min-height-200px">
-            <div class="page-header">
+        <div class="page-header">
                 <div class="row">
                     <div class="col-md-6 col-sm-12">
                         <div class="title">
@@ -20,15 +20,22 @@
 
                 </div>
             </div>
-           
-            <!-- Simple Datatable start -->
             <div class="card-box mb-30">
                 <div class="pd-20">
                     <h4 class="text-blue h4">Students</h4>
+                    <div class="form-group">
+                        <label for="batchFilter">Filter by Batch:</label>
+                        <select id="batchFilter" class="form-control">
+                            <option value="">All</option>
+                            @foreach ($batchData as $batch)
+                            <option value="{{ $batch->id }}">{{ $batch->bname }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
                 <div class="pb-20">
                     <table class="data-table table stripe hover nowrap">
-                        <thead>
+                    <thead>
                             <tr>
                                 <th class="table-plus datatable-nosort">Student name</th>
                                 <th>Email</th>
@@ -39,9 +46,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ( $data as $student)
-                            <tr>
-                                <td class="table-plus">{{ $student->fname.' '.$student->lname }}</td>
+                            @foreach ($data as $student)
+                            <tr data-batches="{{ json_encode($student->batch) }}">
+                            <td class="table-plus">{{ $student->fname.' '.$student->lname }}</td>
                                 <td class="table-plus">{{ $student->email }}</td>
                                 <td class="table-plus">
                                     <ul>
@@ -72,7 +79,6 @@
                                         </div>
                                     </div>
                                 </td>
-
                             </tr>
                             @endforeach
                         </tbody>
@@ -80,8 +86,27 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+@endsection
 
-        @endsection
-        @section('scripts')
-        <script src="{{ asset('vendors/scripts/advanced-components.js')}}"></script>
-        @endsection
+@section('scripts')
+<script src="{{ asset('vendors/scripts/advanced-components.js')}}"></script>
+<script>
+    $(document).ready(function () {
+        $('#batchFilter').on('change', function () {
+            const selectedBatch = $(this).val();
+
+            $('table.data-table tbody tr').each(function () {
+                const studentBatches = JSON.parse($(this).data('batches'));
+
+                if (selectedBatch === '' || studentBatches.includes(parseInt(selectedBatch))) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+    });
+</script>
+@endsection
