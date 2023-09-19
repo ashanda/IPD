@@ -80,7 +80,7 @@ class StudentController extends Controller
 
         // Display a success toast and redirect to the student index page
         toast('Student updated successfully', 'success');
-        return redirect()->route('student.index')->with('success', 'Student updated successfully.');
+        return redirect()->back()->with('success', 'Student updated successfully.');
     }
 
     public function batchwise()
