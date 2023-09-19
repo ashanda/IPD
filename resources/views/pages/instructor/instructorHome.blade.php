@@ -75,7 +75,7 @@
 							<div class="widget-data">
                                 <a href="{{ route('course-work.index') }}">
 								<div class="h4 mb-0">Course Work</div>
-								<div class="weight-600 font-14">Course Work <span class="badge badge-primary badge-pill">14</span></div>
+								<div class="weight-600 font-14">+ Course Work</div>
                                 </a>
 							</div>
                              
@@ -106,9 +106,9 @@
 							
                             
 							<div class="widget-data">
-                                <a href="{{ route('lesson.index') }}">
+                                <a href="{{ route('getworksubmisson') }}">
 								<div class="h4 mb-0">Course Work Submission</div>
-								<div class="weight-600 font-14">Course Work Submission <span class="badge badge-primary badge-pill">14</span></div>
+								<div class="weight-600 font-14">Course Work Submission <span class="badge badge-primary badge-pill">{{ courseWorkSubmission() }}</span></div>
                                 </a>
 							</div>
                             
@@ -121,9 +121,9 @@
 							
                             
 							<div class="widget-data">
-                                <a href="{{ route('course-work.index') }}">
+                                <a href="{{ route('getpapersubmisson') }}">
 								<div class="h4 mb-0">Paper Exam Submission</div>
-								<div class="weight-600 font-14">Paper Exam Submission <span class="badge badge-primary badge-pill">14</span></div>
+								<div class="weight-600 font-14">Paper Exam Submission <span class="badge badge-primary badge-pill">{{ coursePaperSubmission() }}</span></div>
                                 </a>
 							</div>
                              
@@ -133,19 +133,15 @@
 				<div class="col-xl-4 mb-30">
 					<div class="card-box height-100-p widget-style1">
 						<div class="d-flex flex-wrap align-items-center">
-							
-                            
 							<div class="widget-data">
-                                <a href="">
+                                <a href="{{ route('getverbalsubmisson') }}">
 								<div class="h4 mb-0">Verbal Exam Submisson</div>
-								<div class="weight-600 font-14">Verbal Exam Submisson <span class="badge badge-primary badge-pill">14</span></div>
+								<div class="weight-600 font-14">Verbal Exam Submisson <span class="badge badge-primary badge-pill">{{ courseVerbalSubmission() }}</span></div>
                                 </a>
 							</div>
-                             
 						</div>
 					</div>
 				</div>
-			
 			</div>
 			
 			
