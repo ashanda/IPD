@@ -6,7 +6,7 @@ use App\Models\PaperExam;
 use App\Models\Batch;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-
+use Illuminate\Support\Facades\Auth;
 class PaperExamController extends Controller
 {
     /**
@@ -14,8 +14,24 @@ class PaperExamController extends Controller
      */
     public function index()
     {
-        $data = PaperExam::all();
-        $batchData = Batch::where('status', 1)->get();
+        
+        if(Auth::user()->type === 'admin'){
+            $data = PaperExam::all();
+            $batchData = Batch::where('status', 1)->get();
+        }else if(Auth::user()->type === 'instructor'){
+            $userBatchArray = json_decode(auth::user()->batch, true);
+
+            $data = PaperExam::where('status', 1)
+                ->whereJsonContains('bid', $userBatchArray)
+                ->get();
+            
+
+            // Filter Batch records based on matching batch IDs
+            $batchData = Batch::where('status', 1)
+                ->whereIn('id', $userBatchArray)
+                ->get();
+
+        }
         return view('pages.admin.exam.paper-exam.index',compact('data','batchData'));
     }
 
@@ -72,9 +88,25 @@ class PaperExamController extends Controller
      */
     public function edit($id)
     {
-        $data = PaperExam::all();
-        $batchData = Batch::where('status',1)->get();
         $findData = PaperExam::where('id', $id)->first();
+        
+        if(Auth::user()->type === 'admin'){
+            $data = PaperExam::all();
+            $batchData = Batch::where('status', 1)->get();
+        }else if(Auth::user()->type === 'instructor'){
+            $userBatchArray = json_decode(auth::user()->batch, true);
+
+            $data = PaperExam::where('status', 1)
+                ->whereJsonContains('bid', $userBatchArray)
+                ->get();
+            
+
+            // Filter Batch records based on matching batch IDs
+            $batchData = Batch::where('status', 1)
+                ->whereIn('id', $userBatchArray)
+                ->get();
+
+        }
         return view('pages.admin.exam.paper-exam.edit',compact('data', 'findData','batchData'));
     }
 

@@ -7,7 +7,7 @@
 <div class="main-container">
 		<div class="pd-ltr-20 xs-pd-20-10">
 			<div class="min-height-200px">
-				<div class="container pd-0">
+			
 					<div class="page-header">
 						<div class="row">
 							<div class="col-md-12 col-sm-12">
@@ -24,8 +24,9 @@
 						</div>
 					</div>
 					<div class="contact-directory-list">
+            @if (!empty($upcomingDataMCQExams) && isset($upcomingDataMCQExams[0]))
                         @if ( examcheck($upcomingDataMCQExams[0]->eid,'MCQ Test') < 1)
-                            
+             @endif               
 						<div id="quiz">
     <div class="quiz-header" style="margin-bottom: 50px;">
       <h3>Get your question</h3>

@@ -4,7 +4,7 @@
 					}elseif (Auth::user()->type === 'user'){
 						$homeurl = '/home';
 					}else{
-						$homeurl = 'instructor/home';	
+						$homeurl = '/instructor/home';	
 					}
 					@endphp
 <div class="left-side-bar">
@@ -153,11 +153,47 @@
 					</li>
 					notice
                     @elseif (Auth::user()->type === 'instructor')
-					
+					<li class="dropdown">
+						<a href="javascript:;" class="dropdown-toggle">
+							<span class="micon dw dw-list3"></span><span class="mtext">Course Materials</span>
+						</a>
+						<ul class="submenu">
+							<li>
+                                <a href="{{ route('lesson.index') }}" class="dropdown-toggle no-arrow">
+									<span class="micon dw dw dw-notepad-1"></span><span class="mtext">Programme Shedule</span>
+								</a>
+							</li>	
+                            <li class="dropdown">
+								<a href="javascript:;" class="dropdown-toggle">
+                                    
+									<span class="micon dw dw-analytics-11"></span><span class="mtext">Course works</span>
+								</a>
+								<ul class="submenu child">
+									<li><a href="{{ route('course-work.index') }}">Add Course Work</a></li>
+									<li><a href="javascript:;">Student Submitted Course Work</a></li>
+								</ul>
+							</li>
+                            <li class="dropdown">
+								<a href="javascript:;" class="dropdown-toggle">
+									<span class="micon dw dw-presentation-2"></span><span class="mtext">Exams</span>
+								</a>
+								<ul class="submenu child">
+									<li><a href="{{ route('mcq-exam.index') }}">MCQ Exams</a></li>
+									<li><a href="{{ route('paper-exam.index') }}">Paper Paper Exams</a></li>
+                                    <li><a href="{{ route('verbal-exam.index') }}">Online Verbal Exams</a></li>
+								</ul>
+							</li>
+							<li>
+                                <a href="{{ route('tute.index') }}" class="dropdown-toggle no-arrow">
+									<span class="micon dw dw dw-notepad-1"></span><span class="mtext">Class Tute</span>
+								</a>
+							</li>	
+						</ul>
+					</li>
 
 
 
-				@elseif (Auth::user()->type === 'user' && paycount() != 0)
+					@elseif (Auth::user()->type === 'user' && paycount() != 0)
                     
 					<li>
 						<a href="{{ route('profile') }}" class="dropdown-toggle no-arrow">
