@@ -94,9 +94,9 @@
 							</div>
                             
 							<div class="widget-data">
-                                <a href="">
-								<div class="h4 mb-0">Course metrials</div>
-								<div class="weight-600 font-14">+ Course metrials</div>
+                                <a href="{{ route('course-work.index') }}">
+								<div class="h4 mb-0">Course Work</div>
+								<div class="weight-600 font-14">+ New Course Work</div>
                                 </a>
 							</div>
                              
@@ -113,7 +113,7 @@
 							<div class="widget-data">
                                 <a href="{{ route('certificate.index') }}">
 								<div class="h4 mb-0">Certificate</div>
-								<div class="weight-600 font-14">Certificate  <span class="badge badge-primary badge-pill">14</span></div>
+								<div class="weight-600 font-14">Certificate </div>
                                  </a>
 							</div>
                            

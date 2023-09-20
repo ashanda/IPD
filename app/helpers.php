@@ -13,6 +13,7 @@ use App\Models\Lesson;
 use App\Models\McqExam;
 use App\Models\PaperExam;
 use App\Models\Submission;
+use App\Models\Tute;
 use App\Models\VerbalExam;
 use Illuminate\Support\Facades\DB;
 
@@ -590,5 +591,62 @@ Function newPayment(){
 Function certificateStatus($id){
 	$data = Certificate::where('index_number',$id)->first();
 	
+	return $data;
+}
+
+
+Function newlesson(){
+	$current_date = Carbon::now();
+	$userBatchArray = json_decode(auth::user()->batch, true);
+    $data = Lesson::whereJsonContains('bid', $userBatchArray)
+        ->where('status', 1)
+        ->where('publish_date', '>', $current_date)
+        ->count();
+
+    return $data;
+}
+
+Function newcoursework(){
+	$current_date = Carbon::now();
+$userBatchArray = json_decode(auth::user()->batch, true);
+    $data = CourseWork::whereJsonContains('bid', $userBatchArray)
+        ->where('status', 1)
+        ->where('publish_date', '>', $current_date)
+        ->count();
+
+    return $data;
+}
+
+Function newtute(){
+	$current_date = Carbon::now();
+$userBatchArray = json_decode(auth::user()->batch, true);
+    $data = Tute::whereJsonContains('bid', $userBatchArray)
+        ->where('status', 1)
+        ->where('created_at', '>', $current_date)
+        ->count();
+
+    return $data;
+}
+
+Function newexam(){
+	$current_date = Carbon::now();
+$userBatchArray = json_decode(auth::user()->batch, true);
+    $data1 = McqExam::whereJsonContains('bid', $userBatchArray)
+        ->where('status', 1)
+        ->where('publish_date', '>', $current_date)
+        ->count();
+
+    $data2 = PaperExam::whereJsonContains('bid', $userBatchArray)
+        ->where('status', 1)
+        ->where('publish_date', '>', $current_date)
+        ->count();
+
+    $data3 = VerbalExam::whereJsonContains('bid', $userBatchArray)
+        ->where('status', 1)
+        ->where('publish_date', '>', $current_date)
+        ->count();
+
+	$data = $data1+$data2+$data3;	
+    
 	return $data;
 }
