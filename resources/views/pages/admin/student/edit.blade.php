@@ -92,9 +92,8 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-md-5 col-sm-12 mt-20">
+						<div class="col-md-4 col-sm-12 mt-20">
 							<div class="form-group row">
-
 								<label class="col-sm-4 col-form-label">Profile Picture</label>
 								<div class="col-sm-8">
 									<input type="file" class="custom-file-input" name="document" value="{{ $findData->document }}">
@@ -102,7 +101,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-md-3 col-sm-12 text-right">
+						<div class="col-md-4 col-sm-12 text-right">
 							<div class="dropdown">
 								<button type="submit" class="btn btn-primary dropdown-toggle no-arrow">Update Student</button>
 							</div>

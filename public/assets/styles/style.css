@@ -5451,3 +5451,14 @@ opacity:1;
 .quiz-results {
   display: none !important;
 }
+
+/* New styles kasun*/
+#calendar .fc-event {
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+}
+#calendar .fc-daygrid-day-events {
+	display: inline-flex;
+    min-height: auto;
+}
