@@ -16,20 +16,41 @@
 @endsection
 @section('content')
 <div class="main-container">
+		@php
+				$responseData = json_decode(upcomingall()->getContent(), true);
+				$eventTypes = [
+					'lt' => 'Lesson',
+					'mt' => 'MCQ Test',
+					'pt' => 'Paper Test',
+					'ct' => 'Course Work',
+					'vt' => 'Verbal Exam',
+				];	
+			@endphp
 		<div class="pd-ltr-20">
+			<div class="row">
+			<div class="col-sm-8 mb-30">
 			<div class="card-box pd-20 height-100-p mb-30">
 				<div class="row align-items-center">
-					<div class="col-md-4">
+					<div class="col-md-6">
 						<img src="{{ asset('assets/images/banner-img.png') }}" alt="">
 					</div>
-					<div class="col-md-8">
+					<div class="col-md-6">
 						<h4 class="font-20 weight-500 mb-10 text-capitalize">
 							Welcome back <div class="weight-600 font-30 text-blue">{{ Auth::user()->fname .' '.Auth::user()->lname  }}!</div>
 						</h4>
 						<p class="font-18 max-width-600">{{ smsBalance()}}</p>
 					</div>
+					
 				</div>
 			</div>
+			</div>
+			<div class="col-sm-4 mb-30">
+						<div class="card-box pd-20 height-100-p mb-30">
+						<div id='calendar'></div>
+						</div>
+		   	</div>
+			</div>
+
 			<div class="row">
 				<div class="col-xl-3 mb-30">
 					<div class="card-box height-100-p widget-style1">
@@ -56,9 +77,9 @@
 							</div>
                             
 							<div class="widget-data">
-                                <a href="">
+                                <a href="{{ route('payment.index') }}">
 								<div class="h4 mb-0">Payments</div>
-								<div class="weight-600 font-14">Payments <span class="badge badge-primary badge-pill">14</span></div>
+								<div class="weight-600 font-14">Payments <span class="badge badge-primary badge-pill">{{ newPayment() }}</span></div>
                                 </a>
 							</div>
                              
@@ -90,7 +111,7 @@
 							</div>
                             
 							<div class="widget-data">
-                                <a href="">
+                                <a href="{{ route('certificate.index') }}">
 								<div class="h4 mb-0">Certificate</div>
 								<div class="weight-600 font-14">Certificate  <span class="badge badge-primary badge-pill">14</span></div>
                                  </a>
@@ -101,4 +122,69 @@
 				</div>
 			</div>
 
- @endsection           
+ @endsection          
+ @section('scripts')
+ <script>
+document.addEventListener('DOMContentLoaded', function() {
+  var calendarEl = document.getElementById('calendar');
+  var calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: 'dayGridMonth',
+    // Set the height to 100px
+  });
+
+  // Extract events from responseData and add them to FullCalendar
+  var responseData = <?php echo json_encode($responseData); ?>;
+  
+  // Create arrays for different sections
+  var lessonEvents = [];
+  var mcqExamEvents = [];
+  var paperExamEvents = [];
+  var courseWorkEvents = [];
+  var verbalExamEvents = [];
+
+  // Loop through and add events from each section
+  responseData['lessons'].forEach(function(lesson) {
+    lessonEvents.push({
+      start: lesson.lp,
+      color: 'orange' // Customize the color for lessons
+    });
+  });
+
+  responseData['mcq_exams'].forEach(function(mcqExam) {
+    mcqExamEvents.push({
+      start: mcqExam.mp,
+      color: 'purple' // Customize the color for MCQ exams
+    });
+  });
+
+  responseData['paper_exams'].forEach(function(paperExam) {
+    mcqExamEvents.push({
+      start: paperExam.pp,
+      color: 'green' // Customize the color for MCQ exams
+    });
+  });
+
+ responseData['course_works'].forEach(function(courseWork) {
+    mcqExamEvents.push({
+      start: courseWork.cp,
+      color: 'blue' // Customize the color for MCQ exams
+    });
+  });
+
+  responseData['verbal_exams'].forEach(function(verbalExam) {
+    mcqExamEvents.push({
+      start: verbalExam.vp,
+      color: 'black' // Customize the color for MCQ exams
+    });
+  });
+  // Add more sections as needed
+
+  // Add section events to the FullCalendar events array
+  calendar.addEventSource(lessonEvents);
+  calendar.addEventSource(mcqExamEvents);
+  // Add more sections as needed
+
+  calendar.render();
+});
+ </script>
+ @endsection 
