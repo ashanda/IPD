@@ -37,20 +37,36 @@
 								</tr>
 							</thead>
 							<tbody>
-								@foreach ( $data as $batch)
-								<tr>
-									<td class="table-plus">{{ $batch->status }}</td>
-                                    <td class="table-plus">{{ $batch->fname .' '.$batch->lname}}</td>
-                                    <td class="table-plus">
-                                    <form action="{{ route('certificates.store') }}" method="POST">
-                                        @csrf
-                                        <input type="hidden" name="index_number" value="{{ $batch->index_number }}">
-                                        <button type="submit" class="btn btn-link">Issue Certificate</button>
-                                    </form>
-                                </td>
-								</tr>
-                               
-								@endforeach
+								@php
+									$processedIndexes = [];
+									@endphp
+
+									@foreach ($data as $batch)
+										@if (!in_array($batch->index_number, $processedIndexes))
+											<tr>
+												@php
+													if (certificateStatus($batch->index_number) == null) {
+														$status = 'Not Issued';
+													} else {
+														$status = 'Issued';
+													}
+												@endphp
+												<td class="table-plus">{{ $status }}</td>
+												<td class="table-plus">{{ user_data($batch->index_number)->fname .' '.user_data($batch->index_number)->lname }}</td>
+												<td class="table-plus">
+													<form action="{{ route('certificates.store') }}" method="POST">
+														@csrf
+														<input type="hidden" name="index_number" value="{{ $batch->index_number }}">
+														<button type="submit" class="btn btn-link">Issue Certificate</button>
+													</form>
+												</td>
+											</tr>
+											@php
+											// Add the processed index to the array
+											$processedIndexes[] = $batch->index_number;
+											@endphp
+										@endif
+									@endforeach
 							</tbody>
 						</table>
 					</div>
