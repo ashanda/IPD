@@ -45,7 +45,8 @@ class InstructorController extends Controller
     $instructor->fname = $request->input('fname');
     $instructor->lname = $request->input('lname');
     $instructor->email = $request->input('email');
-     $instructor->index_number == $request->input('index_number');
+    $instructor->type = 2;
+    $instructor->index_number == $request->input('index_number');
     $instructor->contact_number = $request->input('cnumber');
     $instructor->password = Hash::make(($request->input('password')));
     $instructor->status = $request->input('status');
