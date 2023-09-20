@@ -39,11 +39,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ( $data as $student)
+                            @foreach ( $students as $student)
                             <tr>
                                 <td class="table-plus">{{ $student->fname.' '.$student->lname }}</td>
                                 <td class="table-plus">{{ $student->email }}</td>
-                                <td>{{ $student->batch_names }}</td>                              
+                                <td class="table-plus">{{ $student->batch_name }}</td>                              
                                 <td class="table-plus">{{ $student->contact_number }}</td>
                                 @if ($student->status === 1)
                                 <td><span class="badge badge-success">Plublish</span></td>

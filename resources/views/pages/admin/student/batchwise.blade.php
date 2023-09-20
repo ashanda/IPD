@@ -27,7 +27,7 @@
                         <label for="batchFilter">Filter by Batch:</label>
                         <select id="batchFilter" class="form-control">
                             <option value="">All</option>
-                            @foreach ($batchData as $batch)
+                            @foreach ($allBatch as $batch)
                             <option value="{{ $batch->id }}">{{ $batch->bname }}</option>
                             @endforeach
                         </select>
@@ -46,17 +46,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($data as $student)
+                            @foreach ($students as $student)
                             <tr data-batches="{{ json_encode($student->batch) }}">
                             <td class="table-plus">{{ $student->fname.' '.$student->lname }}</td>
                                 <td class="table-plus">{{ $student->email }}</td>
-                                <td class="table-plus">
-                                    <ul>
-                                        @foreach(json_decode($student->batch) as $item)
-                                        <li>{{ getBatch($item)->bname }}</li>
-                                        @endforeach
-                                    </ul>
-                                </td>
+                                <td class="table-plus">{{ $student->batch_name }}</td> 
                                 <td class="table-plus">{{ $student->contact_number }}</td>
 
 
@@ -93,20 +87,17 @@
 @section('scripts')
 <script src="{{ asset('vendors/scripts/advanced-components.js')}}"></script>
 <script>
-    $(document).ready(function () {
-        $('#batchFilter').on('change', function () {
-            const selectedBatch = $(this).val();
+$(document).ready(function () {
+    $('#batchFilter').on('change', function () {
+        const selectedBatch = $(this).val();
 
-            $('table.data-table tbody tr').each(function () {
-                const studentBatches = JSON.parse($(this).data('batches'));
-
-                if (selectedBatch === '' || studentBatches.includes(parseInt(selectedBatch))) {
-                    $(this).show();
-                } else {
-                    $(this).hide();
-                }
-            });
+        $('table.data-table tbody tr').each(function () {
+            const studentBatches = JSON.parse($(this).data('batches'));
+            const shouldShow = selectedBatch === '' || studentBatches.includes(parseInt(selectedBatch));
+            $(this).toggle(shouldShow);
         });
     });
+});
+
 </script>
 @endsection

@@ -129,21 +129,11 @@
 							</tr>
 						</thead>
 						<tbody>
-							@foreach ( $data as $student)
+							@foreach ( $students as $student)
 							<tr>
 								<td class="table-plus">{{ $student->fname.' '.$student->lname }}</td>
 								<td class="table-plus">{{ $student->email }}</td>
-								<td class="table-plus">
-									<ul>
-
-
-										@foreach(json_decode($student->batch) as $item)
-										<li>{{ getBatch($item)->bname }}</li>
-										@endforeach
-
-
-									</ul>
-								</td>
+								<td class="table-plus">{{ $student->batch_name }}</td>
 								<td class="table-plus">{{ $student->contact_number }}</td>
 
 

@@ -20,34 +20,26 @@ class StudentController extends Controller
 
     public function index()
 {
-    $data = User::where('type', 0)->get();
+    $students = User::where('type', 0)->get();
     $batchData = Batch::where('status', 1)->get()->keyBy('id');
 
-    foreach ($data as $student) {
+    foreach ($students as $student) {
         $batchIds = json_decode($student->batch, true); // Decode the JSON string
 
-        // Check if $batchIds is an array
-        if (is_array($batchIds)) {
-            $batchNames = [];
-
-            foreach ($batchIds as $batchId) {
-                $batch = $batchData[$batchId];
-                $batchNames[] = $batch ? $batch->bname : 'Batch not found';
-            }
-
-            $student->batch_names = implode(', ', $batchNames);
+        if (is_array($batchIds) && count($batchIds) > 0) {
+            // Get the first batch from the array
+            $batchId = $batchIds[0];
+            $batch = $batchData->get($batchId);
+            $student->batch_name = $batch ? $batch->bname : 'Batch not found';
         } else {
-            // Handle the case where $student->batch is not a valid JSON array
-            $student->batch_names = 'Batch not found';
+            $student->batch_name = 'Batch not found';
         }
     }
 
-    return view('pages.admin.student.index', compact('data'));
+    return view('pages.admin.student.index', compact('students'));
 }
 
-    
 
-    
 
     /**
      * Display a listing of the resource.
@@ -59,12 +51,34 @@ class StudentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
+    // public function edit(string $id)
+    // {
+    //     $data = User::where('type', 0)->get();
+    //     $batchData = Batch::where('status', 1)->get();
+    //     $findData = User::where('id', $id)->first();
+    //     return view('pages.admin.student.edit', compact('data', 'findData', 'batchData'));
+    // }
+
     public function edit(string $id)
     {
-        $data = User::where('type', 0)->get();
-        $batchData = Batch::where('status', 1)->get();
+        $students = User::where('type', 0)->get();
+        $batchData = Batch::where('status', 1)->get()->keyBy('id');
         $findData = User::where('id', $id)->first();
-        return view('pages.admin.student.edit', compact('data', 'findData', 'batchData'));
+    
+        foreach ($students as $student) {
+            $batchIds = json_decode($student->batch, true); // Decode the JSON string
+    
+            if (is_array($batchIds) && count($batchIds) > 0) {
+                // Get the first batch from the array
+                $batchId = $batchIds[0];
+                $batch = $batchData->get($batchId);
+                $student->batch_name = $batch ? $batch->bname : 'Batch not found';
+            } else {
+                $student->batch_name = 'Batch not found';
+            }
+        }
+    
+        return view('pages.admin.student.edit', compact('students', 'findData', 'batchData'));
     }
 
     /**
@@ -115,9 +129,29 @@ class StudentController extends Controller
 
     public function batchwise()
     {
-        $data = User::where('type', 0)->get();
-        $batchData = Batch::where('status', 1)->get();
-        return view('pages.admin.student.batchwise', compact('data', 'batchData'));
+        // $data = User::where('type', 0)->get();
+        // $batchData = Batch::where('status', 1)->get();
+        // return view('pages.admin.student.batchwise', compact('data', 'batchData'));
+
+
+        $students = User::where('type', 0)->get();
+        $allBatch = Batch::where('status', 1)->get();
+        $batchData = Batch::where('status', 1)->get()->keyBy('id');
+    
+        foreach ($students as $student) {
+            $batchIds = json_decode($student->batch, true); // Decode the JSON string
+    
+            if (is_array($batchIds) && count($batchIds) > 0) {
+                // Get the first batch from the array
+                $batchId = $batchIds[0];
+                $batch = $batchData->get($batchId);
+                $student->batch_name = $batch ? $batch->bname : 'Batch not found';
+            } else {
+                $student->batch_name = 'Batch not found';
+            }
+        }
+    
+        return view('pages.admin.student.batchwise', compact('students', 'allBatch'));
 
     }   
 
