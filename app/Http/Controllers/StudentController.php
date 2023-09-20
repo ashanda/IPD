@@ -11,13 +11,43 @@ class StudentController extends Controller
     /**
      * Display a listing of the resource.
      */
+    // public function index()
+    // {
+    //     $data = User::where('type', 0)->get();
+    //     $batchData = Batch::where('status', 1)->get();
+    //     return view('pages.admin.student.index', compact('data', 'batchData'));
+    // }
+
     public function index()
-    {
-        $data = User::where('type', 0)->get();
-        $batchData = Batch::where('status', 1)->get();
-        return view('pages.admin.student.index', compact('data', 'batchData'));
+{
+    $data = User::where('type', 0)->get();
+    $batchData = Batch::where('status', 1)->get()->keyBy('id');
+
+    foreach ($data as $student) {
+        $batchIds = json_decode($student->batch, true); // Decode the JSON string
+
+        // Check if $batchIds is an array
+        if (is_array($batchIds)) {
+            $batchNames = [];
+
+            foreach ($batchIds as $batchId) {
+                $batch = $batchData[$batchId];
+                $batchNames[] = $batch ? $batch->bname : 'Batch not found';
+            }
+
+            $student->batch_names = implode(', ', $batchNames);
+        } else {
+            // Handle the case where $student->batch is not a valid JSON array
+            $student->batch_names = 'Batch not found';
+        }
     }
 
+    return view('pages.admin.student.index', compact('data'));
+}
+
+    
+
+    
 
     /**
      * Display a listing of the resource.
