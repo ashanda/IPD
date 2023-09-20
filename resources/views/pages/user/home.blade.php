@@ -171,7 +171,7 @@
 							<div class="widget-data">
                                 <a href="{{ route('userlesson') }}">
 								<div class="h4 mb-0">Lessons</div>
-								<div class="weight-600 font-14">New lessons <span class="badge badge-primary badge-pill">14</span></div>
+								<div class="weight-600 font-14">New lessons <span class="badge badge-primary badge-pill">{{ newlesson() }}</span></div>
                                 </a>
 							</div>
                             
@@ -188,7 +188,7 @@
 							<div class="widget-data">
                                 <a href="{{ route('usercoursework') }}">
 								<div class="h4 mb-0">Course work</div>
-								<div class="weight-600 font-14">New course work <span class="badge badge-primary badge-pill">14</span></div>
+								<div class="weight-600 font-14">New course work <span class="badge badge-primary badge-pill">{{ newcoursework() }}</span></div>
                                 </a>
 							</div>
                              
@@ -205,7 +205,7 @@
 							<div class="widget-data">
                                 <a href="{{ route('userexam') }}">
 								<div class="h4 mb-0">Exams</div>
-								<div class="weight-600 font-14">New exams <span class="badge badge-primary badge-pill">14</span></div>
+								<div class="weight-600 font-14">New exams <span class="badge badge-primary badge-pill">{{ newexam() }}</span></div>
                                 </a>
 							</div>
                              
@@ -222,7 +222,7 @@
 							<div class="widget-data">
                                 <a href="{{ route('usertute') }}">
 								<div class="h4 mb-0">Tutes</div>
-								<div class="weight-600 font-14">New tutes <span class="badge badge-primary badge-pill">14</span></div>
+								<div class="weight-600 font-14">New tutes <span class="badge badge-primary badge-pill">{{ newtute() }}</span></div>
                                  </a>
 							</div>
                            
