@@ -8,7 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use PDF;
-
+use Illuminate\Support\Facades\DB;
 class CertificateController extends Controller
 {
     /**
@@ -31,8 +31,19 @@ class CertificateController extends Controller
 
     public function certificate(Request $request,$id){
 
-        $data = User::whereJsonContains('batch', $id)->where('status',1)->where('type',0)->get();
-        return view('pages.admin.certificate.userlist',compact('data'));
+        
+        $data = DB::table('submissions')->whereJsonContains('bid', $id)
+        ->select('index_number', 'type','updated_at')
+        ->whereIn('type', ['MCQ Test', 'Paper Test', 'Verbal Test'])
+        ->groupBy('index_number', 'type', 'updated_at')
+        ->havingRaw('COUNT(*) >= 1')
+        ->distinct('index_number')
+        ->orderBy('updated_at', 'desc') 
+        ->get();
+
+        $itemCount = $data->count();
+        
+        return view('pages.admin.certificate.userlist', compact('data', 'itemCount'));
     }
     /**
      * Store a newly created resource in storage.

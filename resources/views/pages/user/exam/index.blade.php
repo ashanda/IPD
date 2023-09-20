@@ -20,7 +20,8 @@
 							</div>
 						</div>
 					</div>
-					<div class="contact-directory-list">
+					@if (paymentCheck() == 1)
+						<div class="contact-directory-list">
 						<ul class="row min-height-20px">
 							<li class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
 								<div class="contact-directory-box">
@@ -78,6 +79,10 @@
 							</li>
 						</ul>
 					</div>
+					@else
+						<h3>{{ 'You are not pay full course fee' }}</h3>
+					@endif
+					
 				</div>
 			</div>
  @endsection           

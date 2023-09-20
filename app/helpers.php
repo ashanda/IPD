@@ -8,7 +8,12 @@ use App\Models\Batch;
 use App\Models\Payment;
 use App\Models\Workshop;
 use App\Models\Certificate;
+use App\Models\CourseWork;
+use App\Models\Lesson;
+use App\Models\McqExam;
+use App\Models\PaperExam;
 use App\Models\Submission;
+use App\Models\VerbalExam;
 use Illuminate\Support\Facades\DB;
 
 
@@ -121,7 +126,7 @@ $totalAmount = Payment::sumAmountForStatusAndIndexNumber($indexNumber, $status);
 $payments = Payment::join('courses', 'payments.batch_id', '=', 'courses.bid')
 	->where('status', 1)
 	->where('index_number', Auth::user()->index_number)
-    ->whereJsonContains('payments.batch_id', json_decode(Auth::user()->batch, true))
+    ->whereJsonContains('courses.bid', json_decode(Auth::user()->batch, true))
     ->first();
 
 
@@ -134,10 +139,10 @@ if($payments == null){
 
 if($totalAmount >= $fee){
 	$pay = 1;
+	
 }else{
 	$pay = 0;
 }
-
 
 return $pay;
 }
@@ -445,6 +450,71 @@ $currentDate = Carbon::now();
 }
 
 
+//Upcomming all
+function upcomingall() {
+	
+$currentDate = Carbon::now();
+
+$upcomingDataLessons = Lesson::where('publish_date', '>', $currentDate)
+    ->where('status', '=', 1)
+    ->select(
+        'lesson_name as lt',
+        'publish_date as lp'
+    )
+    ->distinct()
+    ->get();
+
+$upcomingDataMCQExams = McqExam::where('publish_date', '>', $currentDate)
+    ->where('status', '=', 1)
+    ->select(
+        'title as mt',
+        'publish_date as mp'
+    )
+    ->distinct()
+    ->get();
+
+$upcomingDataPaperExams = PaperExam::where('publish_date', '>', $currentDate)
+    ->where('status', '=', 1)
+    ->select(
+        'title as pt',
+        'publish_date as pp'
+    )
+    ->distinct()
+    ->get();
+
+$upcomingDataCourseWorks = CourseWork::where('publish_date', '>', $currentDate)
+    ->where('status', '=', 1)
+    ->select(
+        'title as ct',
+        'publish_date as cp'
+    )
+    ->distinct()
+    ->get();
+
+$upcomingDataVerbalExams = VerbalExam::where('publish_date', '>', $currentDate)
+    ->where('status', '=', 1)
+    ->select(
+        'title as vt',
+        'publish_date as vpb'
+    )
+    ->distinct()
+    ->get();
+
+// Combine the results into one JSON response
+$combinedData = [
+    'lessons' => $upcomingDataLessons,
+    'mcq_exams' => $upcomingDataMCQExams,
+    'paper_exams' => $upcomingDataPaperExams,
+    'course_works' => $upcomingDataCourseWorks,
+    'verbal_exams' => $upcomingDataVerbalExams,
+];
+
+return response()->json($combinedData);
+
+}
+
+
+
 function examcheck($id,$type){
 	$data = Submission::where('exam_id', '=', $id)->where('type',$type)->where('index_number',Auth::user()->index_number)->count();
 	return $data;
@@ -510,4 +580,15 @@ function courseVerbalSubmission(){
 	
 	return $data;
 
+}
+
+Function newPayment(){
+	$data = Payment::where('status',2)->count();
+	return $data;
+}
+
+Function certificateStatus($id){
+	$data = Certificate::where('index_number',$id)->first();
+	
+	return $data;
 }

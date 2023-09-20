@@ -136,7 +136,7 @@
 						<h4 class="font-20 weight-500 mb-10 text-capitalize">
 							<div class="weight-600 font-30 text-blue">Congratulation!</div>
 						</h4>
-						<a href='{{ route('download') }}' type="button" class="btn btn-warning">Download Your Certificate</a>
+						<a href='{{ route('download') }}' type="button" target="_blank" class="btn btn-warning">Download Your Certificate</a>
 					</div>
 					@else
 					<div class="col-md-5">
@@ -230,6 +230,7 @@
 					</div>
 				</div>
 			</div>
+			@if (endCourse() === 0)
 			<div class="row">
 				<div class="col-xl-8 mb-30">
 					<div class="card-box height-100-p pd-20">
@@ -298,6 +299,7 @@
 					
 				</div>
 			</div>
+			@endif
 			@if (Auth::user()->type === 'user')
 				{{-- @include('components.hurray') --}}
 			@else
