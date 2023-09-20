@@ -80,8 +80,8 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::get('/lessons',[LessonController::class,'index'])->name('userlesson');
     Route::get('/course-works',[WorkshopController::class,'index'])->name('usercoursework');
     Route::get('/tutes',[TuteController::class,'index'])->name('usertute');
-    Route::get('/edit-profile',[HomeController::class,'profile'])->name('profile');
-    Route::get('/groupchat',[HomeController::class,'groupchat'])->name('groupchat');
+    
+    
     Route::get('/exam',[HomeController::class,'exam'])->name('userexam');
     Route::get('/mcqexam',[HomeController::class,'mcqexam'])->name('usermcqexam');
     Route::get('/paperexam',[HomeController::class,'paperexam'])->name('userpaperexam');
@@ -89,9 +89,7 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::post('/submisson',[SubmissionController::class,'submisson'])->name('submisson');
     Route::get('/result',[HomeController::class,'result'])->name('result');
     Route::get('/my-payment',[HomeController::class,'mypayment'])->name('mypayment');
-    Route::post('/chat',[ChatController::class,'store'])->name('mychat');
-
-    Route::get('/getChatMessages', [ChatController::class,'getChatMessages']);
+   
 });
 
 
@@ -145,6 +143,10 @@ All Instructor Routes List
 Route::middleware(['auth', 'user-access:instructor'])->group(function () {
 
      Route::get('/instructor/home', [HomeController::class, 'instructorHome'])->name('instructor.home');
+     Route::get('/work-submisson',[SubmissionController::class,'getworksubmisson'])->name('getworksubmisson');
+     Route::get('/paper-submisson',[SubmissionController::class,'getpapersubmisson'])->name('getpapersubmisson');
+     Route::get('/verbal-submisson',[SubmissionController::class,'getverbalsubmisson'])->name('getverbalsubmisson');
+     Route::put('/update-submisson/{id}',[SubmissionController::class,'updateMarks'])->name('updatesubmisson');
 
 }); 
 
@@ -169,6 +171,12 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/mcq-exams/add_question/',[McqExamController::class,'add_question_db'])->name('add_question_db');
     Route::get('/mcq-exam/{id}', [McqExamController::class, 'mcq'])->name('mcq');
     Route::resource('/tute',TuteController::class);
+
+    Route::post('/chat',[ChatController::class,'store'])->name('mychat');
+    Route::get('/groupchat',[HomeController::class,'groupchat'])->name('groupchat');
+    Route::get('/getChatMessages', [ChatController::class,'getChatMessages']);
+    Route::get('/getChatMessagesins', [ChatController::class,'getChatMessages']);
+    Route::get('/edit-profile',[HomeController::class,'profile'])->name('profile');
 
 });    
 

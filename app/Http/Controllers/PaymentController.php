@@ -125,10 +125,13 @@ class PaymentController extends Controller
 
         // Save the updated payment record
         $payment->save();
+        $phone = user_data($payment->index_number)->contact_number;
+        $message = "Dear Student,Welcome to IPD.You have successfully registered with the Institute for professional development.Your IPD LMS online account has being activated.Click below link to Logging.https://ipdedulk.com/login Thank you";
+        sendSMS($phone,$message);
         toast('Payment details updated successfully.', 'success');
+
         // Redirect to a specific route (e.g., payment details page)
-        return redirect()->route('payment.index')
-            ->with('success', 'Payment details updated successfully');
+        return redirect()->route('payment.index')->with('success', 'Payment details updated successfully');
     }
 
     }

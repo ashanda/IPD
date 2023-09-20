@@ -190,7 +190,11 @@
 							</li>	
 						</ul>
 					</li>
-
+					<li>
+						<a href="{{ route('groupchat') }}" class="dropdown-toggle no-arrow">
+							<span class="micon dw dw-chat3"></span><span class="mtext">Group Chat</span>
+						</a>
+					</li>
 
 
 					@elseif (Auth::user()->type === 'user' && paycount() != 0)

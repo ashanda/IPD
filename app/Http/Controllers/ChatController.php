@@ -87,7 +87,7 @@ class ChatController extends Controller
                 }
             })
             ->on('chats.index_number', '=', 'users.index_number') // Added this line
-            ->where('users.type', '=', 0);
+            ->whereIn('users.type', [2, 0]);
         })
         ->select('chats.*', 'users.fname', 'users.lname')
         ->distinct()

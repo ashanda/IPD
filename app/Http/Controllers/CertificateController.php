@@ -52,6 +52,9 @@ class CertificateController extends Controller
 
         // Save the certificate to the database
         $certificate->save();
+        $phone = user_data($certificate->index_number)->contact_number;
+        $message = "Congratulations ! You have successfully completed the course with IPD Your Digitalized certificate is now ready to download...Or Request Hardcopy of the Certificate by contact 0772795443. Thank you";
+        sendSMS($phone,$message);
         toast('Certificate issued successfully', 'success');
         // Optionally, you can redirect to a success page or perform other actions here
         return redirect()->back()->with('success', 'Certificate issued successfully');
@@ -64,9 +67,9 @@ class CertificateController extends Controller
                 ->select('users.*', 'certificates.issue_date')
                 ->first();
 
-            $pdf = PDF::loadView('pages.user.certificate.certificate', compact('usersWithCertificates'));
-            return $pdf->download('filename.pdf');
-        // return view('pages.user.certificate.certificate',compact('usersWithCertificates'));
+          //  $pdf = PDF::loadView('pages.user.certificate.certificate', compact('usersWithCertificates'));
+          //  return $pdf->download('filename.pdf');
+         return view('pages.user.certificate.certificate',compact('usersWithCertificates'));
     }
     /**
      * Display the specified resource.
