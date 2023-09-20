@@ -76,7 +76,7 @@
 							</div>
 							<hr>
 							<div class="panel-body">
-								<ul class="media-list font-14" style="overflow: hidden; max-height: 50%;">
+								<ul class="media-list font-14" style="overflow: auto; max-height: 350px;">
 								@php
 									$hasData = false;
 								@endphp
