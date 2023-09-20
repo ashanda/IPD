@@ -48,13 +48,13 @@ function smsBalance(){
 
 function sendSMS($phone,$message)
 {
-    $MSISDN = $phone;
+    $MSISDN ="0" .$phone;
 	$SRC = 'IPD EDU';
 	$MESSAGE = ( urldecode($message));
 	$AUTH = "1383|Av9RSUmEhJAdpe1UVSE6iEaz0nMoCZWuP98RA31X";  //Replace your Access Token
 	
 	$msgdata = array("recipient"=>$MSISDN, "sender_id"=>$SRC, "message"=>$MESSAGE);
-
+	
 
 			
 			$curl = curl_init();
@@ -77,6 +77,7 @@ function sendSMS($phone,$message)
 			));
 
 			$response = curl_exec($curl);
+			
 			$err = curl_error($curl);
 
 			curl_close($curl);
