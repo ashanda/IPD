@@ -99,11 +99,12 @@
 									<td class="table-plus">{{ $coupen->coupon_code }}</td>
                                     <td class="table-plus">{{ $coupen->percentage }}</td>
                                     <td class="table-plus">
+                                     
                                         <ul>
                                             
-                                             @foreach(json_decode($coupen->bid) as $item)
-												<li>{{ getBatch($item)->bname }}</li>
-											 @endforeach
+                                           @foreach($coupen->bid as $item)
+                                                <li>{{ getBatch($item)->bname }}</li>
+                                            @endforeach
                                             
                                         </ul>
                                     </td>

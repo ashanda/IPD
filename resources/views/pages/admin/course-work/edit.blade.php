@@ -42,9 +42,9 @@
                                     <div class="col-sm-8">
                                         <select class="selectpicker form-control" name="bid[]" data-style="btn-outline-secondary" multiple>
                                             @foreach ($batchData as $batch)
-                                                <option value="{{ $batch->id }}" @if(in_array($batch->id, old('bid', []))) selected @endif>
-                                                    {{ $batch->bname }}
-                                                </option>
+                                               <option value="{{ $batch->id }}" {{ in_array($batch->id, $findData->bid) || in_array($batch->id, old('bid', [])) ? 'selected' : '' }}>
+                                                        {{ $batch->bname }}
+                                                    </option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -123,14 +123,15 @@
 				<!-- Simple Datatable start -->
 				<div class="card-box mb-30">
 					<div class="pd-20">
-						<h4 class="text-blue h4">Lessons</h4>
+						<h4 class="text-blue h4">Course Work</h4>
 					</div>
 					<div class="pb-20">
 						<table class="data-table table stripe hover nowrap">
 							<thead>
 								<tr>
-									<th class="table-plus datatable-nosort">Course Work name</th>
+									<th class="table-plus datatable-nosort">Course work name</th>
 									<th>Document</th>
+									<th>Batch</th>
 									<th>Publish date</th>
 									<th>Start time</th>
 									<th>End time</th>
@@ -143,7 +144,15 @@
 								<tr>
 									<td class="table-plus">{{ $batch->title }}</td>
 									<td class="table-plus"> <a href="{{ $batch->document }}" target="blank"><i class="micon dw dw-binocular"></i> </a></td>
-                                   
+                                    <td class="table-plus">
+                                        <ul>
+                                            
+                                        @foreach($batch->bid as $item)
+										<li>{{ getBatch($item)->bname }}</li>
+										@endforeach
+                                            
+                                        </ul>
+                                    </td>
 									<td class="table-plus">{{ $batch->publish_date }}</td>
 									<td class="table-plus">{{ $batch->start_time }}</td>
 									<td class="table-plus">{{ $batch->end_time }}</td>

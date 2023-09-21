@@ -39,8 +39,8 @@
                                     <div class="col-sm-8">
                                         <select class="selectpicker form-control" name="bid[]" data-style="btn-outline-secondary" multiple required>
                                             @foreach ($batchData as $batch)
-                                                <option value="{{ $batch->id }}" @if(in_array($batch->id, old('bid', []))) selected @endif>
-                                                    {{ $batch->bname }}
+                                                <option value="{{ $batch->id }}" {{ in_array($batch->id, $findData->bid) || in_array($batch->id, old('bid', [])) ? 'selected' : '' }}>
+                                                        {{ $batch->bname }}
                                                 </option>
                                             @endforeach
                                         </select>
@@ -110,7 +110,7 @@
                                     <td class="table-plus">
                                         <ul>
                                             
-                                             @foreach(json_decode($batch->bid) as $item)
+                                             @foreach($batch->bid as $item)
 												<li>{{ getBatch($item)->bname }}</li>
 											 @endforeach
                                             

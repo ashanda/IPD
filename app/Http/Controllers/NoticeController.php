@@ -44,7 +44,7 @@ class NoticeController extends Controller
     $notice->notice = $validatedData['notice'];
     $notice->expire_date = Carbon::parse($validatedData['expire_date'])->format('Y-m-d');
     $batchIds = $request->input('bid', []);
-    $notice->bid = json_encode($batchIds); // Make sure 'batch_ids' matches your database column name
+    $notice->bid = $batchIds; // Make sure 'batch_ids' matches your database column name
 
     $notice->save();
     toast('Notice added successfully', 'success');
@@ -90,7 +90,7 @@ class NoticeController extends Controller
         $notice->notice = $validatedData['notice'];
         $notice->expire_date = Carbon::parse($validatedData['expire_date'])->format('Y-m-d');
         $batchIds = $request->input('bid', []);
-        $notice->bid = json_encode($batchIds); // Make sure 'batch_ids' matches your database column name
+        $notice->bid = $batchIds; // Make sure 'batch_ids' matches your database column name
 
         $notice->save();
         toast('Notice updated successfully', 'success');

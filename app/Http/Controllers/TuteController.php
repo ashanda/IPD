@@ -89,7 +89,7 @@ class TuteController extends Controller
 
         // Convert selected batch IDs to a JSON array
         $batchIds = $request->input('bid', []);
-        $tute->bid = json_encode($batchIds);
+        $tute->bid = $batchIds;
 
         $tute->save();
         
@@ -143,8 +143,8 @@ class TuteController extends Controller
             $tute->title = $request->input('title');
             $tute->status = $request->input('status');
             $tute->description = $request->input('description');
-            $batchIds = $request->input('bid', []);
-            $tute->bid = json_encode($batchIds);
+             $batchIds = $request->input('bid', []);
+              $tute->bid = $batchIds;
             // Handle the 'cover' file upload
             if ($request->hasFile('document')) {
                 $coverPath = $request->file('document')->store('tute', 'public');

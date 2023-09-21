@@ -43,15 +43,18 @@
                                     </div>
                                 </div>
                             </div>
+                              
                              <div class="col-md-4 col-sm-12 mt-20">
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-form-label">Batch</label>
                                     <div class="col-sm-8">
-                                        <select class="selectpicker form-control" name="bid[]" data-style="btn-outline-secondary" multiple>
-                                            @foreach ($batchData as $batch)
-                                                <option value="{{ $batch->id }}" @if(in_array($batch->id, old('bid', []))) selected @endif>
-                                                    {{ $batch->bname }}
-                                                </option>
+                                        <select class="selectpicker form-control" name="bid[]" data-style="btn-outline-secondary" multiple required>
+                                           
+                                           @foreach ($batchData as $batch)
+                                                    <option value="{{ $batch->id }}" 
+                                                            {{ in_array($batch->id, $findData->bid) || in_array($batch->id, old('bid', [])) ? 'selected' : '' }}>
+                                                        {{ $batch->bname }}
+                                                    </option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -101,11 +104,9 @@
                                     <td class="table-plus">{{ $coupen->percentage }}</td>
                                     <td class="table-plus">
                                         <ul>
-                                            
-                                             @foreach(json_decode($coupen->bid) as $item)
-												<li>{{ getBatch($item)->bname }}</li>
-											 @endforeach
-                                            
+                                           @foreach($coupen->bid as $item)
+                                                <li>{{ getBatch($item)->bname }}</li>
+                                            @endforeach
                                         </ul>
                                     </td>
                                     <td class="table-plus">{{ $coupen->valid_date }}</td>

@@ -35,16 +35,17 @@
                                     </div>
                                 </div>
                             </div>
-                           
+                          
                               <div class="col-md-2 col-sm-12 mt-20">
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-form-label">Batch</label>
                                     <div class="col-sm-8">
                                         <select class="selectpicker form-control" name="bid[]" data-style="btn-outline-secondary" multiple>
                                             @foreach ($batchData as $batch)
-                                                <option value="{{ $batch->id }}" @if(in_array($batch->id, old('bid', []))) selected @endif>
-                                                    {{ $batch->bname }}
-                                                </option>
+                                                 <option value="{{ $batch->id }}" 
+                                                            {{ in_array($batch->id, $findData->bid) || in_array($batch->id, old('bid', [])) ? 'selected' : '' }}>
+                                                        {{ $batch->bname }}
+                                                    </option>
                                             @endforeach
                                         </select>
                                     </div>

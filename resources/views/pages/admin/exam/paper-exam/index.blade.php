@@ -144,7 +144,7 @@
                                     <td class="table-plus">
                                         <ul>
                                             
-                                             @foreach(json_decode($batch->bid) as $item)
+                                             @foreach($batch->bid as $item)
 												<li>{{ getBatch($item)->bname }}</li>
 											 @endforeach
                                             

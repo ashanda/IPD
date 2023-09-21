@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Payment extends Model
 {
     use HasFactory;
-
+    protected $casts = [
+        'bid' => 'array', // Cast "bid" attribute to an array
+    ];
 
 
     public static function sumAmountForStatusAndIndexNumber($indexNumber, $status)
