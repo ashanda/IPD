@@ -122,7 +122,6 @@ if ($loginField) {
 
     if (auth()->attempt($authenticationArray)) {
         if (auth()->user()->type == 'admin') {
-           
             return redirect()->route('admin.home');
         } elseif (auth()->user()->type == 'instructor') {
             return redirect()->route('instructor.home');
@@ -130,7 +129,9 @@ if ($loginField) {
             return redirect()->route('home');
         }
     } else {
-        return redirect()->route('login')->with('error', 'Invalid login field.');
+        // Check which field caused the authentication failure and set an appropriate error message.
+        $errorMessage = ($loginField === 'email') ? 'Invalid email or password.' : 'Invalid phone number or password.';
+        return redirect()->route('login')->with('error', $errorMessage);
     }
 } else {
     return redirect()->route('login')->with('error', 'Invalid login field.');
