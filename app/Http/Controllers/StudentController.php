@@ -120,7 +120,7 @@ class StudentController extends Controller
 
         // Sync the batches
         $batches = $request->input('bid', []);
-
+        // $student->batches()->sync($batches);
 
         // Display a success toast and redirect to the student index page
         toast('Student updated successfully', 'success');

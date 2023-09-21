@@ -14,4 +14,10 @@ class Batch extends Model
     {
         return $this->belongsToMany(User::class);
     }
+
+    public function students()
+{
+    return $this->belongsToMany(User::class);
+}
+
 }
