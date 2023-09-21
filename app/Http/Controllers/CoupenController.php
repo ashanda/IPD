@@ -46,7 +46,7 @@ class CoupenController extends Controller
     $coupon->percentage = $validatedData['amount'];
     $coupon->valid_date = Carbon::parse($validatedData['valid_date'])->format('Y-m-d');
     $batchIds = $request->input('bid', []);
-    $coupon->bid = json_encode($batchIds);
+    $coupon->bid = $batchIds;
 
     $coupon->save();
     

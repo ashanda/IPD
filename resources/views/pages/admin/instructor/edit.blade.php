@@ -48,12 +48,13 @@
 							<div class="form-group row">
 								<label class="col-sm-4 col-form-label">Batch</label>
 								<div class="col-sm-8">
-									<select class="selectpicker form-control" name="bid[]" data-style="btn-outline-secondary" multiple>
+									<select class="selectpicker form-control" name="bid[]" data-style="btn-outline-secondary" multiple required>
 										@foreach ($batchData as $batch)
-										<option value="{{ $batch->id }}" @if(in_array($batch->id, old('batch', []))) selected @endif>
+													
+                                                   <option value="{{ $batch->id }}"{{ in_array($batch->id, json_decode($findData->batch)) || in_array($batch->id, old('bid', [])) ? 'selected' : '' }}>
 											{{ $batch->bname }}
 										</option>
-										@endforeach
+                                            @endforeach
 									</select>
 								</div>
 							</div>

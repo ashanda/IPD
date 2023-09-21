@@ -91,7 +91,7 @@ class McqExamController extends Controller
         $mcqExam->exam_question = $validatedData['lms_exam_question'];
         $mcqExam->publish_date = Carbon::parse($validatedData['publish_date'])->format('Y-m-d');
         $batchIds = $request->input('bid', []);
-        $mcqExam->bid = json_encode($batchIds);
+        $mcqExam->bid = $batchIds;
         // Save the MCQExam instance
         $mcqExam->save();
 
@@ -162,7 +162,7 @@ class McqExamController extends Controller
         $exam->exam_question = $request->input('lms_exam_question');
         $exam->publish_date = Carbon::parse($request->input('publish_date'))->format('Y-m-d');
         $batchIds = $request->input('bid', []);
-        $exam->bid = json_encode($batchIds);
+        $exam->bid = $batchIds;
         // Save the updated exam object
         $exam->save();
         // Redirect back to the exam view or any other appropriate page

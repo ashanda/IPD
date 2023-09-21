@@ -56,7 +56,7 @@
                                     <td class="table-plus">
                                         <ul>
                                             
-                                             @foreach(json_decode($usersWithPayment->batch) as $item)
+                                             @foreach(json_decode($usersWithPayment->batch_id) as $item)
 												<li>{{ getBatch($item)->bname }}</li>
 											 @endforeach
                                             

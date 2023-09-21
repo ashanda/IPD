@@ -90,6 +90,7 @@ class InstructorController extends Controller
         $data = User::where('type',2)->get();
         $batchData = Batch::where('status',1)->get();
         $findData = User::where('id', $id)->first();
+      
         return view('pages.admin.instructor.edit',compact('data', 'findData','batchData'));
     }
 
@@ -106,7 +107,7 @@ class InstructorController extends Controller
             'cnumber' => 'required|integer',
             'password' => 'required|string|min:8',
             'status' => 'required|in:0,1',
-            'bid' => 'array', // Assuming bid is an array of batch IDs
+            'batch' => 'array', // Assuming bid is an array of batch IDs
             'document' => 'file|mimes:pdf,doc,docx', // Modify the allowed file types as needed
         ]);
 
@@ -121,7 +122,7 @@ class InstructorController extends Controller
         $instructor->password = bcrypt($request->input('password'));
         $instructor->status = $request->input('status');
         $batchIds = $request->input('bid', []);
-        $instructor->bid = json_encode($batchIds);
+        $instructor->batch = json_encode($batchIds);
         // Handle the 'document' file upload
         if ($request->hasFile('document')) {
             $documentPath = $request->file('document')->store('documents', 'public'); // Modify the storage path as needed

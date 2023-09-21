@@ -92,7 +92,7 @@
                                     <td class="table-plus">
                                         <ul>
                                             
-                                             @foreach(json_decode($notice->bid) as $item)
+                                             @foreach($notice->bid as $item)
 												<li>{{ getBatch($item)->bname }}</li>
 											 @endforeach
                                             

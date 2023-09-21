@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Lesson extends Model
 {
     use HasFactory;
+     protected $casts = [
+        'bid' => 'array', // Cast "bid" attribute to an array
+    ];
+    
      protected $fillable = [
         'lesson_name',
         'vlink',

@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Coupen extends Model
 {
     use HasFactory;
+    
+    protected $casts = [
+        'bid' => 'array', // Cast "bid" attribute to an array
+    ];
 }

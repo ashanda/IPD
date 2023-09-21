@@ -69,7 +69,7 @@ class VerbalExamController extends Controller
 
         // Convert selected batch IDs to a JSON array
         $batchIds = $request->input('bid', []);
-        $coursework->bid = json_encode($batchIds);
+        $coursework->bid = $batchIds;
 
         $coursework->save();
         
@@ -130,7 +130,7 @@ class VerbalExamController extends Controller
             $coursework->start_time = date('H:i:s', strtotime($request->input('start_time')));
             $coursework->end_time = date('H:i:s', strtotime($request->input('end_time')));
             $batchIds = $request->input('bid', []);
-            $coursework->bid = json_encode($batchIds);
+            $coursework->bid = $batchIds;
             // Handle the 'cover' file upload
             if ($request->hasFile('document')) {
                 $coverPath = $request->file('document')->store('verbal-exam', 'public');
