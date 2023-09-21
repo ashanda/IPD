@@ -12,8 +12,8 @@
 							</div>
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="index.html">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Coupen</li>
+									<li class="breadcrumb-item"><a href="{{ currentHome() }}">Home</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Coupon</li>
 								</ol>
 							</nav>
 						</div>
@@ -28,7 +28,7 @@
                         
                             <div class="col-md-4 col-sm-12 mt-20">
                                 <div class="form-group row">
-                                    <label class="col-sm-12 col-md-2 col-form-label">Coupen</label>
+                                    <label class="col-sm-12 col-md-2 col-form-label">Coupon</label>
                                     <div class="col-sm-12 col-md-10">
                                         
                                         <input class="form-control" type="text" name="coupen" value="{{ $findData->coupon_code }}" required readonly>
@@ -70,7 +70,7 @@
                             </div>
                             <div class="col-md-6 col-sm-12 text-right">
                                 <div class="dropdown">
-                                    <button type="submit" class="btn btn-primary dropdown-toggle no-arrow">Add Coupen</button>
+                                    <button type="submit" class="btn btn-primary dropdown-toggle no-arrow">Add Coupon</button>
                                 </div>
                             </div>
                         
@@ -81,13 +81,13 @@
 				<!-- Simple Datatable start -->
 				<div class="card-box mb-30">
 					<div class="pd-20">
-						<h4 class="text-blue h4">Coupen</h4>
+						<h4 class="text-blue h4">Coupon</h4>
 					</div>
 					<div class="pb-20">
 						<table class="data-table table stripe hover nowrap" id="uniqueTableId">
 							<thead>
 								<tr>
-									<th class="table-plus datatable-nosort">Coupen</th>
+									<th class="table-plus datatable-nosort">Coupon</th>
 									<th>Persentage</th>
                                     <th>Batch</th>
 									<th>Valid Date</th>

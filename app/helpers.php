@@ -650,3 +650,15 @@ $userBatchArray = json_decode(auth::user()->batch, true);
     
 	return $data;
 }
+
+function currentHome(){
+	if (Auth::user()->type === 'admin'){
+			$homeurl = '/admin/home';
+		}elseif (Auth::user()->type === 'user'){
+			$homeurl = '/home';
+		}else{
+			$homeurl = '/instructor/home';	
+	}
+
+	return $homeurl;
+}
