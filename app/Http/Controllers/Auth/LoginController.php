@@ -130,7 +130,7 @@ if ($loginField) {
             return redirect()->route('home');
         }
     } else {
-        return redirect()->route('login')->with('error', 'Email-Address Or Contact Number And Password Are Wrong.');
+        return redirect()->route('login')->with('error', 'Invalid login field.');
     }
 } else {
     return redirect()->route('login')->with('error', 'Invalid login field.');
