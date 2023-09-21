@@ -115,10 +115,12 @@
 											<a class="dropdown-item" href="{{ route('coupen.edit', $coupen->id) }}"><i class="dw dw-edit2"></i> Edit</a>
 										</div>
 										<div class="col">
-											<form action="{{ route('coupen.destroy', $coupen->id) }}" method="POST">
+											<form id="delete-form" action="{{ route('coupen.destroy', $coupen->id) }}" method="POST">
 												@csrf
 												@method('DELETE')
-												<button type="submit" class="btn btn-link"><i class="dw dw-delete-3"></i> Delete</button>
+												<button type="button" class="btn btn-link" onclick="showDeleteConfirmation()">
+													<i class="dw dw-delete-3"></i> Delete
+												</button>
 											</form>
 										</div>
 									</div>
@@ -141,8 +143,25 @@
 			</div>
 
  @endsection           
-@section('scripts')
-
-
-@endsection
+ @section('scripts')
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+    // Function to show the SweetAlert confirmation dialog
+    function showDeleteConfirmation() {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'You will not be able to recover this coupon!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'Cancel'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // If the user confirms, submit the form for batch deletion
+                document.getElementById('delete-form').submit();
+            }
+        });
+    }
+</script>
+ @endsection  
  

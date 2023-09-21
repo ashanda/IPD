@@ -139,8 +139,13 @@ class PaymentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Payment $payment)
+    public function destroy($id)
     {
-        //
+        $item = Payment::findOrFail($id);
+        $item->delete();
+
+    // Redirect back or to a different page after deletion
+    toast('Paper Exam Delete successfully', 'success');
+    return redirect()->route('paper-exam.index');
     }
 }
