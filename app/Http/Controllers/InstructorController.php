@@ -120,7 +120,8 @@ class InstructorController extends Controller
         $instructor->contact_number = $request->input('cnumber');
         $instructor->password = bcrypt($request->input('password'));
         $instructor->status = $request->input('status');
-
+        $batchIds = $request->input('bid', []);
+        $instructor->bid = json_encode($batchIds);
         // Handle the 'document' file upload
         if ($request->hasFile('document')) {
             $documentPath = $request->file('document')->store('documents', 'public'); // Modify the storage path as needed
@@ -131,7 +132,7 @@ class InstructorController extends Controller
         $instructor->save();
 
         // Sync the batches
-        $batches = $request->input('bid', []);
+        //$batches = $request->input('bid', []);
         
 
         // Display a success toast and redirect to the instructor index page

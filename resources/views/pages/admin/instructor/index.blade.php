@@ -102,7 +102,7 @@
 
 								<label class="col-sm-4 col-form-label">Document</label>
 								<div class="col-sm-8">
-									<input type="file" class="custom-file-input" name="cover" required>
+									<input type="file" class="custom-file-input" name="cover" >
 									<label class="custom-file-label">Choose file</label>
 								</div>
 
