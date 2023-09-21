@@ -60,7 +60,7 @@
 							</div>
                             
 							<div class="widget-data">
-                                <a href="">
+                                <a href="{{ route('lesson.index') }}">
 								<div class="h4 mb-0">Programme Shedule</div>
 								<div class="weight-600 font-14"> + Programme Shedule</div>
                                 </a>
