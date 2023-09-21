@@ -28,6 +28,7 @@
 						<div class="login-title">
 							<h2 class="text-center text-primary">Login to {{ env('APP_NAME') }}</h2>
 						</div>
+						
 						<form method="POST" action="{{ route('login') }}">
                             @csrf
 							<div class="select-role">
@@ -46,6 +47,11 @@
                                     </label>
                                 </div>
 							</div>
+							@if(session('error'))
+							<div class="alert alert-danger">
+								{{ session('error') }}
+								</div>
+							@endif
 							<div class="input-group custom">
                                 <input id="contact_number" type="text" class="form-control form-control-lg @error('contact_number') is-invalid @enderror" name="contact_number" value="{{ old('contact_number') }}" autocomplete="contact_number" autofocus placeholder="Your Phone Number">
                                 <input id="email" type="email" class="form-control form-control-lg @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email" autofocus placeholder="Username" style="display: none;">
