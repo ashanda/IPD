@@ -25,25 +25,25 @@
 					@csrf
 					<div class="row">
 
-						<div class="col-md-3 col-sm-12 mt-20">
+						<div class="col-md-4 col-sm-12 mt-20">
 							<div class="form-group row">
-								<label class="col-sm-12 col-md-2 col-form-label">First name</label>
+								<label class="col-sm-12 col-md-4 col-form-label">First name</label>
 								<input type="hidden" name="index_number" value="{{ substr(Illuminate\Support\Str::uuid(), 0, 10) }}" required>
-								<div class="col-sm-12 col-md-10">
+								<div class="col-sm-12 col-md-8">
 									<input class="form-control" type="text" name="fname" required>
 								</div>
 							</div>
 						</div>
-						<div class="col-md-3 col-sm-12 mt-20">
+						<div class="col-md-4 col-sm-12 mt-20">
 							<div class="form-group row">
-								<label class="col-sm-12 col-md-2 col-form-label">Last Name</label>
-								<div class="col-sm-12 col-md-10">
+								<label class="col-sm-12 col-md-4 col-form-label">Last Name</label>
+								<div class="col-sm-12 col-md-8">
 									<input class="form-control" type="text" name="lname" required>
 								</div>
 							</div>
 						</div>
 
-						<div class="col-md-3 col-sm-12 mt-20">
+						<div class="col-md-4 col-sm-12 mt-20">
 							<div class="form-group row">
 								<label class="col-sm-4 col-form-label">Batch</label>
 								<div class="col-sm-8">
@@ -55,7 +55,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-md-3 col-sm-12 mt-20">
+						<div class="col-md-4 col-sm-12 mt-20">
 							<div class="form-group row">
 								<label class="col-sm-4 col-form-label">Email</label>
 								<div class="col-sm-8">
@@ -63,18 +63,18 @@
 								</div>
 							</div>
 						</div>
-					</div>
+					
 
-					<div class="row">
-						<div class="col-md-6 col-sm-12 mt-20">
+					
+						<div class="col-md-4 col-sm-12 mt-20">
 							<div class="form-group row">
-								<label class="col-sm-12 col-md-2 col-form-label">Contact Number</label>
-								<div class="col-sm-12 col-md-10">
+								<label class="col-sm-12 col-md-4 col-form-label">Contact Number</label>
+								<div class="col-sm-12 col-md-8">
 									<input class="form-control" type="tel" name="cnumber" required>
 								</div>
 							</div>
 						</div>
-						<div class="col-md-6 col-sm-12 mt-20">
+						<div class="col-md-4 col-sm-12 mt-20">
 							<div class="form-group row">
 								<label class="col-sm-4 col-form-label">Password</label>
 								<div class="col-sm-8">
@@ -83,9 +83,9 @@
 							</div>
 						</div>
 
-					</div>
+					
 
-					<div class="row">
+					
 						<div class="col-md-4 col-sm-12 mt-20">
 							<div class="form-group row">
 								<label class="col-sm-4 col-form-label">Status</label>
@@ -97,10 +97,10 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-md-4 col-sm-12 mt-20">
+						<div class="col-md-5 col-sm-12 mt-20">
 							<div class="form-group row">
 
-								<label class="col-sm-4 col-form-label">Cover</label>
+								<label class="col-sm-4 col-form-label">Document</label>
 								<div class="col-sm-8">
 									<input type="file" class="custom-file-input" name="cover" required>
 									<label class="custom-file-label">Choose file</label>
@@ -108,7 +108,7 @@
 
 							</div>
 						</div>
-						<div class="col-md-4 col-sm-12 text-right">
+						<div class="col-md-3 col-sm-12 text-right">
 							<div class="dropdown">
 								<button type="submit" class="btn btn-primary dropdown-toggle no-arrow">Add Instructor</button>
 							</div>
@@ -116,52 +116,52 @@
 
 
 					</div>
-                    </form>
+				</form>
+			</div>
+			<!-- Simple Datatable start -->
+			<div class="card-box mb-30">
+				<div class="pd-20">
+					<h4 class="text-blue h4">Instructor</h4>
 				</div>
-				<!-- Simple Datatable start -->
-				<div class="card-box mb-30">
-					<div class="pd-20">
-						<h4 class="text-blue h4">Instructor</h4>
-					</div>
-					<div class="pb-20">
-						<table class="data-table table stripe hover nowrap">
-							<thead>
-								<tr>
-									<th class="table-plus datatable-nosort">Instructor name</th>
-									<th>Email</th>
-									<th>Batch</th>
-									<th>Contact</th>
-									<th>Status</th>
-									<th class="datatable-nosort">Action</th>
-								</tr>
-							</thead>
-							<tbody>
-								@foreach ( $data as $batch)
-								<tr>
-									<td class="table-plus">{{ $batch->fname.' '.$batch->lname }}</td>
-									<td class="table-plus">{{ $batch->email }}</td>
-                                    <td class="table-plus">
-                                        <ul>
-                                            
-                                            
-                                               @foreach(json_decode($batch->batch) as $item)
-												<li>{{ getBatch($item)->bname }}</li>
-											 @endforeach
-                                           
-                                            
-                                        </ul>
-                                    </td>
-									<td class="table-plus">{{ $batch->contact_number }}</td>
-									
-									
-									@if ($batch->status === 1)
-									<td><span class="badge badge-success">Plublish</span></td>		
-									@else
-									<td><span class="badge badge-warning">Unplublish</span></td>
-									@endif
-									<td>
-                                    <td class="table-plus"></td>
-                                    <td>
+				<div class="pb-20">
+					<table class="data-table table stripe hover nowrap">
+						<thead>
+							<tr>
+								<th class="table-plus datatable-nosort">Instructor name</th>
+								<th>Email</th>
+								<th>Batch</th>
+								<th>Contact</th>
+								<th>Status</th>
+								<th class="datatable-nosort">Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach ( $data as $batch)
+							<tr>
+								<td class="table-plus">{{ $batch->fname.' '.$batch->lname }}</td>
+								<td class="table-plus">{{ $batch->email }}</td>
+								<td class="table-plus">
+									<ul>
+
+
+										@foreach(json_decode($batch->batch) as $item)
+										<li>{{ getBatch($item)->bname }}</li>
+										@endforeach
+
+
+									</ul>
+								</td>
+								<td class="table-plus">{{ $batch->contact_number }}</td>
+
+
+								@if ($batch->status === 1)
+								<td><span class="badge badge-success">Plublish</span></td>
+								@else
+								<td><span class="badge badge-warning">Unplublish</span></td>
+								@endif
+								<td>
+								<td class="table-plus"></td>
+								<td>
 									<div class="row">
 										<div class="col">
 											<a class="dropdown-item" href="{{ route('instructor.edit', $batch->id) }}"><i class="dw dw-edit2"></i> Edit</a>

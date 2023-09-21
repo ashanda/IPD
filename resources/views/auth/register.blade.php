@@ -86,7 +86,7 @@
                                                 </select>
 											</div>
 										</div>
-                                        <div class="custom-control custom-checkbox mt-4">
+                                        <div class="custom-control custom-checkbox mt-4 d-none">
                                            
 											
 											<label class="custom-control-label" for="customCheck1">I have read and agreed to the terms of services and privacy policy</label>

@@ -11,12 +11,34 @@ class StudentController extends Controller
     /**
      * Display a listing of the resource.
      */
+    // public function index()
+    // {
+    //     $data = User::where('type', 0)->get();
+    //     $batchData = Batch::where('status', 1)->get();
+    //     return view('pages.admin.student.index', compact('data', 'batchData'));
+    // }
+
     public function index()
-    {
-        $data = User::where('type', 0)->get();
-        $batchData = Batch::where('status', 1)->get();
-        return view('pages.admin.student.index', compact('data', 'batchData'));
+{
+    $students = User::where('type', 0)->get();
+    $batchData = Batch::where('status', 1)->get()->keyBy('id');
+
+    foreach ($students as $student) {
+        $batchIds = json_decode($student->batch, true); // Decode the JSON string
+
+        if (is_array($batchIds) && count($batchIds) > 0) {
+            // Get the first batch from the array
+            $batchId = $batchIds[0];
+            $batch = $batchData->get($batchId);
+            $student->batch_name = $batch ? $batch->bname : 'Batch not found';
+        } else {
+            $student->batch_name = 'Batch not found';
+        }
     }
+
+    return view('pages.admin.student.index', compact('students'));
+}
+
 
 
     /**
@@ -29,12 +51,34 @@ class StudentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
+    // public function edit(string $id)
+    // {
+    //     $data = User::where('type', 0)->get();
+    //     $batchData = Batch::where('status', 1)->get();
+    //     $findData = User::where('id', $id)->first();
+    //     return view('pages.admin.student.edit', compact('data', 'findData', 'batchData'));
+    // }
+
     public function edit(string $id)
     {
-        $data = User::where('type', 0)->get();
-        $batchData = Batch::where('status', 1)->get();
+        $students = User::where('type', 0)->get();
+        $batchData = Batch::where('status', 1)->get()->keyBy('id');
         $findData = User::where('id', $id)->first();
-        return view('pages.admin.student.edit', compact('data', 'findData', 'batchData'));
+    
+        foreach ($students as $student) {
+            $batchIds = json_decode($student->batch, true); // Decode the JSON string
+    
+            if (is_array($batchIds) && count($batchIds) > 0) {
+                // Get the first batch from the array
+                $batchId = $batchIds[0];
+                $batch = $batchData->get($batchId);
+                $student->batch_name = $batch ? $batch->bname : 'Batch not found';
+            } else {
+                $student->batch_name = 'Batch not found';
+            }
+        }
+    
+        return view('pages.admin.student.edit', compact('students', 'findData', 'batchData'));
     }
 
     /**
@@ -85,9 +129,29 @@ class StudentController extends Controller
 
     public function batchwise()
     {
-        $data = User::where('type', 0)->get();
-        $batchData = Batch::where('status', 1)->get();
-        return view('pages.admin.student.batchwise', compact('data', 'batchData'));
+        // $data = User::where('type', 0)->get();
+        // $batchData = Batch::where('status', 1)->get();
+        // return view('pages.admin.student.batchwise', compact('data', 'batchData'));
+
+
+        $students = User::where('type', 0)->get();
+        $allBatch = Batch::where('status', 1)->get();
+        $batchData = Batch::where('status', 1)->get()->keyBy('id');
+    
+        foreach ($students as $student) {
+            $batchIds = json_decode($student->batch, true); // Decode the JSON string
+    
+            if (is_array($batchIds) && count($batchIds) > 0) {
+                // Get the first batch from the array
+                $batchId = $batchIds[0];
+                $batch = $batchData->get($batchId);
+                $student->batch_name = $batch ? $batch->bname : 'Batch not found';
+            } else {
+                $student->batch_name = 'Batch not found';
+            }
+        }
+    
+        return view('pages.admin.student.batchwise', compact('students', 'allBatch'));
 
     }   
 
