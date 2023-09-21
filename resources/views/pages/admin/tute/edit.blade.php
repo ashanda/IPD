@@ -161,4 +161,23 @@
  @endsection           
  @section('scripts')
  <script src="{{ asset('vendors/scripts/advanced-components.js')}}"></script>
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+		<script>
+			// Function to show the SweetAlert confirmation dialog
+			function showDeleteConfirmation() {
+				Swal.fire({
+					title: 'Are you sure?',
+					text: 'You will not be able to recover this tute!',
+					icon: 'warning',
+					showCancelButton: true,
+					confirmButtonText: 'Yes, delete it!',
+					cancelButtonText: 'Cancel'
+				}).then((result) => {
+					if (result.isConfirmed) {
+						// If the user confirms, submit the form for batch deletion
+						document.getElementById('delete-form').submit();
+					}
+				});
+			}
+		</script>
  @endsection
