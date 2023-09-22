@@ -12,7 +12,7 @@
 							</div>
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+									<li class="breadcrumb-item"><a href="{{ currentHome() }}">Home</a></li>
 									<li class="breadcrumb-item active" aria-current="page">Course Work</li>
 								</ol>
 							</nav>
@@ -30,7 +30,7 @@
 							<div class="card-body">
 								<p class="card-text">Start time : {{$CourseWork->start_time}}</p>
                                 <p class="card-text">End Time : {{$CourseWork->end_time}}</p>
-                                <a href="{{ asset('storage/' . $CourseWork->document) }}" class="card-link text-primary" download>Download File</a>	
+                                <a href="{{ asset('storage/app/public/'. $CourseWork->document) }}" class="card-link text-primary" download>Download File</a>	
 								@if ( examcheck($CourseWork->id,'Course Work') < 1 )
 									<form action="{{ route('submisson') }}" method="POST" enctype="multipart/form-data">
 											@csrf

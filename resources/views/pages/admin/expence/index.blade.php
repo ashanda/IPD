@@ -2,27 +2,27 @@
 
 @section('content')
 <div class="main-container">
-	<div class="pd-ltr-20 xs-pd-20-10">
-		<div class="min-height-200px">
-			<div class="page-header">
-				<div class="row">
-					<div class="col-md-6 col-sm-12">
-						<div class="title">
-							<h4>Expence</h4>
+		<div class="pd-ltr-20 xs-pd-20-10">
+			<div class="min-height-200px">
+				<div class="page-header">
+					<div class="row">
+						<div class="col-md-6 col-sm-12">
+							<div class="title">
+								<h4>Expence</h4>
+							</div>
+							<nav aria-label="breadcrumb" role="navigation">
+								<ol class="breadcrumb">
+									<li class="breadcrumb-item"><a href="{{ currentHome() }}">Home</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Expence</li>
+								</ol>
+							</nav>
 						</div>
-						<nav aria-label="breadcrumb" role="navigation">
-							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="index.html">Home</a></li>
-								<li class="breadcrumb-item active" aria-current="page">Expence</li>
-							</ol>
-						</nav>
+						
 					</div>
-
 				</div>
-			</div>
-			<div class="page-header">
-				<form action="{{ route('expence.store') }}" method="POST">
-					@csrf
+                	<div class="page-header">
+                        <form action="{{ route('expence.store') }}" method="POST">
+                            @csrf
 					<div class="row">
 
 						<div class="col-md-5 col-sm-12 mt-20">
@@ -77,10 +77,12 @@
 											<a class="dropdown-item" href="{{ route('expence.edit', $expence->id) }}"><i class="dw dw-edit2"></i> Edit</a>
 										</div>
 										<div class="col">
-											<form action="{{ route('expence.destroy', $expence->id) }}" method="POST">
+											<form id="delete-form" action="{{ route('expence.destroy', $expence->id) }}" method="POST">
 												@csrf
 												@method('DELETE')
-												<button type="submit" class="btn btn-link"><i class="dw dw-delete-3"></i> Delete</button>
+												<button type="button" class="btn btn-link" onclick="showDeleteConfirmation()">
+													<i class="dw dw-delete-3"></i> Delete
+												</button>
 											</form>
 										</div>
 									</div>
@@ -102,8 +104,27 @@
 			</div>
 		</div>
 
-		@endsection
-		@section('scripts')
-
+ @endsection           
+@section('scripts')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+ <script>
+    // Function to show the SweetAlert confirmation dialog
+    function showDeleteConfirmation() {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'You will not be able to recover this expence!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'Cancel'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // If the user confirms, submit the form for batch deletion
+                document.getElementById('delete-form').submit();
+            }
+        });
+    }
+ </script>
+@endsection
 
 		@endsection

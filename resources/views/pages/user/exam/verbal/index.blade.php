@@ -12,7 +12,7 @@
 							</div>
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+									<li class="breadcrumb-item"><a href="{{ currentHome() }}">Home</a></li>
 									<li class="breadcrumb-item active" aria-current="page">Verbal Exam</li>
 								</ol>
 							</nav>
@@ -33,7 +33,7 @@
                                 <p class="card-text">End Time : {{$verbal->end_time}}</p>
 								 <a href="{{ $verbal->vlink }}" target="_blank" class="card-link text-primary">Video Link</a>	
 								 @if ($verbal->document != null)
-									<a href="{{ asset('storage/' . $verbal->document) }}" class="card-link text-primary" download>Download File</a>	
+									<a href="{{ asset('storage/app/public/'. $verbal->document) }}" class="card-link text-primary" download>Download File</a>	
 								 @endif
 
 								@if ( examcheck($verbal->id,'verbal Test') < 1 )

@@ -108,8 +108,7 @@ class LessonController extends Controller
 
         // Convert selected batch IDs to a JSON array
         $batchIds = $request->input('bid', []);
-        
-        $lesson->bid = json_encode($batchIds);
+        $lesson->bid = $batchIds;
 
         $lesson->save();
         
@@ -149,6 +148,7 @@ class LessonController extends Controller
                 ->whereIn('id', $userBatchArray)
                 ->get();
         }
+
         $findData = Lesson::where('id', $id)->first();
        
         return view('pages.admin.lesson.edit',compact('data', 'findData','batchData'));
@@ -174,9 +174,8 @@ class LessonController extends Controller
                 $coverPath = $request->file('cover')->store('covers', 'public');
                 $lesson->cover = $coverPath;
             }
-            $batchIds = $request->input('bid', []);
-        
-            $lesson->bid = json_encode($batchIds);
+             $batchIds = $request->input('bid', []);
+             $lesson->bid = $batchIds;
             // Save the updated lesson
             $lesson->save();
 
@@ -197,6 +196,6 @@ class LessonController extends Controller
 
     // Redirect back or to a different page after deletion
     toast('Lesson Delete successfully', 'success');
-    return redirect()->route('batch.index');
+    return redirect()->route('lesson.index');
     }
 }

@@ -12,7 +12,7 @@
 							</div>
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+									<li class="breadcrumb-item"><a href="{{ currentHome() }}">Home</a></li>
 									<li class="breadcrumb-item active" aria-current="page">Tute</li>
 								</ol>
 							</nav>
@@ -29,7 +29,7 @@
 							<img class="card-img-top" src="{{ asset('assets/images/course-work.png')}}" alt="Card image cap">
 							<div class="card-body">
 								
-                                <a href="{{ asset('storage/' . $Tute->document) }}" class="card-link text-primary" download>Download Tute</a>								
+                                <a href="{{ asset('storage/app/public/'. $Tute->document) }}" class="card-link text-primary" download>Download Tute</a>								
 							</div>
 						</div>
 					</div>

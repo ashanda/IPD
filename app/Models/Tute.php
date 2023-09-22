@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Tute extends Model
 {
     use HasFactory;
+    protected $casts = [
+        'bid' => 'array', // Cast "bid" attribute to an array
+    ];
 }

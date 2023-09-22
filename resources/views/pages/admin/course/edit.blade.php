@@ -12,7 +12,7 @@
 							</div>
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+									<li class="breadcrumb-item"><a href="{{ currentHome() }}">Home</a></li>
 									<li class="breadcrumb-item active" aria-current="page">Edit Course</li>
 								</ol>
 							</nav>
@@ -43,16 +43,17 @@
                                     </div>
                                 </div>
                             </div>
-                            
+                          
                           <div class="col-md-2 col-sm-12 mt-20">
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-form-label">Batch</label>
                                     <div class="col-sm-8">
-                                        <select class="selectpicker form-control" name="bid[]" data-style="btn-outline-secondary" multiple>
+                                        <select class="selectpicker form-control" name="bid[]" data-style="btn-outline-secondary" multiple required>
+											
                                             @foreach ($batchData as $batch)
-                                                <option value="{{ $batch->id }}" @if(in_array($batch->id, old('bid', []))) selected @endif>
-                                                    {{ $batch->bname }}
-                                                </option>
+                                                    <option value="{{ $batch->id }}" {{ in_array($batch->id, $findData->bid) || in_array($batch->id, old('bid', [])) ? 'selected' : '' }}>
+                                                        {{ $batch->bname }}
+                                                    </option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -105,10 +106,12 @@
 											<a class="dropdown-item" href="{{ route('course.edit', $batch->id) }}"><i class="dw dw-edit2"></i> Edit</a>
 										</div>
 										<div class="col">
-											<form action="{{ route('course.destroy', $batch->id) }}" method="POST">
+											<form id="delete-form" action="{{ route('course.destroy', $batch->id) }}" method="POST">
 												@csrf
 												@method('DELETE')
-												<button type="submit" class="btn btn-link"><i class="dw dw-delete-3"></i> Delete</button>
+												<button type="button" class="btn btn-link" onclick="showDeleteConfirmation()">
+													<i class="dw dw-delete-3"></i> Delete
+												</button>
 											</form>
 										</div>
 									</div>
@@ -125,4 +128,23 @@
  @endsection           
  @section('scripts')
  <script src="{{ asset('vendors/scripts/advanced-components.js')}}"></script>
- @endsection
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+    // Function to show the SweetAlert confirmation dialog
+    function showDeleteConfirmation() {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'You will not be able to recover this course!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'Cancel'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // If the user confirms, submit the form for batch deletion
+                document.getElementById('delete-form').submit();
+            }
+        });
+    }
+</script>
+ @endsection 

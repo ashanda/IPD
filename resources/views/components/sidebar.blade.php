@@ -76,7 +76,7 @@
 								</a>
 								<ul class="submenu child">
 									<li><a href="{{ route('course-work.index') }}">Add Course Work</a></li>
-									<li><a href="javascript:;">Student Submitted Course Work</a></li>
+									{{-- <li><a href="javascript:;">Student Submitted Course Work</a></li> --}}
 								</ul>
 							</li>
                             <li class="dropdown">
@@ -127,11 +127,11 @@
 									Add Expense
 								</a>
                             </li> 
-                            <li>
+                            {{-- <li>
                                 <a href="javascript:;" class="dropdown-toggle no-arrow">
 									Payment Report
 								</a>
-                            </li>   
+                            </li>    --}}
 						</ul>
 					</li>
 
@@ -170,7 +170,7 @@
 								</a>
 								<ul class="submenu child">
 									<li><a href="{{ route('course-work.index') }}">Add Course Work</a></li>
-									<li><a href="javascript:;">Student Submitted Course Work</a></li>
+									
 								</ul>
 							</li>
                             <li class="dropdown">

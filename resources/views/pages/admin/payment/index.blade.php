@@ -12,7 +12,7 @@
 							</div>
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+									<li class="breadcrumb-item"><a href="{{ currentHome() }}">Home</a></li>
 									<li class="breadcrumb-item active" aria-current="page">Payment</li>
 								</ol>
 							</nav>
@@ -46,7 +46,7 @@
 									<td class="table-plus">
 										 <a href="#" class="btn-block check-button" data-toggle="modal" data-target="#bd-example-modal-lg" type="button"
 										data-pid="{{ $usersWithPayment->id }}"
-										data-slip="{{ asset('storage/' . $usersWithPayment->file_name) }}"
+										data-slip="{{ asset('storage/app/public/' . $usersWithPayment->file_name) }}"
 										data-amount="{{ $usersWithPayment->amount }}">
 											Check
 										</a>
@@ -56,7 +56,7 @@
                                     <td class="table-plus">
                                         <ul>
                                             
-                                             @foreach(json_decode($usersWithPayment->batch) as $item)
+                                             @foreach(json_decode($usersWithPayment->batch_id) as $item)
 												<li>{{ getBatch($item)->bname }}</li>
 											 @endforeach
                                             
@@ -75,10 +75,12 @@
                                     
                                     <td>
 									
-											<form action="{{ route('tute.destroy', $usersWithPayment->id) }}" method="POST">
+											<form id="delete-form" action="{{ route('payment.destroy', $usersWithPayment->id) }}" method="POST">
 												@csrf
 												@method('DELETE')
-												<button type="submit" class="btn btn-link"><i class="dw dw-delete-3"></i> Delete</button>
+												<button type="button" class="btn btn-link" onclick="showDeleteConfirmation()">
+													<i class="dw dw-delete-3"></i> Delete
+												</button>
 											</form>
 									
 									</td>
@@ -160,17 +162,39 @@
 
 		
 			$(document).ready(function() {
-    $('.check-button').click(function() {
+    // Use event delegation on a parent element that's always present in the DOM
+    $('tbody').on('click', '.check-button', function() {
         var slip = $(this).data('slip');
-		var pid = $(this).data('pid');
+        var pid = $(this).data('pid');
         var amount = $(this).data('amount');
-        
+
         // Set the 'src' attribute of the image element with the retrieved 'data-slip' value
         $('#modal-image').attr('src', slip);
-		$('#modal-pid').val(pid);
+        $('#modal-pid').val(pid);
         $('#modal-amount').val(amount);
     });
 });
  </script>		
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+		<script>
+			// Function to show the SweetAlert confirmation dialog
+			function showDeleteConfirmation() {
+				Swal.fire({
+					title: 'Are you sure?',
+					text: 'You will not be able to recover this payment!',
+					icon: 'warning',
+					showCancelButton: true,
+					confirmButtonText: 'Yes, delete it!',
+					cancelButtonText: 'Cancel'
+				}).then((result) => {
+					if (result.isConfirmed) {
+						// If the user confirms, submit the form for batch deletion
+						document.getElementById('delete-form').submit();
+					}
+				});
+			}
+	</script>
+
 
  @endsection

@@ -76,7 +76,7 @@ class CourseWorkController extends Controller
 
         // Convert selected batch IDs to a JSON array
         $batchIds = $request->input('bid', []);
-        $coursework->bid = json_encode($batchIds);
+        $coursework->bid = $batchIds;
 
         $coursework->save();
         
@@ -140,12 +140,13 @@ class CourseWorkController extends Controller
                 $coverPath = $request->file('document')->store('course_work', 'public');
                 $coursework->document = $coverPath;
             }
-
+             $batchIds = $request->input('bid', []);
+             $coursework->bid = $batchIds;
             // Save the updated coursework
             $coursework->save();
 
             // Update the associations with batches
-            $batchIds = $request->input('bid', []);
+           
             
             toast('Course Work Update successfully', 'success');
             return redirect()->route('course-work.index')->with('success', 'Lesson updated successfully.');

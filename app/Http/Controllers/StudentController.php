@@ -114,13 +114,14 @@ class StudentController extends Controller
             $documentPath = $request->file('document')->store('documents', 'public'); // Modify the storage path as needed
             $student->document = $documentPath;
         }
-
+        $batchIds = $request->input('bid', []);
+        $student->batch = json_encode($batchIds);
         // Save the student
         $student->save();
 
         // Sync the batches
-        $batches = $request->input('bid', []);
-        // $student->batches()->sync($batches);
+      
+
 
         // Display a success toast and redirect to the student index page
         toast('Student updated successfully', 'success');
