@@ -596,7 +596,7 @@ Function certificateStatus($id){
 
 
 Function newlesson(){
-	$current_date = Carbon::now();
+	$current_date = Carbon::now()->format('Y-m-d');
 	$userBatchArray = json_decode(auth::user()->batch, true);
     $data = Lesson::whereJsonContains('bid', $userBatchArray)
         ->where('status', 1)
@@ -607,7 +607,7 @@ Function newlesson(){
 }
 
 Function newcoursework(){
-	$current_date = Carbon::now();
+	$current_date = Carbon::now()->format('Y-m-d');
 $userBatchArray = json_decode(auth::user()->batch, true);
     $data = CourseWork::whereJsonContains('bid', $userBatchArray)
         ->where('status', 1)
@@ -618,7 +618,7 @@ $userBatchArray = json_decode(auth::user()->batch, true);
 }
 
 Function newtute(){
-	$current_date = Carbon::now();
+	$current_date = Carbon::now()->format('Y-m-d');
 $userBatchArray = json_decode(auth::user()->batch, true);
     $data = Tute::whereJsonContains('bid', $userBatchArray)
         ->where('status', 1)
@@ -629,7 +629,7 @@ $userBatchArray = json_decode(auth::user()->batch, true);
 }
 
 Function newexam(){
-	$current_date = Carbon::now();
+	$current_date = Carbon::now()->format('Y-m-d');
 $userBatchArray = json_decode(auth::user()->batch, true);
     $data1 = McqExam::whereJsonContains('bid', $userBatchArray)
         ->where('status', 1)
