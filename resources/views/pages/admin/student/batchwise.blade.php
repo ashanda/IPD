@@ -4,7 +4,7 @@
 <div class="main-container">
     <div class="pd-ltr-20 xs-pd-20-10">
         <div class="min-height-200px">
-        <div class="page-header">
+            <div class="page-header">
                 <div class="row">
                     <div class="col-md-6 col-sm-12">
                         <div class="title">
@@ -35,7 +35,7 @@
                 </div>
                 <div class="pb-20">
                     <table class="data-table table stripe hover nowrap">
-                    <thead>
+                        <thead>
                             <tr>
                                 <th class="table-plus datatable-nosort">Student name</th>
                                 <th>Email</th>
@@ -48,14 +48,14 @@
                         <tbody>
                             @foreach ($students as $student)
                             <tr data-batches="{{ json_encode($student->batch) }}">
-                            <td class="table-plus">{{ $student->fname.' '.$student->lname }}</td>
+                                <td class="table-plus">{{ $student->fname.' '.$student->lname }}</td>
                                 <td class="table-plus">{{ $student->email }}</td>
-                                <td class="table-plus">{{ $student->batch_name }}</td> 
+                                <td class="table-plus">{{ $student->batch_name }}</td>
                                 <td class="table-plus">{{ $student->contact_number }}</td>
 
 
                                 @if ($student->status === 1)
-                                <td><span class="badge badge-success">Plublish</span></td>
+                                <td><span class="badge badge-success">Publish</span></td>
                                 @else
                                 <td><span class="badge badge-warning">Unplublish</span></td>
                                 @endif
@@ -87,17 +87,16 @@
 @section('scripts')
 <script src="{{ asset('vendors/scripts/advanced-components.js')}}"></script>
 <script>
-$(document).ready(function () {
-    $('#batchFilter').on('change', function () {
-        const selectedBatch = $(this).val();
+    $(document).ready(function() {
+        $('#batchFilter').on('change', function() {
+            const selectedBatch = $(this).val();
 
-        $('table.data-table tbody tr').each(function () {
-            const studentBatches = JSON.parse($(this).data('batches'));
-            const shouldShow = selectedBatch === '' || studentBatches.includes(parseInt(selectedBatch));
-            $(this).toggle(shouldShow);
+            $('table.data-table tbody tr').each(function() {
+                const studentBatches = JSON.parse($(this).data('batches'));
+                const shouldShow = selectedBatch === '' || studentBatches.includes(parseInt(selectedBatch));
+                $(this).toggle(shouldShow);
+            });
         });
     });
-});
-
 </script>
 @endsection

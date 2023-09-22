@@ -24,47 +24,43 @@
                         <form action="{{ route('notice.store') }}" method="POST">
                             @csrf
 					<div class="row">
-                        
-                            <div class="col-md-12 col-sm-12 mt-20">
-                                <div class="form-group row">
-                                    <label class="col-sm-12 col-md-2 col-form-label">Notice</label>
-                                    <div class="col-sm-12 col-md-10">
-                                       
-                                        <input class="form-control" type="text" name="notice"  required>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                           
-                        </div>
 
-                        <div class="row">
-                              <div class="col-md-4 col-sm-12 mt-20">
-                                <div class="form-group row">
-                                    <label class="col-sm-4 col-form-label">Batch</label>
-                                    <div class="col-sm-8">
-                                        <select class="selectpicker form-control" name="bid[]" data-style="btn-outline-secondary" multiple>
-                                            @foreach ($batchData as $batch)
-                                                <option value="{{ $batch->id }}">{{ $batch->bname }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-12 mt-20">
-                                <div class="form-group row">
-                                    <label class="col-sm-4 col-form-label">Expire Date</label>
-                                    <div class="col-sm-8">
-                                        <input class="form-control date-picker" name="expire_date" placeholder="Select Date" type="text" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-12 text-right">
-                                <div class="dropdown">
-                                    <button type="submit" class="btn btn-primary dropdown-toggle no-arrow">Add Notice</button>
-                                </div>
-                            </div>
-                        
+						<div class="col-md-12 col-sm-12 mt-20">
+							<div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">Notice</label>
+								<div class="col-sm-12 col-md-10">
+
+									<input class="form-control" type="text" name="notice" required>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-5 col-sm-12 mt-20">
+							<div class="form-group row">
+								<label class="col-sm-4 col-form-label">Batch</label>
+								<div class="col-sm-8">
+									<select class="selectpicker form-control" name="bid[]" data-style="btn-outline-secondary" multiple>
+										@foreach ($batchData as $batch)
+										<option value="{{ $batch->id }}">{{ $batch->bname }}</option>
+										@endforeach
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4 col-sm-12 mt-20">
+							<div class="form-group row">
+								<label class="col-sm-4 col-form-label">Expire Date</label>
+								<div class="col-sm-8">
+									<input class="form-control date-picker" name="expire_date" placeholder="Select Date" type="text" required>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3 col-sm-12 text-right">
+							<div class="dropdown">
+								<button type="submit" class="btn btn-primary dropdown-toggle no-arrow">Add Notice</button>
+							</div>
+						</div>
+
 
 					</div>
                     </form>
@@ -116,21 +112,21 @@
 									</div>
 								</td>
 
-								</tr>
-								@endforeach
-							
-							
-							
-							
-							
-						
-						
-						
-							</tbody>
-						</table>
-					</div>
+							</tr>
+							@endforeach
+
+
+
+
+
+
+
+
+						</tbody>
+					</table>
 				</div>
 			</div>
+		</div>
 
  @endsection           
 @section('scripts')
@@ -153,6 +149,6 @@
 				});
 			}
 	</script>
-
 @endsection
- 
+
+		@endsection

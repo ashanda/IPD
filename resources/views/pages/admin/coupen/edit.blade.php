@@ -28,8 +28,8 @@
                         
                             <div class="col-md-4 col-sm-12 mt-20">
                                 <div class="form-group row">
-                                    <label class="col-sm-12 col-md-2 col-form-label">Coupon</label>
-                                    <div class="col-sm-12 col-md-10">
+                                    <label class="col-sm-12 col-md-3 col-form-label">Coupen</label>
+                                    <div class="col-sm-12 col-md-9">
                                         
                                         <input class="form-control" type="text" name="coupen" value="{{ $findData->coupon_code }}" required readonly>
                                     </div>
@@ -37,8 +37,8 @@
                             </div>
                             <div class="col-md-4 col-sm-12 mt-20">
                                 <div class="form-group row">
-                                    <label class="col-sm-12 col-md-2 col-form-label">Percentage</label>
-                                    <div class="col-sm-12 col-md-10">
+                                    <label class="col-sm-12 col-md-3 col-form-label">Percentage</label>
+                                    <div class="col-sm-12 col-md-9">
                                         <input class="form-control" type="number" step="0" min="10" name="amount" value="{{ $findData->percentage }}" required>
                                     </div>
                                 </div>
@@ -65,8 +65,8 @@
                         <div class="row">
                             <div class="col-md-6 col-sm-12 mt-20">
                                 <div class="form-group row">
-                                    <label class="col-sm-4 col-form-label">Valid Date</label>
-                                    <div class="col-sm-8">
+                                    <label class="col-sm-2 col-form-label">Valid Date</label>
+                                    <div class="col-sm-10">
                                         <input class="form-control date-picker" name="valid_date" value="{{ $findData->valid_date }}"  type="text" required>
                                     </div>
                                 </div>

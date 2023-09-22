@@ -27,8 +27,8 @@
                         
                             <div class="col-md-4 col-sm-12 mt-20">
                                 <div class="form-group row">
-                                    <label class="col-sm-12 col-md-2 col-form-label">Coupon</label>
-                                    <div class="col-sm-12 col-md-10">
+                                    <label class="col-sm-12 col-md-3 col-form-label">Coupen</label>
+                                    <div class="col-sm-12 col-md-9">
                                         @php
                                             $uniqueString = generateRandomString(10);
                                         @endphp
@@ -38,16 +38,16 @@
                             </div>
                             <div class="col-md-4 col-sm-12 mt-20">
                                 <div class="form-group row">
-                                    <label class="col-sm-12 col-md-2 col-form-label">Percentage</label>
-                                    <div class="col-sm-12 col-md-10">
+                                    <label class="col-sm-12 col-md-3 col-form-label">Percentage</label>
+                                    <div class="col-sm-12 col-md-9">
                                         <input class="form-control" type="number" step="0" min="10" name="amount" required>
                                     </div>
                                 </div>
                             </div>
                              <div class="col-md-4 col-sm-12 mt-20">
                                 <div class="form-group row">
-                                    <label class="col-sm-4 col-form-label">Batch</label>
-                                    <div class="col-sm-8">
+                                    <label class="col-sm-3 col-form-label">Batch</label>
+                                    <div class="col-sm-9">
                                         <select class="selectpicker form-control" name="bid[]" data-style="btn-outline-secondary" multiple>
                                             @foreach ($batchData as $batch)
                                                 <option value="{{ $batch->id }}">{{ $batch->bname }}</option>
@@ -61,8 +61,8 @@
                         <div class="row">
                             <div class="col-md-6 col-sm-12 mt-20">
                                 <div class="form-group row">
-                                    <label class="col-sm-4 col-form-label">Valid Date</label>
-                                    <div class="col-sm-8">
+                                    <label class="col-sm-2 col-form-label">Valid Date</label>
+                                    <div class="col-sm-10">
                                         <input class="form-control date-picker" name="valid_date" placeholder="Select Date" type="text" required>
                                     </div>
                                 </div>

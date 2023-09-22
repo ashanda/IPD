@@ -57,62 +57,64 @@
                             </div>
 					     </div>
 
-						 <div class="row">
-							<div class="col-md-6 col-sm-12 mt-20">
-                                <div class="form-group row">
-                                    <label class="col-sm-12 col-md-2 col-form-label">Video Link</label>
-                                    <div class="col-sm-12 col-md-10">
-                                        <input class="form-control" type="text" name="vlink"  required>
-                                    </div>
-                                </div>
-                            </div>
-							<div class="col-md-3 col-sm-12 mt-20">
-                                <div class="form-group row">
-                                    <label class="col-sm-4 col-form-label">Start time</label>
-                                    <div class="col-sm-8">
-                                        <input class="form-control time-picker td-input" placeholder="Select time" name="start_time" type="text" readonly="" required>
-                                    </div>
-                                </div>
-                            </div>
-							<div class="col-md-3 col-sm-12 mt-20">
-                                <div class="form-group row">
-                                    <label class="col-sm-4 col-form-label">End time</label>
-                                    <div class="col-sm-8">
-                                        <input class="form-control time-picker td-input" placeholder="Select time"  name="end_time" type="text" readonly="" required>
-                                    </div>
-                                </div>
-                            </div>
-						 </div>
+					<div class="row">
+						<div class="col-md-6 col-sm-12 mt-20">
+							<div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">Video Link</label>
+								<div class="col-sm-12 col-md-10">
+									<input class="form-control" type="text" name="vlink" required>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3 col-sm-12 mt-20">
+							<div class="form-group row">
+								<label class="col-sm-4 col-form-label">Start time</label>
+								<div class="col-sm-8">
+									<input class="form-control time-picker td-input" placeholder="Select time" name="start_time" type="text" readonly="" required>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3 col-sm-12 mt-20">
+							<div class="form-group row">
+								<label class="col-sm-4 col-form-label">End time</label>
+								<div class="col-sm-8">
+									<input class="form-control time-picker td-input" placeholder="Select time" name="end_time" type="text" readonly="" required>
+								</div>
+							</div>
+						</div>
+					</div>
 
-						 <div class="row">
-                            <div class="col-md-4 col-sm-12 mt-20">
-                                <div class="form-group row">
-                                    <label class="col-sm-4 col-form-label">Status</label>
-                                    <div class="col-sm-8">
-                                        <select class="custom-select form-control" name="status" required>
-                                            <option value="1">Publish</option>
-                                            <option value="2">Unpublish</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-							<div class="col-md-4 col-sm-12 mt-20">
-                            <div class="form-group row">
-							
+					<div class="row">
+						<div class="col-md-4 col-sm-12 mt-20">
+							<div class="form-group row">
+								<label class="col-sm-3 col-form-label">Status</label>
+								<div class="col-sm-9">
+									<select class="custom-select form-control" name="status" required>
+										<option value="1">Publish</option>
+										<option value="2">Unpublish</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-5 col-sm-12 mt-20">
+							<div class="form-group row">
+
 								<label class="col-sm-4 col-form-label">Cover</label>
 								<div class="col-sm-8">
-								<input type="file" class="custom-file-input" name="cover" required>
-								<label class="custom-file-label">Choose file</label>
+									<div class="custom-file">
+										<input type="file" class="custom-file-input" name="cover" required>
+										<label class="custom-file-label">Choose file</label>
+									</div>
 								</div>
-						
+
 							</div>
-                            </div>
-                            <div class="col-md-4 col-sm-12 text-right">
-                                <div class="dropdown">
-                                    <button type="submit" class="btn btn-primary dropdown-toggle no-arrow">Add Lesson</button>
-                                </div>
-                            </div>
-                        
+						</div>
+						<div class="col-md-3 col-sm-12 text-right">
+							<div class="dropdown">
+								<button type="submit" class="btn btn-primary dropdown-toggle no-arrow">Add Lesson</button>
+							</div>
+						</div>
+
 
 					</div>
                     </form>
@@ -178,13 +180,13 @@
 									</div>
 								</td>
 
-								</tr>
-								@endforeach
-							</tbody>
-						</table>
-					</div>
+							</tr>
+							@endforeach
+						</tbody>
+					</table>
 				</div>
 			</div>
+		</div>
 
  @endsection           
  @section('scripts')

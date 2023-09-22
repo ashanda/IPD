@@ -146,7 +146,7 @@
             var couponInput = document.getElementById("couponInput");
 
             if (checkbox.checked) {
-                couponInput.style.display = "block";
+                couponInput.style.display = "flex";
             } else {
                 couponInput.style.display = "none";
             }

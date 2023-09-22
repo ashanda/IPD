@@ -43,10 +43,10 @@
                             <tr>
                                 <td class="table-plus">{{ $student->fname.' '.$student->lname }}</td>
                                 <td class="table-plus">{{ $student->email }}</td>
-                                <td class="table-plus">{{ $student->batch_name }}</td>                              
+                                <td class="table-plus">{{ $student->batch_name }}</td>
                                 <td class="table-plus">{{ $student->contact_number }}</td>
                                 @if ($student->status === 1)
-                                <td><span class="badge badge-success">Plublish</span></td>
+                                <td><span class="badge badge-success">Publish</span></td>
                                 @else
                                 <td><span class="badge badge-warning">Unplublish</span></td>
                                 @endif

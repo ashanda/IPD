@@ -85,17 +85,19 @@
 
 					<div class="row">
 
-						<div class="col-md-8 col-sm-12 mt-20">
+						<div class="col-md-6 col-sm-12 mt-20">
 							<div class="form-group row">
 
 								<label class="col-sm-3 col-form-label">Cover</label>
 								<div class="col-sm-9">
-									<input type="file" class="custom-file-input" name="cover" required>
-									<label class="custom-file-label">Choose file</label>
+									<div class="custom-file">
+										<input type="file" class="custom-file-input" name="cover" required>
+										<label class="custom-file-label">Choose file</label>
+									</div>
 								</div>
 							</div>
 						</div>
-						<div class="col-md-4 col-sm-12 text-right">
+						<div class="col-md-6 col-sm-12 text-right">
 							<div class="dropdown">
 								<button type="submit" class="btn btn-primary dropdown-toggle no-arrow">Add Workshop</button>
 							</div>
@@ -134,12 +136,11 @@
 								<td class="table-plus">{{ $batch->end_time }}</td>
 
 								@if ($batch->status === 1)
-								<td><span class="badge badge-success">Plublish</span></td>
+								<td><span class="badge badge-success">Publish</span></td>
 								@else
 								<td><span class="badge badge-warning">Unplublish</span></td>
 								@endif
-								<td>
-								<td class="table-plus"></td>
+
 								<td>
 									<div class="row">
 										<div class="col">

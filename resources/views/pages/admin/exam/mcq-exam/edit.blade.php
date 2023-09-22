@@ -75,13 +75,13 @@
                             </div>
                             
 
-                               
-                            <div class="col-md-3 col-sm-12 text-right">
-                                <div class="dropdown">
-                                    <button type="submit" class="btn btn-primary dropdown-toggle no-arrow">Update MCQ Exam</button>
-                                </div>
+
+                        <div class="col-md-4 col-sm-12 text-right">
+                            <div class="dropdown">
+                                <button type="submit" class="btn btn-primary dropdown-toggle no-arrow">Update MCQ Exam</button>
                             </div>
-                        
+                        </div>
+
 
 					    </div>
                     </form>
@@ -136,13 +136,13 @@
 									</div>
 								</td>
 
-								</tr>
-								@endforeach
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
 
  @endsection           
  @section('scripts')

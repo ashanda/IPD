@@ -49,47 +49,46 @@
                             </div>
 					     </div>
 
-						 <div class="row">
-							<div class="col-md-6 col-sm-12 mt-20">
-                                <div class="form-group row">
-                                    <label class="col-sm-12 col-md-2 col-form-label">Description</label>
-                                    <div class="col-sm-12 col-md-10">
-                                        <input class="form-control" type="text" name="description"  required>
-                                    </div>
-                                </div>
-                            </div>
-							
-						 </div>
-
-						 <div class="row">
-                            <div class="col-md-4 col-sm-12 mt-20">
-                                <div class="form-group row">
-                                    <label class="col-sm-4 col-form-label">Status</label>
-                                    <div class="col-sm-8">
-                                        <select class="custom-select form-control" name="status" required>
-                                            <option value="1">Publish</option>
-                                            <option value="2">Unpublish</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-							<div class="col-md-4 col-sm-12 mt-20">
-                            <div class="form-group row">
-							
-								<label class="col-sm-4 col-form-label">Document</label>
-								<div class="col-sm-8">
-								<input type="file" class="custom-file-input" name="document" required>
-								<label class="custom-file-label">Choose file</label>
+						<div class="col-md-7 col-sm-12 mt-20">
+							<div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">Description</label>
+								<div class="col-sm-12 col-md-10">
+									<input class="form-control" type="text" name="description" required>
 								</div>
-						
 							</div>
-                            </div>
-                            <div class="col-md-4 col-sm-12 text-right">
-                                <div class="dropdown">
-                                    <button type="submit" class="btn btn-primary dropdown-toggle no-arrow">Add Tute</button>
-                                </div>
-                            </div>
-                        
+						</div>
+
+
+						<div class="col-md-5 col-sm-12 mt-20">
+							<div class="form-group row">
+								<label class="col-sm-3 col-form-label">Status</label>
+								<div class="col-sm-9">
+									<select class="custom-select form-control" name="status" required>
+										<option value="1">Publish</option>
+										<option value="2">Unpublish</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-7 col-sm-12 mt-20">
+							<div class="form-group row">
+
+								<label class="col-sm-2 col-form-label">Document</label>
+								<div class="col-sm-10">
+									<div class="custom-file">
+										<input type="file" class="custom-file-input" name="document" required>
+										<label class="custom-file-label">Choose file</label>
+									</div>
+								</div>
+
+							</div>
+						</div>
+						<div class="col-md-5 col-sm-12 text-right">
+							<div class="dropdown">
+								<button type="submit" class="btn btn-primary dropdown-toggle no-arrow">Add Tute</button>
+							</div>
+						</div>
+
 
 					</div>
                     </form>
@@ -149,13 +148,13 @@
 									</div>
 								</td>
 
-								</tr>
-								@endforeach
-							</tbody>
-						</table>
-					</div>
+							</tr>
+							@endforeach
+						</tbody>
+					</table>
 				</div>
 			</div>
+		</div>
 
  @endsection           
  @section('scripts')
