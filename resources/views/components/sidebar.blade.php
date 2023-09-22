@@ -170,7 +170,7 @@
 								</a>
 								<ul class="submenu child">
 									<li><a href="{{ route('course-work.index') }}">Add Course Work</a></li>
-									<li><a href="javascript:;">Student Submitted Course Work</a></li>
+									
 								</ul>
 							</li>
                             <li class="dropdown">

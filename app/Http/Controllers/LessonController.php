@@ -196,6 +196,6 @@ class LessonController extends Controller
 
     // Redirect back or to a different page after deletion
     toast('Lesson Delete successfully', 'success');
-    return redirect()->route('batch.index');
+    return redirect()->route('lesson.index');
     }
 }
