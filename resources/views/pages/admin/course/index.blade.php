@@ -27,16 +27,16 @@
                         
                             <div class="col-md-4 col-sm-12 mt-20">
                                 <div class="form-group row">
-                                    <label class="col-sm-12 col-md-2 col-form-label">Course Name</label>
-                                    <div class="col-sm-12 col-md-10">
+                                    <label class="col-sm-12 col-md-4 col-form-label">Course Name</label>
+                                    <div class="col-sm-12 col-md-8">
                                         <input class="form-control" type="text" name="cname"  required>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-2 col-sm-12 mt-20">
                                 <div class="form-group row">
-                                    <label class="col-sm-12 col-md-2 col-form-label">Fee</label>
-                                    <div class="col-sm-12 col-md-10">
+                                    <label class="col-sm-12 col-md-3 col-form-label">Fee</label>
+                                    <div class="col-sm-12 col-md-9">
                                         <input class="form-control" type="number" min="1000" name="fee"  required>
                                     </div>
                                 </div>

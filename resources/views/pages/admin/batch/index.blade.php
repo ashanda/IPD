@@ -27,16 +27,16 @@
 
 						<div class="col-md-6 col-sm-12 mt-20">
 							<div class="form-group row">
-								<label class="col-sm-12 col-md-2 col-form-label">Batch Name</label>
-								<div class="col-sm-12 col-md-10">
+								<label class="col-sm-12 col-md-3 col-form-label">Batch Name</label>
+								<div class="col-sm-12 col-md-9">
 									<input class="form-control" type="text" name="bname" placeholder="Don't use same batch name" required>
 								</div>
 							</div>
 						</div>
 						<div class="col-md-3 col-sm-12 mt-20">
 							<div class="form-group row">
-								<label class="col-sm-12 col-md-2 col-form-label">Status</label>
-								<div class="col-sm-12 col-md-10">
+								<label class="col-sm-12 col-md-3 col-form-label">Status</label>
+								<div class="col-sm-12 col-md-9">
 									<select class="custom-select form-control" name="status" required>
 										<option value="Publish">Publish</option>
 										<option value="Unpublish">Unpublish</option>
