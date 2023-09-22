@@ -34,10 +34,10 @@
 									<input type="radio" id="bank_coupen" value="bank_coupen" name="customRadio" class="custom-control-input">
 									<label class="custom-control-label" for="bank_coupen">I have a Coupen Code</label>
 								</div>
-								<div class="custom-control custom-radio mb-5">
+								{{-- <div class="custom-control custom-radio mb-5">
 									<input type="radio" id="online" value="Online" name="customRadio" class="custom-control-input">
 									<label class="custom-control-label" for="online">Online</label>
-								</div>
+								</div> --}}
 								
 							</div>
 							</div>

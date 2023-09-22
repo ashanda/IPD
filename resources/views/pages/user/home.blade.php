@@ -235,8 +235,10 @@
 				<div class="col-xl-8 mb-30">
 					<div class="card-box height-100-p pd-20">
 						<h2 class="h4 mb-20">Payment</h2>
-						<div class="row">		
+						<div class="row">
+				
 					<div class="col-md-7 pl-10">
+						@if (paymentCheck() == 0)
 						<form method="POST" action="{{ route('paycourse') }}" enctype="multipart/form-data">
 							@csrf
 						<div class="form-group">
@@ -245,8 +247,8 @@
 							<input name="course_id" value="{{ $course->id}}" type="hidden">
 						</div>
 						
-	
-
+						
+							
 
 						<div class="form-group">
 							<div class="row">
@@ -260,10 +262,10 @@
 									<input type="radio" id="bank_coupen" value="bank_coupen" name="customRadio" class="custom-control-input">
 									<label class="custom-control-label" for="bank_coupen">I have a Coupen Code</label>
 								</div>
-								<div class="custom-control custom-radio mb-5">
+								{{-- <div class="custom-control custom-radio mb-5">
 									<input type="radio" id="online" value="Online" name="customRadio" class="custom-control-input">
 									<label class="custom-control-label" for="online">Online</label>
-								</div>
+								</div> --}}
 								
 							</div>
 							</div>
@@ -278,11 +280,16 @@
 							<button type="submit" class="btn btn-primary">Click and Pay</button>
 						</div>
 					</form>
+					@else
+
+						<h3>No more payments</h3>
+
+					@endif
 					</div>
 					<div class="col-md-5">
 						<P id="bankField">සාමාන්‍ය පන්ති ගාස්තු ගෙවූ දරුවන් පමණක් බැංකු රිසිට් පත මෙතනින් upload කරන්න. පන්ති ගාස්තු සදහා සහන (Discounts/Offers) ලැබූ සිසුන් එම bank receipt පත 0123456789 අංකයට නම , LMS NAME එකෙහි register වූ දුරකතන අංකය , විෂය සහ ගුරුවරයා , ඒ ඒ විෂයට ගෙවූ ගාස්තුව වෙන වෙනම සදහන් කර WhatsApp කරන්න.සාමාන්‍ය පන්ති ගාස්තු ගෙවන දරුවන් සම්බන්ධ වන විෂයන් ඉදිරියේ හරි ලකුණු යොදා (click on the relevant tick box) මෙහි bank receipt පතෙහි photo එකක් හෝ screenshot එකක් upload කරන්න. (Pdf file upload කල නොහැක)</P>
 					</div>
-
+					
 					</div>
 					</div>
 				</div>
