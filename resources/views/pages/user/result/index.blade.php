@@ -42,12 +42,13 @@
                                         <td class="table-plus">{{ 'Instructor not update' }}</td>
                                     @else
                                         <td class="table-plus">
-@if ($result->total_question > 0)
-    {{ ($result->marks / $result->total_question) * 100 }}
-@else
-    <!-- Handle the case where total_question is zero -->
-   {{ '-' }}
-@endif</td>
+                                          
+                                    @if ($result->total_question != null)
+                                        {{ ($result->marks / $result->total_question) * 100 }}
+                                    @else
+                                        <!-- Handle the case where total_question is zero -->
+                                      {{ $result->marks }}
+                                    @endif</td>
                                     @endif
 									
 									<td>{{ $result->type }}</td>
