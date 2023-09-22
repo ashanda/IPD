@@ -66,6 +66,7 @@ class RegisterController extends Controller
             'dob' => ['required'],
             'batch' => ['required'],
             'address' => ['required'],
+            'coupen_code' => ['max:255']
             
         ]);
     }
@@ -90,6 +91,7 @@ class RegisterController extends Controller
             'batch' =>  json_encode([$data['batch']]),
             'address' => $data['address'],
             'email' => $data['email'],
+            'coupen_code' => $data['coupen_code'],
             'password' => Hash::make($data['contact_number']),
         ]);
     }
@@ -108,7 +110,7 @@ class RegisterController extends Controller
 
         // Redirect the user to the specified $redirectTo route (usually the home page)
         return redirect($this->redirectTo);
-      
+     
     }
 
     

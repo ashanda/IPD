@@ -33,7 +33,7 @@
                                 <p class="card-text">End Time : {{$verbal->end_time}}</p>
 								 <a href="{{ $verbal->vlink }}" target="_blank" class="card-link text-primary">Video Link</a>	
 								 @if ($verbal->document != null)
-									<a href="{{ asset('storage/' . $verbal->document) }}" class="card-link text-primary" download>Download File</a>	
+									<a href="{{ asset('storage/app/public/'. $verbal->document) }}" class="card-link text-primary" download>Download File</a>	
 								 @endif
 
 								@if ( examcheck($verbal->id,'verbal Test') < 1 )
