@@ -122,7 +122,7 @@
 									<li>{{ 'No activity' }}</li>
 								@endif
 
-							<hr>
+							
 
 								</ul>
 							</div>
