@@ -106,30 +106,47 @@
 	</div>
 	@endsection
 
-@section('scripts')
-    <script>
-    $(document).ready(function() {
-        // Initially hide the email input field
-        $("#email").hide();
-        $("#email").removeAttr("required"); // Remove 'required' attribute
-        $("#forget").hide();
-        // Hide the contact_number input field initially (since "I'm Student" is selected by default)
-        $("#contact_number").show();
-		$("#forget").show();
-        $("#contact_number").attr("required", "required"); // Add 'required' attribute
+	@section('scripts')
+	<script>
+		$(document).ready(function() {
+			// Initially hide the email input field
+			$("#email").hide();
+			$("#email").removeAttr("required"); // Remove 'required' attribute
+			$("#forget").hide();
+			// Hide the contact_number input field initially (since "I'm Student" is selected by default)
+			$("#contact_number").show();
+			$("#forget").show();
+			$("#contact_number").attr("required", "required"); // Add 'required' attribute
 
-        // Listen for radio button changes
-        $("input[type='radio']").change(function() {
-            var targetId = $(this).data("target");
-            // Hide both input fields
-            $("#contact_number, #email, #forget").hide();
-            // Remove 'required' attribute from both input fields
-            $("#contact_number, #email").removeAttr("required");
-            // Show the selected input field
-            $("#" + targetId).show();
-            // Add 'required' attribute to the selected input field
-            $("#" + targetId).attr("required", "required");
-        });
-    });
-</script>
-@endsection
+			// Listen for radio button changes
+			$("input[type='radio']").change(function() {
+				var targetId = $(this).data("target");
+				// Hide both input fields
+				$("#contact_number, #email, #forget").hide();
+				// Remove 'required' attribute from both input fields
+				$("#contact_number, #email").removeAttr("required");
+				// Show the selected input field
+				$("#" + targetId).show();
+				// Add 'required' attribute to the selected input field
+				$("#" + targetId).attr("required", "required");
+			});
+		});
+
+		// password show hide 
+		function password_show_hide() {
+			var x = document.getElementById("password");
+			var show_eye = document.getElementById("show_eye");
+			var hide_eye = document.getElementById("hide_eye");
+			hide_eye.classList.remove("d-none");
+			if (x.type === "password") {
+				x.type = "text";
+				show_eye.style.display = "none";
+				hide_eye.style.display = "block";
+			} else {
+				x.type = "password";
+				show_eye.style.display = "block";
+				hide_eye.style.display = "none";
+			}
+		}
+	</script>
+	@endsection
