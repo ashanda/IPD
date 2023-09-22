@@ -26,6 +26,7 @@ class User extends Authenticatable
         'email',
         'contact_number',
         'dob',
+        'coupen_code',
         'batch',
         'address',
         'password',

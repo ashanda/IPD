@@ -86,6 +86,16 @@
                                                 </select>
 											</div>
 										</div>
+										<div class="custom-control custom-checkbox mt-4">
+											<input class="custom-control-input" type="checkbox" id="customCheck8" onclick="toggleCouponInput()">
+											<label class="custom-control-label" for="customCheck8">I have coupon</label>
+										</div>
+										<div class="form-group row align-items-center" id="couponInput" style="display: none;">
+											<label class="col-sm-4 col-form-label">Coupon</label>
+											<div class="col-sm-8">
+                                               <input class="form-control" placeholder="I have coupon" type="text" name="coupen_code" >
+											</div>
+										</div>
                                         <div class="custom-control custom-checkbox mt-4 d-none">
                                            
 											
@@ -128,4 +138,18 @@
 
     
 
+@endsection
+@section('scripts')
+<script>
+        function toggleCouponInput() {
+            var checkbox = document.getElementById("customCheck8");
+            var couponInput = document.getElementById("couponInput");
+
+            if (checkbox.checked) {
+                couponInput.style.display = "block";
+            } else {
+                couponInput.style.display = "none";
+            }
+        }
+    </script>
 @endsection

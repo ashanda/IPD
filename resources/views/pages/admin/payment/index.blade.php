@@ -46,7 +46,7 @@
 									<td class="table-plus">
 										 <a href="#" class="btn-block check-button" data-toggle="modal" data-target="#bd-example-modal-lg" type="button"
 										data-pid="{{ $usersWithPayment->id }}"
-										data-slip="{{ asset('storage/' . $usersWithPayment->file_name) }}"
+										data-slip="{{ asset('storage/app/public/' . $usersWithPayment->file_name) }}"
 										data-amount="{{ $usersWithPayment->amount }}">
 											Check
 										</a>
@@ -162,14 +162,15 @@
 
 		
 			$(document).ready(function() {
-    $('.check-button').click(function() {
+    // Use event delegation on a parent element that's always present in the DOM
+    $('tbody').on('click', '.check-button', function() {
         var slip = $(this).data('slip');
-		var pid = $(this).data('pid');
+        var pid = $(this).data('pid');
         var amount = $(this).data('amount');
-        
+
         // Set the 'src' attribute of the image element with the retrieved 'data-slip' value
         $('#modal-image').attr('src', slip);
-		$('#modal-pid').val(pid);
+        $('#modal-pid').val(pid);
         $('#modal-amount').val(amount);
     });
 });
