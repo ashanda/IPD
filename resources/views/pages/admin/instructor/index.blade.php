@@ -97,18 +97,20 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-md-5 col-sm-12 mt-20">
+						<div class="col-md-4 col-sm-12 mt-20">
 							<div class="form-group row">
 
 								<label class="col-sm-4 col-form-label">Document</label>
 								<div class="col-sm-8">
+								<div class="custom-file">
 									<input type="file" class="custom-file-input" name="cover" >
 									<label class="custom-file-label">Choose file</label>
+								</div>
 								</div>
 
 							</div>
 						</div>
-						<div class="col-md-3 col-sm-12 text-right">
+						<div class="col-md-4 col-sm-12 text-right">
 							<div class="dropdown">
 								<button type="submit" class="btn btn-primary dropdown-toggle no-arrow">Add Instructor</button>
 							</div>

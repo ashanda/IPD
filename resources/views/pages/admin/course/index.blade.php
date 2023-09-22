@@ -42,7 +42,7 @@
                                 </div>
                             </div>
                             
-                           <div class="col-md-3 col-sm-12 mt-20">
+                           <div class="col-md-4 col-sm-12 mt-20">
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-form-label">Batch</label>
                                     <div class="col-sm-8">

@@ -87,8 +87,8 @@
 						 <div class="row">
                             <div class="col-md-4 col-sm-12 mt-20">
                                 <div class="form-group row">
-                                    <label class="col-sm-4 col-form-label">Status</label>
-                                    <div class="col-sm-8">
+                                    <label class="col-sm-3 col-form-label">Status</label>
+                                    <div class="col-sm-9">
                                         <select class="custom-select form-control" name="status" required>
                                             <option value="1">Publish</option>
                                             <option value="2">Unpublish</option>
@@ -96,18 +96,20 @@
                                     </div>
                                 </div>
                             </div>
-							<div class="col-md-4 col-sm-12 mt-20">
+							<div class="col-md-5 col-sm-12 mt-20">
                             <div class="form-group row">
 							
 								<label class="col-sm-4 col-form-label">Cover</label>
 								<div class="col-sm-8">
+								<div class="custom-file">
 								<input type="file" class="custom-file-input" name="cover" required>
 								<label class="custom-file-label">Choose file</label>
+								</div>
 								</div>
 						
 							</div>
                             </div>
-                            <div class="col-md-4 col-sm-12 text-right">
+                            <div class="col-md-3 col-sm-12 text-right">
                                 <div class="dropdown">
                                     <button type="submit" class="btn btn-primary dropdown-toggle no-arrow">Add Lesson</button>
                                 </div>

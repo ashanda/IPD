@@ -5615,7 +5615,7 @@ body.IE .register-page-wrap .container {
         float: right;
     }
 }
-@media (max-width:768px) {
+@media (min-width:576px) and (max-width:768px) {
     #calendar .fc-today-button.fc-button.fc-button-primary,
     #calendar .fc-button-group {
         float: none;
