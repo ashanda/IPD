@@ -19,6 +19,7 @@
 						</div>
 					</div>
 				</div>
+					<div class="row">
                 @foreach ( $upcomingDataCourseWorks as $CourseWork)
                     <div class="col-lg-3 col-md-6 col-sm-12 mb-30">
 						<div class="card card-box">
@@ -53,7 +54,7 @@
 						</div>
 					</div>
                 @endforeach
-				
+				</div>
 			</div>
 
 
