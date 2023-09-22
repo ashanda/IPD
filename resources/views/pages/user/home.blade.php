@@ -113,6 +113,7 @@
 													</p>
 												</div>
 											</li>
+											<hr />
 										@endforeach
 									@endif
 								@endforeach
