@@ -22,7 +22,7 @@ class WorkshopController extends Controller
         return view('pages.admin.workshop.index',compact('data','batchData'));
         }elseif(Auth::user()->type === 'user'){
             $batch = json_decode(Auth::user()->batch, true);
-            $currentDate = Carbon::now();
+            $currentDate = Carbon::now()->format('Y-m-d');
 
             $upcomingDataCourseWorks = User::join('course_works', function ($join) use ($batch, $currentDate) {
 			$join->on(function ($query) use ($batch) {
@@ -31,7 +31,7 @@ class WorkshopController extends Controller
 				}
 			})
 			->where('users.type', '=', 0)
-			->where('course_works.publish_date', '>', $currentDate)
+			->where('course_works.publish_date', '>=', $currentDate)
 			->where('course_works.status', '=', 1);
 		})
 		->select(
