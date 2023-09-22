@@ -138,7 +138,7 @@
 											<a class="dropdown-item" href="{{ route('tute.edit', $batch->id) }}"><i class="dw dw-edit2"></i> Edit</a>
 										</div>
 										<div class="col">
-											<form action="{{ route('tute.destroy', $batch->id) }}" method="POST">
+											<form id="delete-form" action="{{ route('tute.destroy', $batch->id) }}" method="POST">
 												@csrf
 												@method('DELETE')
 												<button type="submit" class="btn btn-link"><i class="dw dw-delete-3"></i> Delete</button>
