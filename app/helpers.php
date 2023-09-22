@@ -242,7 +242,7 @@ return $upcomingDataLessons;
 function upcoming() {
 	
 $batch = json_decode(Auth::user()->batch, true);
-$currentDate = Carbon::now();
+$currentDate = Carbon::now()->format('Y-m-d');
 
 	$upcomingDataLessons = User::join('lessons', function ($join) use ($batch, $currentDate) {
     $join->on(function ($query) use ($batch) {
@@ -348,7 +348,7 @@ $currentDate = Carbon::now();
 function upcomingins() {
 	
 $batch = json_decode(Auth::user()->batch, true);
-$currentDate = Carbon::now();
+$currentDate = Carbon::now()->format('Y-m-d');
 
 	$upcomingDataLessons = User::join('lessons', function ($join) use ($batch, $currentDate) {
     $join->on(function ($query) use ($batch) {
