@@ -521,7 +521,10 @@ function examcheck($id,$type){
 	return $data;
 }
 
-
+function submissioncheck($exam_id){
+	$data = Submission::where('exam_id', '=', $exam_id)->where('index_number',Auth::user()->index_number)->count();
+	return $data;
+}
 function user_data($id){
  $data = User::where('index_number',$id)->first();
  return $data;

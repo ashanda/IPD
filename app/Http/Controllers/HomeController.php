@@ -124,7 +124,7 @@ class HomeController extends Controller
 
     public function mcqexam(){
         $batch = json_decode(Auth::user()->batch, true);
-        $currentDate = Carbon::now();
+        $currentDate = Carbon::now()->format('Y-m-d');
 
         $upcomingDataMCQExams = User::join('mcq_exams', function ($join) use ($batch, $currentDate) {
             $join->on(function ($query) use ($batch) {
@@ -133,7 +133,7 @@ class HomeController extends Controller
                 }
             })
             ->where('users.type', '=', 0)
-            ->where('mcq_exams.publish_date', '>', $currentDate)
+            ->where('mcq_exams.publish_date', '>=', $currentDate)
             ->where('mcq_exams.status', '=', 1);
         })
         ->join('questions', 'mcq_exams.id', '=', 'questions.exam_id') // Join questions table
@@ -151,7 +151,7 @@ class HomeController extends Controller
     public function paperexam(){
 
         $batch = json_decode(Auth::user()->batch, true);
-        $currentDate = Carbon::now();
+        $currentDate = Carbon::now()->format('Y-m-d');
 
         $upcomingDataPaperExams = User::join('paper_exams', function ($join) use ($batch, $currentDate) {
 			$join->on(function ($query) use ($batch) {
@@ -160,7 +160,7 @@ class HomeController extends Controller
 				}
 			})
 			->where('users.type', '=', 0)
-			->where('paper_exams.publish_date', '>', $currentDate)
+			->where('paper_exams.publish_date', '>=', $currentDate)
 			->where('paper_exams.status', '=', 1);
 		})
 		->select(
@@ -174,7 +174,7 @@ class HomeController extends Controller
 
     public function verbalexam(){
         $batch = json_decode(Auth::user()->batch, true);
-        $currentDate = Carbon::now();
+        $currentDate = Carbon::now()->format('Y-m-d');
         
         $upcomingDataVerbalExams = User::join('verbal_exams', function ($join) use ($batch, $currentDate) {
 			$join->on(function ($query) use ($batch) {
@@ -183,7 +183,7 @@ class HomeController extends Controller
 				}
 			})
 			->where('users.type', '=', 0)
-			->where('verbal_exams.publish_date', '>', $currentDate)
+			->where('verbal_exams.publish_date', '>=', $currentDate)
 			->where('verbal_exams.status', '=', 1);
 		})
 		->select(

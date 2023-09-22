@@ -19,6 +19,7 @@
 						</div>
 					</div>
 				</div>
+					<div class="row">
                 @foreach ( $upcomingDataCourseWorks as $CourseWork)
                     <div class="col-lg-3 col-md-6 col-sm-12 mb-30">
 						<div class="card card-box">
@@ -31,7 +32,7 @@
 								<p class="card-text">Start time : {{$CourseWork->start_time}}</p>
                                 <p class="card-text">End Time : {{$CourseWork->end_time}}</p>
                                 <a href="{{ asset('storage/'. $CourseWork->document) }}" class="card-link text-primary" download>Download File</a>	
-								@if ( examcheck($CourseWork->id,'Course Work') < 1 )
+								@if ( submissioncheck($CourseWork->id) < 1 )
 									<form action="{{ route('submisson') }}" method="POST" enctype="multipart/form-data">
 											@csrf
 											<div class="form-group">
@@ -53,7 +54,7 @@
 						</div>
 					</div>
                 @endforeach
-				
+				</div>
 			</div>
 
 
