@@ -73,7 +73,7 @@
 									</div>
 								</div>
 								<div class="col-6">
-									<div class="forgot-password"><a href="forgot-password.html">Forgot Password</a></div>
+									<div class="forgot-password" id="forget"><a href="{{ route('password.request') }}">Forgot Password</a></div>
 								</div>
 							</div>
 							<div class="row">
@@ -108,16 +108,17 @@
         // Initially hide the email input field
         $("#email").hide();
         $("#email").removeAttr("required"); // Remove 'required' attribute
-
+        $("#forget").hide();
         // Hide the contact_number input field initially (since "I'm Student" is selected by default)
         $("#contact_number").show();
+		$("#forget").show();
         $("#contact_number").attr("required", "required"); // Add 'required' attribute
 
         // Listen for radio button changes
         $("input[type='radio']").change(function() {
             var targetId = $(this).data("target");
             // Hide both input fields
-            $("#contact_number, #email").hide();
+            $("#contact_number, #email, #forget").hide();
             // Remove 'required' attribute from both input fields
             $("#contact_number, #email").removeAttr("required");
             // Show the selected input field
