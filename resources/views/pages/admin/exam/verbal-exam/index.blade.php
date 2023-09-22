@@ -147,7 +147,7 @@
 								@foreach ( $data as $batch)
 								<tr>
 									<td class="table-plus">{{ $batch->title }}</td>
-									<td class="table-plus"> <a href="{{ $batch->document }}" target="blank"><i class="micon dw dw-binocular"></i> </a></td>
+									<td class="table-plus"> <a href="{{ asset('storage/.'$batch->document) }}" target="blank"><i class="micon dw dw-binocular"></i> </a></td>
                                     <td class="table-plus">
                                         <ul>
                                             

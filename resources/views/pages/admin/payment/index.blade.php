@@ -46,7 +46,7 @@
 									<td class="table-plus">
 										 <a href="#" class="btn-block check-button" data-toggle="modal" data-target="#bd-example-modal-lg" type="button"
 										data-pid="{{ $usersWithPayment->id }}"
-										data-slip="{{ asset('storage/app/public/' . $usersWithPayment->file_name) }}"
+										data-slip="{{ asset('storage/' . $usersWithPayment->file_name) }}"
 										data-amount="{{ $usersWithPayment->amount }}">
 											Check
 										</a>

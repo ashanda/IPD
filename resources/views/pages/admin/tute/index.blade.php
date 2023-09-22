@@ -113,7 +113,7 @@
 								@foreach ( $data as $batch)
 								<tr>
 									<td class="table-plus">{{ $batch->title }}</td>
-									<td class="table-plus"> <a href="{{ 'storage/app/public/'.$batch->document }}" target="blank"><i class="micon dw dw-binocular"></i> </a></td>
+									<td class="table-plus"> <a href="{{ asset('storage/'.$batch->document) }}" target="blank"><i class="micon dw dw-binocular"></i> </a></td>
                                     <td class="table-plus">
                                         <ul>
                                             
@@ -137,10 +137,12 @@
 											<a class="dropdown-item" href="{{ route('tute.edit', $batch->id) }}"><i class="dw dw-edit2"></i> Edit</a>
 										</div>
 										<div class="col">
-											<form action="{{ route('tute.destroy', $batch->id) }}" method="POST">
+											<form id="delete-form" action="{{ route('tute.destroy', $batch->id) }}" method="POST">
 												@csrf
 												@method('DELETE')
-												<button type="submit" class="btn btn-link"><i class="dw dw-delete-3"></i> Delete</button>
+												<button type="button" class="btn btn-link" onclick="showDeleteConfirmation()">
+													<i class="dw dw-delete-3"></i> Delete
+												</button>
 											</form>
 										</div>
 									</div>
