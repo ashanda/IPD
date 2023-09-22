@@ -30,7 +30,7 @@
 							<div class="card-body">
 								<p class="card-text">Start time : {{$CourseWork->start_time}}</p>
                                 <p class="card-text">End Time : {{$CourseWork->end_time}}</p>
-                                <a href="{{ asset('storage/app/public/'. $CourseWork->document) }}" class="card-link text-primary" download>Download File</a>	
+                                <a href="{{ asset('storage/'. $CourseWork->document) }}" class="card-link text-primary" download>Download File</a>	
 								@if ( examcheck($CourseWork->id,'Course Work') < 1 )
 									<form action="{{ route('submisson') }}" method="POST" enctype="multipart/form-data">
 											@csrf

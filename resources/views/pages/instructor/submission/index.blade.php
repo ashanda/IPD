@@ -22,7 +22,7 @@
             <tr>
                 <td class="table-plus">{{ user_data($data_row->index_number)->fname .' '.user_data($data_row->index_number)->lname }}</td>
                 <td>{{ $data_row->marks }}</td>
-                <td><a href="{{ $data_row->document }}" target="_blank"><i class="micon dw dw-binocular"></i></a></td>
+                <td><a href="{{ asset('storage/'.$data_row->document) }}" target="_blank"><i class="micon dw dw-binocular"></i></a></td>
                 <td>
                     <!-- Button to trigger the update modal -->
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updateModal{{ $data_row->id }}">Update</button>
