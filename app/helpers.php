@@ -600,7 +600,7 @@ Function newlesson(){
 	$userBatchArray = json_decode(auth::user()->batch, true);
     $data = Lesson::whereJsonContains('bid', $userBatchArray)
         ->where('status', 1)
-        ->where('publish_date', '>', $current_date)
+        ->where('publish_date', '>=', $current_date)
         ->count();
 
     return $data;
@@ -611,7 +611,7 @@ Function newcoursework(){
 $userBatchArray = json_decode(auth::user()->batch, true);
     $data = CourseWork::whereJsonContains('bid', $userBatchArray)
         ->where('status', 1)
-        ->where('publish_date', '>', $current_date)
+        ->where('publish_date', '>=', $current_date)
         ->count();
 
     return $data;
@@ -622,7 +622,7 @@ Function newtute(){
 $userBatchArray = json_decode(auth::user()->batch, true);
     $data = Tute::whereJsonContains('bid', $userBatchArray)
         ->where('status', 1)
-        ->where('created_at', '>', $current_date)
+        ->where('created_at', '>=', $current_date)
         ->count();
 
     return $data;
@@ -633,17 +633,17 @@ Function newexam(){
 $userBatchArray = json_decode(auth::user()->batch, true);
     $data1 = McqExam::whereJsonContains('bid', $userBatchArray)
         ->where('status', 1)
-        ->where('publish_date', '>', $current_date)
+        ->where('publish_date', '>=', $current_date)
         ->count();
 
     $data2 = PaperExam::whereJsonContains('bid', $userBatchArray)
         ->where('status', 1)
-        ->where('publish_date', '>', $current_date)
+        ->where('publish_date', '>=', $current_date)
         ->count();
 
     $data3 = VerbalExam::whereJsonContains('bid', $userBatchArray)
         ->where('status', 1)
-        ->where('publish_date', '>', $current_date)
+        ->where('publish_date', '>=', $current_date)
         ->count();
 
 	$data = $data1+$data2+$data3;	
