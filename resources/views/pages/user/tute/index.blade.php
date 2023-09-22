@@ -29,7 +29,7 @@
 							<img class="card-img-top" src="{{ asset('assets/images/course-work.png')}}" alt="Card image cap">
 							<div class="card-body">
 								
-                                <a href="{{ asset('storage/app/public/'. $Tute->document) }}" class="card-link text-primary" download>Download Tute</a>								
+                                <a href="{{ asset('storage/'. $Tute->document) }}" class="card-link text-primary" download>Download Tute</a>								
 							</div>
 						</div>
 					</div>
