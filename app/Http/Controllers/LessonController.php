@@ -24,7 +24,7 @@ class LessonController extends Controller
 
         }elseif(Auth::user()->type === 'user'){
             $batch = json_decode(Auth::user()->batch, true);
-            $currentDate = Carbon::now();
+            $currentDate = Carbon::now()->format('Y-m-d');
 
             $upcomingDataLessons = User::join('lessons', function ($join) use ($batch, $currentDate) {
                 $join->on(function ($query) use ($batch) {
@@ -33,7 +33,7 @@ class LessonController extends Controller
                     }
                         })
                         ->where('users.type', '=', 0)
-                        ->where('lessons.publish_date', '>', $currentDate)
+                        ->where('lessons.publish_date', '>=', $currentDate)
                         ->where('lessons.status', '=', 1);
                     })
                     ->select(
