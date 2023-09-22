@@ -225,7 +225,7 @@ function debug(){
         }
     })
     ->where('users.type', '=', 0)
-    ->where('lessons.publish_date', '>', $currentDate)
+    ->where('lessons.publish_date', '>=', $currentDate)
     ->where('lessons.status', '=', 1);
 })
 ->select(
@@ -251,7 +251,7 @@ $currentDate = Carbon::now()->format('Y-m-d');
         }
 			})
 			->where('users.type', '=', 0)
-			->where('lessons.publish_date', '>', $currentDate)
+			->where('lessons.publish_date', '>=', $currentDate)
 			->where('lessons.status', '=', 1);
 		})
 		->select(
@@ -270,7 +270,7 @@ $currentDate = Carbon::now()->format('Y-m-d');
 				}
 			})
 			->where('users.type', '=', 0)
-			->where('mcq_exams.publish_date', '>', $currentDate)
+			->where('mcq_exams.publish_date', '>=', $currentDate)
 			->where('mcq_exams.status', '=', 1);
 		})
 		->select(
@@ -287,7 +287,7 @@ $currentDate = Carbon::now()->format('Y-m-d');
 				}
 			})
 			->where('users.type', '=', 0)
-			->where('paper_exams.publish_date', '>', $currentDate)
+			->where('paper_exams.publish_date', '>=', $currentDate)
 			->where('paper_exams.status', '=', 1);
 		})
 		->select(
@@ -304,7 +304,7 @@ $currentDate = Carbon::now()->format('Y-m-d');
 				}
 			})
 			->where('users.type', '=', 0)
-			->where('course_works.publish_date', '>', $currentDate)
+			->where('course_works.publish_date', '>=', $currentDate)
 			->where('course_works.status', '=', 1);
 		})
 		->select(
@@ -321,7 +321,7 @@ $currentDate = Carbon::now()->format('Y-m-d');
 				}
 			})
 			->where('users.type', '=', 0)
-			->where('verbal_exams.publish_date', '>', $currentDate)
+			->where('verbal_exams.publish_date', '>=', $currentDate)
 			->where('verbal_exams.status', '=', 1);
 		})
 		->select(
@@ -357,7 +357,7 @@ $currentDate = Carbon::now()->format('Y-m-d');
         }
 			})
 			->where('users.type', '=', 2)
-			->where('lessons.publish_date', '>', $currentDate)
+			->where('lessons.publish_date', '>=', $currentDate)
 			->where('lessons.status', '=', 1);
 		})
 		->select(
@@ -376,7 +376,7 @@ $currentDate = Carbon::now()->format('Y-m-d');
 				}
 			})
 			->where('users.type', '=', 2)
-			->where('mcq_exams.publish_date', '>', $currentDate)
+			->where('mcq_exams.publish_date', '>=', $currentDate)
 			->where('mcq_exams.status', '=', 1);
 		})
 		->select(
@@ -393,7 +393,7 @@ $currentDate = Carbon::now()->format('Y-m-d');
 				}
 			})
 			->where('users.type', '=', 2)
-			->where('paper_exams.publish_date', '>', $currentDate)
+			->where('paper_exams.publish_date', '>=', $currentDate)
 			->where('paper_exams.status', '=', 1);
 		})
 		->select(
@@ -410,7 +410,7 @@ $currentDate = Carbon::now()->format('Y-m-d');
 				}
 			})
 			->where('users.type', '=', 2)
-			->where('course_works.publish_date', '>', $currentDate)
+			->where('course_works.publish_date', '>=', $currentDate)
 			->where('course_works.status', '=', 1);
 		})
 		->select(
@@ -427,7 +427,7 @@ $currentDate = Carbon::now()->format('Y-m-d');
 				}
 			})
 			->where('users.type', '=', 2)
-			->where('verbal_exams.publish_date', '>', $currentDate)
+			->where('verbal_exams.publish_date', '>=', $currentDate)
 			->where('verbal_exams.status', '=', 1);
 		})
 		->select(
@@ -456,7 +456,7 @@ function upcomingall() {
 	
 $currentDate = Carbon::now();
 
-$upcomingDataLessons = Lesson::where('publish_date', '>', $currentDate)
+$upcomingDataLessons = Lesson::where('publish_date', '>=', $currentDate)
     ->where('status', '=', 1)
     ->select(
         'lesson_name as lt',
@@ -465,7 +465,7 @@ $upcomingDataLessons = Lesson::where('publish_date', '>', $currentDate)
     ->distinct()
     ->get();
 
-$upcomingDataMCQExams = McqExam::where('publish_date', '>', $currentDate)
+$upcomingDataMCQExams = McqExam::where('publish_date', '>=', $currentDate)
     ->where('status', '=', 1)
     ->select(
         'title as mt',
@@ -474,7 +474,7 @@ $upcomingDataMCQExams = McqExam::where('publish_date', '>', $currentDate)
     ->distinct()
     ->get();
 
-$upcomingDataPaperExams = PaperExam::where('publish_date', '>', $currentDate)
+$upcomingDataPaperExams = PaperExam::where('publish_date', '>=', $currentDate)
     ->where('status', '=', 1)
     ->select(
         'title as pt',
@@ -483,7 +483,7 @@ $upcomingDataPaperExams = PaperExam::where('publish_date', '>', $currentDate)
     ->distinct()
     ->get();
 
-$upcomingDataCourseWorks = CourseWork::where('publish_date', '>', $currentDate)
+$upcomingDataCourseWorks = CourseWork::where('publish_date', '>=', $currentDate)
     ->where('status', '=', 1)
     ->select(
         'title as ct',
@@ -492,7 +492,7 @@ $upcomingDataCourseWorks = CourseWork::where('publish_date', '>', $currentDate)
     ->distinct()
     ->get();
 
-$upcomingDataVerbalExams = VerbalExam::where('publish_date', '>', $currentDate)
+$upcomingDataVerbalExams = VerbalExam::where('publish_date', '>=', $currentDate)
     ->where('status', '=', 1)
     ->select(
         'title as vt',
