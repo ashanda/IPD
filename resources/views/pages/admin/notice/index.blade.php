@@ -150,5 +150,3 @@
 			}
 	</script>
 @endsection
-
-		@endsection
