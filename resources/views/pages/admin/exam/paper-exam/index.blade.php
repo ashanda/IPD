@@ -139,7 +139,9 @@
 								@foreach ( $data as $batch)
 								<tr>
 									<td class="table-plus">{{ $batch->title }}</td>
-									<td class="table-plus"> <a href="{{ asset('storage/'.$batch->document }}" target="blank"><i class="micon dw dw-binocular"></i> </a></td>
+									<td class="table-plus"> 
+										<a href="{{ asset('storage/'.$batch->document) }}" target="blank">
+										<i class="micon dw dw-binocular"></i> </a></td>
                                     <td class="table-plus">
                                         <ul>
                                             
@@ -166,10 +168,10 @@
 											<a class="dropdown-item" href="{{ route('paper-exam.edit', $batch->id) }}"><i class="dw dw-edit2"></i> Edit</a>
 										</div>
 										<div class="col">
-											<form id="delete-form" action="{{ route('paper-exam.destroy', $batch->id) }}" method="POST">
+											<form id="delete-form-{{ $batch->id }}" action="{{ route('paper-exam.destroy', $batch->id) }}" method="POST">
 												@csrf
 												@method('DELETE')
-												<button type="button" class="btn btn-link" onclick="showDeleteConfirmation()">
+												<button type="button" class="btn btn-link" onclick="showDeleteConfirmation({{ $batch->id }})">
 													<i class="dw dw-delete-3"></i> Delete
 												</button>
 											</form>
@@ -191,7 +193,7 @@
  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
  <script>
     // Function to show the SweetAlert confirmation dialog
-    function showDeleteConfirmation() {
+    function showDeleteConfirmation(batchId) {
         Swal.fire({
             title: 'Are you sure?',
             text: 'You will not be able to recover this paper exam!',
@@ -202,7 +204,7 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 // If the user confirms, submit the form for batch deletion
-                document.getElementById('delete-form').submit();
+                document.getElementById('delete-form-' + batchId).submit();
             }
         });
     }
