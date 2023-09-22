@@ -113,6 +113,7 @@
 													</p>
 												</div>
 											</li>
+											<hr />
 										@endforeach
 									@endif
 								@endforeach
@@ -121,7 +122,7 @@
 									<li>{{ 'No activity' }}</li>
 								@endif
 
-							<hr>
+							
 
 								</ul>
 							</div>
