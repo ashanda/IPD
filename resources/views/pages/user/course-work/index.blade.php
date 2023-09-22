@@ -32,7 +32,7 @@
 								<p class="card-text">Start time : {{$CourseWork->start_time}}</p>
                                 <p class="card-text">End Time : {{$CourseWork->end_time}}</p>
                                 <a href="{{ asset('storage/'. $CourseWork->document) }}" class="card-link text-primary" download>Download File</a>	
-								
+								@if ( submissioncheck($CourseWork->id) < 1 )
 									<form action="{{ route('submisson') }}" method="POST" enctype="multipart/form-data">
 											@csrf
 											<div class="form-group">
@@ -46,7 +46,9 @@
 											</div>	
 											<button type="submit" class="btn btn-primary">Upload</button>	
 									</form>	
-								
+								@else
+									
+								@endif
 											
 							</div>
 						</div>
