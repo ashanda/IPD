@@ -76,10 +76,10 @@
 
 								<label class="col-sm-2 col-form-label">Document</label>
 								<div class="col-sm-10">
-								<div class="custom-file">
-									<input type="file" class="custom-file-input" name="document" value="{{ $findData->document }}">
-									<label class="custom-file-label">Choose file</label>
-								</div>
+									<div class="custom-file">
+										<input type="file" class="custom-file-input" name="document" value="{{ $findData->document }}">
+										<label class="custom-file-label">Choose file</label>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -124,12 +124,12 @@
 								</td>
 
 								@if ($batch->status === 1)
-								<td><span class="badge badge-success">Plublish</span></td>
+								<td><span class="badge badge-success">Publish</span></td>
 								@else
 								<td><span class="badge badge-warning">Unplublish</span></td>
 								@endif
-								
-								
+
+
 								<td>
 									<div class="row">
 										<div class="col">

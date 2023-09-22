@@ -124,7 +124,7 @@
 								</td>
 
 								@if ($batch->status === 1)
-								<td><span class="badge badge-success">Plublish</span></td>
+								<td><span class="badge badge-success">Publish</span></td>
 								@else
 								<td><span class="badge badge-warning">Unplublish</span></td>
 								@endif

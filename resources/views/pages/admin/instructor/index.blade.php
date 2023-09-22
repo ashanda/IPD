@@ -63,9 +63,9 @@
 								</div>
 							</div>
 						</div>
-					
 
-					
+
+
 						<div class="col-md-4 col-sm-12 mt-20">
 							<div class="form-group row">
 								<label class="col-sm-12 col-md-4 col-form-label">Contact Number</label>
@@ -83,9 +83,9 @@
 							</div>
 						</div>
 
-					
 
-					
+
+
 						<div class="col-md-4 col-sm-12 mt-20">
 							<div class="form-group row">
 								<label class="col-sm-4 col-form-label">Status</label>
@@ -102,10 +102,10 @@
 
 								<label class="col-sm-4 col-form-label">Document</label>
 								<div class="col-sm-8">
-								<div class="custom-file">
-									<input type="file" class="custom-file-input" name="cover" >
-									<label class="custom-file-label">Choose file</label>
-								</div>
+									<div class="custom-file">
+										<input type="file" class="custom-file-input" name="cover">
+										<label class="custom-file-label">Choose file</label>
+									</div>
 								</div>
 
 							</div>
@@ -157,7 +157,7 @@
 
 
 								@if ($batch->status === 1)
-								<td><span class="badge badge-success">Plublish</span></td>
+								<td><span class="badge badge-success">Publish</span></td>
 								@else
 								<td><span class="badge badge-warning">Unplublish</span></td>
 								@endif
