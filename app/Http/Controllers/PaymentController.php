@@ -18,6 +18,7 @@ class PaymentController extends Controller
         $usersWithPayments = User::where('type', 0)
                             ->join('payments', 'users.index_number', '=', 'payments.index_number')
                             ->select('users.index_number', 'users.fname', 'users.lname','users.batch' ,'payments.*')
+                            ->orderBy('payments.updated_at', 'desc')
                             ->get();
         $batchData = Batch::where('status', 1)->get();                    
         return view('pages.admin.payment.index',compact('usersWithPayments','batchData'));                    
