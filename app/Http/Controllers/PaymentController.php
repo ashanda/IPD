@@ -149,6 +149,6 @@ class PaymentController extends Controller
 
     // Redirect back or to a different page after deletion
     toast('Paper Exam Delete successfully', 'success');
-    return redirect()->route('paper-exam.index');
+    return redirect()->route('payment.index');
     }
 }
