@@ -58,6 +58,8 @@ class PaymentController extends Controller
         $payment->index_number = Auth::user()->index_number;
         $payment->course_id = $request->input('course_id');
         $payment->amount = $request->input('amount');
+        $payment->discount = $request->input('discount');
+        $payment->coupon = auth::user()->coupen_code;
         $payment->batch_id = Auth::user()->batch;
 
         // Handle file upload if a file was selected

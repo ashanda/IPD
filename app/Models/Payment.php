@@ -19,4 +19,11 @@ class Payment extends Model
             ->where('status', $status)
             ->sum('amount');
     }
+
+    public static function sumDiscountForStatusAndIndexNumber($indexNumber, $status)
+    {
+        return self::where('index_number', $indexNumber)
+            ->where('status', $status)
+            ->sum('discount');
+    }
 }

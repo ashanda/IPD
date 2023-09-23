@@ -28,7 +28,7 @@
 <body class="login-page">
 	
 
-
+     @include('sweetalert::alert')
 	 @yield('content')
 
 
