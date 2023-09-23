@@ -34,6 +34,7 @@
                                     <th>Student name</th>
 									<th>Batch</th>
                                     <th>Fee</th>
+									<th>Discount</th>
                                     <th>Next Pay Date</th>
 									<th>Status</th>
 									<th class="datatable-nosort">Action</th>
@@ -63,6 +64,7 @@
                                         </ul>
                                     </td>
 									<td class="table-plus">{{ $usersWithPayment->amount }}</td>
+									<td class="table-plus">{{ $usersWithPayment->discount }}</td>
                                     <td class="table-plus">{{ $usersWithPayment->expired_date }}</td>
 									@if ($usersWithPayment->status === 1)
 									<td><span class="badge badge-success">Active</span></td>		

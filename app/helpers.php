@@ -8,6 +8,8 @@ use App\Models\Batch;
 use App\Models\Payment;
 use App\Models\Workshop;
 use App\Models\Certificate;
+use App\Models\Coupen;
+use App\Models\Course;
 use App\Models\CourseWork;
 use App\Models\Lesson;
 use App\Models\McqExam;
@@ -123,12 +125,11 @@ $indexNumber = Auth::user()->index_number;
 $status = 1; // Change this to the desired status value
 
 $totalAmount = Payment::sumAmountForStatusAndIndexNumber($indexNumber, $status);
+$totalDiscount = Payment::sumDiscountForStatusAndIndexNumber($indexNumber, $status);
 
-$payments = Payment::join('courses', 'payments.batch_id', '=', 'courses.bid')
-	->where('status', 1)
-	->where('index_number', Auth::user()->index_number)
-    ->whereJsonContains('courses.bid', json_decode(Auth::user()->batch, true))
-    ->first();
+$total = $totalAmount + $totalDiscount;
+
+$payments = Course::whereJsonContains('courses.bid', json_decode(Auth::user()->batch, true))->first();
 
 
 if($payments == null){
@@ -138,7 +139,7 @@ if($payments == null){
 }
 
 
-if($totalAmount >= $fee){
+if($total >= $fee){
 	$pay = 1;
 	
 }else{
@@ -664,4 +665,52 @@ function currentHome(){
 	}
 
 	return $homeurl;
+}
+
+function couponCheck(){
+	$userBatchArray = json_decode(auth::user()->batch, true);
+	$currentDate = Carbon::now()->format('Y-m-d');
+	$data = Coupen::where('coupon_code',auth::user()->coupen_code)->where('valid_date','>=',$currentDate)->whereJsonContains('bid', $userBatchArray)->count();
+
+	$data2= Payment::where('coupon',auth::user()->coupen_code)->count();
+	
+	if( $data == 1 && $data2 == 0){
+		$check = 1;
+	}else{
+		$check = 0;
+	}
+	return $check;
+}
+
+function couponDiscount($coupon){
+	$userBatchArray = json_decode(auth::user()->batch, true);
+	$currentDate = Carbon::now()->format('Y-m-d');
+	$data = Coupen::where('coupon_code',auth::user()->coupen_code)->where('valid_date','>=',$currentDate)->whereJsonContains('bid', $userBatchArray)->first();
+
+	$discount = $data->percentage;
+
+	return $discount;
+}
+
+
+function remindPayment(){
+$indexNumber = Auth::user()->index_number;
+$status = 1; // Change this to the desired status value
+
+$totalAmount = Payment::sumAmountForStatusAndIndexNumber($indexNumber, $status);
+$totalDiscount = Payment::sumDiscountForStatusAndIndexNumber($indexNumber, $status);
+
+$total = $totalAmount + $totalDiscount;
+
+$payments = Course::whereJsonContains('courses.bid', json_decode(Auth::user()->batch, true))->first();
+
+
+
+$remindPayment = $payments->fee - $total;
+
+
+
+
+
+return $remindPayment;
 }

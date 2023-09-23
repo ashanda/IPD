@@ -19,6 +19,8 @@ return new class extends Migration
             $table->json('batch_id');
             $table->string('payment_type');
             $table->integer('amount');
+            $table->integer('discount')->default(0);
+            $table->string('coupon')->nullable();
             $table->string('file_name')->nullable();
             $table->integer('status')->comment('1=active, 2=pending, 3=rejected');
             $table->date('expired_date')->nullable();
