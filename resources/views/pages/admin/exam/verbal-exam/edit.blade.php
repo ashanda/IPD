@@ -29,8 +29,8 @@
 
 						<div class="col-md-6 col-sm-12 mt-20">
 							<div class="form-group row">
-								<label class="col-sm-12 col-md-2 col-form-label">Title</label>
-								<div class="col-sm-12 col-md-10">
+								<label class="col-sm-2 col-form-label">Title</label>
+								<div class="col-sm-10">
 									<input class="form-control" type="text" value="{{ $findData->title }}" name="title" required>
 								</div>
 							</div>
@@ -63,8 +63,8 @@
 
 						<div class="col-md-6 col-sm-12 mt-20">
 							<div class="form-group row">
-								<label class="col-sm-12 col-md-2 col-form-label">Description</label>
-								<div class="col-sm-12 col-md-10">
+								<label class="col-sm-2 col-form-label">Description</label>
+								<div class="col-sm-10">
 									<input class="form-control" type="text" name="description" value="{{ $findData->description }}" required>
 								</div>
 							</div>
@@ -89,8 +89,8 @@
 						<div class="col-md-4 col-sm-12 mt-20">
 
 							<div class="form-group row">
-								<label class="col-sm-12 col-md-3 col-form-label">Video Link</label>
-								<div class="col-sm-12 col-md-9">
+								<label class="col-sm-3 col-form-label">Video Link</label>
+								<div class="col-sm-9">
 									<input class="form-control" type="text" name="vlink" value="{{ $findData->vlink }}" required>
 								</div>
 							</div>
