@@ -46,7 +46,7 @@
 						<ul class="submenu">
 							<li><a href="{{  route('student.index')  }}">Students</a></li>
 							<li><a href="{{  route('batchwise')  }}">Batch wise Students</a></li>
-                            <li><a href="datatable.html">Students Attendance</a></li>
+                            {{-- <li><a href="datatable.html">Students Attendance</a></li> --}}
 						</ul>
 					</li>
 					<li>
@@ -223,12 +223,12 @@
 							<span class="micon dw dw-money-2"></span><span class="mtext">My Payments</span>
 						</a>
 					</li>
-					<li>
+					{{-- <li>
 						<a href="invoice.html" class="dropdown-toggle no-arrow">
                             
 							<span class="micon dw dw-user-3"></span><span class="mtext">My Attendance</span>
 						</a>
-					</li>
+					</li> --}}
 					@else
 					
                     @endif
