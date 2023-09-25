@@ -4859,7 +4859,7 @@ body.IE .register-page-wrap .container {
     color: #231c3d;
 }
 
-.progress-user {
+/* .progress-user {
     height: 400px;
     width: 400px;
     background-color: transparent;
@@ -4869,7 +4869,7 @@ body.IE .register-page-wrap .container {
     left: 50%;
     display: grid;
     place-items: center;
-}
+} */
 
 .news {
     width: 160px
@@ -5229,7 +5229,7 @@ body.IE .register-page-wrap .container {
     font-size: 50px;
     color: #231c3d;
 }
-
+/* 
 .progress-user {
     height: 400px;
     width: 400px;
@@ -5240,7 +5240,7 @@ body.IE .register-page-wrap .container {
     left: 50%;
     display: grid;
     place-items: center;
-}
+} */
 
 .news {
     width: 160px
@@ -5581,6 +5581,23 @@ body.IE .register-page-wrap .container {
 }
 
 /* New styles kasun*/
+
+.bg-orange{
+    /* lessons */
+    background-color: orange !important;
+}
+.bg-purple{
+    /* mcq */
+    background-color: purple !important;
+}
+.bg-green{
+    /* papr exam */
+    background-color: green !important;
+}
+.bg-blue{
+    /* course_works */
+    background-color: blue !important;
+}
 /* calendar */
 #calendar .fc-event {
     width: 10px;
@@ -5601,6 +5618,15 @@ body.IE .register-page-wrap .container {
 }
 .icon-boxes .progress-data{
     text-align: center;
+}
+/* Student dashboard */
+.progress-user{
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+.circular-progress {
+	margin: auto;
 }
 @media (max-width:1760px) {
     #calendar .fc-toolbar-title {
