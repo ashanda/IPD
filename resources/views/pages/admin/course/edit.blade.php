@@ -2,73 +2,73 @@
 
 @section('content')
 <div class="main-container">
-		<div class="pd-ltr-20 xs-pd-20-10">
-			<div class="min-height-200px">
-				<div class="page-header">
-					<div class="row">
-						<div class="col-md-6 col-sm-12">
-							<div class="title">
-								<h4>Course</h4>
-							</div>
-							<nav aria-label="breadcrumb" role="navigation">
-								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="{{ currentHome() }}">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Edit Course</li>
-								</ol>
-							</nav>
-						</div>
-						
-					</div>
-				</div>
-                	<div class="page-header">
-                        <form action="{{ route('course.update', $findData->id) }}" method="POST">
-                           
-                            @csrf
-                             @method('PUT')
-					<div class="row">
-                        
-                            <div class="col-md-5 col-sm-12 mt-20">
-                                <div class="form-group row">
-                                    <label class="col-sm-12 col-md-2 col-form-label">Course Name</label>
-                                    <div class="col-sm-12 col-md-10">
-                                        <input class="form-control" type="text" name="cname" value="{{ $findData->cname }}" required>
-                                    </div>
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="min-height-200px">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="title">
+                            <h4>Course</h4>
+                        </div>
+                        <nav aria-label="breadcrumb" role="navigation">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{{ currentHome() }}">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Edit Course</li>
+                            </ol>
+                        </nav>
+                    </div>
+
+                </div>
+            </div>
+            <div class="page-header">
+                <form action="{{ route('course.update', $findData->id) }}" method="POST">
+
+                    @csrf
+                    @method('PUT')
+                    <div class="row">
+
+                        <div class="col-md-4 col-sm-12 mt-20">
+                            <div class="form-group row">
+                                <label class="col-sm-12 col-md-4 col-form-label">Course Name</label>
+                                <div class="col-sm-12 col-md-8">
+                                    <input class="form-control" type="text" name="cname" value="{{ $findData->cname }}" required>
                                 </div>
                             </div>
-                            <div class="col-md-2 col-sm-12 mt-20">
-                                <div class="form-group row">
-                                    <label class="col-sm-12 col-md-2 col-form-label">Fee</label>
-                                    <div class="col-sm-12 col-md-10">
-                                        <input class="form-control" type="number" min="1000" name="fee" value="{{ $findData->fee }}" required>
-                                    </div>
+                        </div>
+                        <div class="col-md-2 col-sm-12 mt-20">
+                            <div class="form-group row">
+                                <label class="col-sm-12 col-md-3 col-form-label">Fee</label>
+                                <div class="col-sm-12 col-md-9">
+                                    <input class="form-control" type="number" min="1000" name="fee" value="{{ $findData->fee }}" required>
                                 </div>
                             </div>
-                          
-                          <div class="col-md-2 col-sm-12 mt-20">
-                                <div class="form-group row">
-                                    <label class="col-sm-4 col-form-label">Batch</label>
-                                    <div class="col-sm-8">
-                                        <select class="selectpicker form-control" name="bid[]" data-style="btn-outline-secondary" multiple required>
-											
-                                            @foreach ($batchData as $batch)
-                                                    <option value="{{ $batch->id }}" {{ in_array($batch->id, $findData->bid) || in_array($batch->id, old('bid', [])) ? 'selected' : '' }}>
-                                                        {{ $batch->bname }}
-                                                    </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
+                        </div>
+
+                        <div class="col-md-3 col-sm-12 mt-20">
+                            <div class="form-group row">
+                                <label class="col-sm-4 col-form-label">Batch</label>
+                                <div class="col-sm-8">
+                                    <select class="selectpicker form-control" name="bid[]" data-style="btn-outline-secondary" multiple required>
+
+                                        @foreach ($batchData as $batch)
+                                        <option value="{{ $batch->id }}" {{ in_array($batch->id, $findData->bid) || in_array($batch->id, old('bid', [])) ? 'selected' : '' }}>
+                                            {{ $batch->bname }}
+                                        </option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
+                        </div>
 
 
 
-                            
-                            <div class="col-md-3 col-sm-12 text-right">
-                                <div class="dropdown">
-                                    <button type="submit" class="btn btn-primary dropdown-toggle no-arrow">Update Course</button>
-                                </div>
+
+                        <div class="col-md-3 col-sm-12 text-right">
+                            <div class="dropdown">
+                                <button type="submit" class="btn btn-primary dropdown-toggle no-arrow">Update Course</button>
                             </div>
-                        
+                        </div>
+
 
 					</div>
                     </form>
@@ -117,13 +117,13 @@
 									</div>
 								</td>
 
-								</tr>
-								@endforeach
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
 
  @endsection           
  @section('scripts')

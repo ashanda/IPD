@@ -2,64 +2,64 @@
 
 @section('content')
 <div class="main-container">
-		<div class="pd-ltr-20 xs-pd-20-10">
-			<div class="min-height-200px">
-				<div class="page-header">
-					<div class="row">
-						<div class="col-md-6 col-sm-12">
-							<div class="title">
-								<h4>Tute</h4>
-							</div>
-							<nav aria-label="breadcrumb" role="navigation">
-								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="{{ currentHome() }}">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Tute</li>
-								</ol>
-							</nav>
+	<div class="pd-ltr-20 xs-pd-20-10">
+		<div class="min-height-200px">
+			<div class="page-header">
+				<div class="row">
+					<div class="col-md-6 col-sm-12">
+						<div class="title">
+							<h4>Tute</h4>
 						</div>
-						
+						<nav aria-label="breadcrumb" role="navigation">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="{{ currentHome() }}">Home</a></li>
+								<li class="breadcrumb-item active" aria-current="page">Tute</li>
+							</ol>
+						</nav>
 					</div>
-				</div>
-                	<div class="page-header">
-                        <form action="{{ route('tute.store') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-							<div class="row">
-                        
-                            <div class="col-md-6 col-sm-12 mt-20">
-                                <div class="form-group row">
-                                    <label class="col-sm-12 col-md-2 col-form-label">Title</label>
-                                    <div class="col-sm-12 col-md-10">
-                                        <input class="form-control" type="text" name="title"  required>
-                                    </div>
-                                </div>
-                            </div>
-                           
-                            
-                           <div class="col-md-3 col-sm-12 mt-20">
-                                <div class="form-group row">
-                                    <label class="col-sm-4 col-form-label">Batch</label>
-                                    <div class="col-sm-8">
-                                        <select class="selectpicker form-control" name="bid[]" data-style="btn-outline-secondary" multiple required>
-                                            @foreach ($batchData as $batch)
-                                                <option value="{{ $batch->id }}">{{ $batch->bname }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-					     </div>
 
-						<div class="col-md-7 col-sm-12 mt-20">
+				</div>
+			</div>
+			<div class="page-header">
+				<form action="{{ route('tute.store') }}" method="POST" enctype="multipart/form-data">
+					@csrf
+					<div class="row">
+
+						<div class="col-md-6 col-sm-12 mt-20">
 							<div class="form-group row">
-								<label class="col-sm-12 col-md-2 col-form-label">Description</label>
-								<div class="col-sm-12 col-md-10">
+								<label class="col-sm-12 col-md-3 col-form-label">Title</label>
+								<div class="col-sm-12 col-md-9">
+									<input class="form-control" type="text" name="title" required>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="col-md-6 col-sm-12 mt-20">
+							<div class="form-group row">
+								<label class="col-sm-3 col-form-label">Batch</label>
+								<div class="col-sm-9">
+									<select class="selectpicker form-control" name="bid[]" data-style="btn-outline-secondary" multiple required>
+										@foreach ($batchData as $batch)
+										<option value="{{ $batch->id }}">{{ $batch->bname }}</option>
+										@endforeach
+									</select>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="col-md-6 col-sm-12 mt-20">
+							<div class="form-group row">
+								<label class="col-sm-12 col-md-3 col-form-label">Description</label>
+								<div class="col-sm-12 col-md-9">
 									<input class="form-control" type="text" name="description" required>
 								</div>
 							</div>
 						</div>
 
 
-						<div class="col-md-5 col-sm-12 mt-20">
+						<div class="col-md-6 col-sm-12 mt-20">
 							<div class="form-group row">
 								<label class="col-sm-3 col-form-label">Status</label>
 								<div class="col-sm-9">
@@ -70,11 +70,11 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-md-7 col-sm-12 mt-20">
+						<div class="col-md-6 col-sm-12 mt-20">
 							<div class="form-group row">
 
-								<label class="col-sm-2 col-form-label">Document</label>
-								<div class="col-sm-10">
+								<label class="col-sm-3 col-form-label">Document</label>
+								<div class="col-sm-9">
 									<div class="custom-file">
 										<input type="file" class="custom-file-input" name="document" required>
 										<label class="custom-file-label">Choose file</label>
@@ -83,7 +83,7 @@
 
 							</div>
 						</div>
-						<div class="col-md-5 col-sm-12 text-right">
+						<div class="col-md-6 col-sm-12 text-right">
 							<div class="dropdown">
 								<button type="submit" class="btn btn-primary dropdown-toggle no-arrow">Add Tute</button>
 							</div>
@@ -129,8 +129,7 @@
 									@else
 									<td><span class="badge badge-warning">Unplublish</span></td>
 									@endif
-									<td>
-                                    <td class="table-plus"></td>
+									
                                     <td>
 									<div class="row">
 										<div class="col">
@@ -148,13 +147,13 @@
 									</div>
 								</td>
 
-							</tr>
-							@endforeach
-						</tbody>
-					</table>
-				</div>
+						</tr>
+						@endforeach
+					</tbody>
+				</table>
 			</div>
 		</div>
+	</div>
 
  @endsection           
  @section('scripts')

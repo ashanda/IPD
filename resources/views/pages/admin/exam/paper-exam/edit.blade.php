@@ -2,69 +2,69 @@
 
 @section('content')
 <div class="main-container">
-		<div class="pd-ltr-20 xs-pd-20-10">
-			<div class="min-height-200px">
-				<div class="page-header">
-					<div class="row">
-						<div class="col-md-6 col-sm-12">
-							<div class="title">
-								<h4>Paper Exam</h4>
-							</div>
-							<nav aria-label="breadcrumb" role="navigation">
-								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="{{ currentHome() }}">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Edit Paper Exam</li>
-								</ol>
-							</nav>
+	<div class="pd-ltr-20 xs-pd-20-10">
+		<div class="min-height-200px">
+			<div class="page-header">
+				<div class="row">
+					<div class="col-md-6 col-sm-12">
+						<div class="title">
+							<h4>Paper Exam</h4>
 						</div>
-						
+						<nav aria-label="breadcrumb" role="navigation">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="{{ currentHome() }}">Home</a></li>
+								<li class="breadcrumb-item active" aria-current="page">Edit Paper Exam</li>
+							</ol>
+						</nav>
 					</div>
+
 				</div>
-				
-                	<div class="page-header">
-                        <form action="{{ route('paper-exam.update', $findData->id) }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-							@method('PUT')
-							<div class="row">
-                        
-                            <div class="col-md-6 col-sm-12 mt-20">
-                                <div class="form-group row">
-                                    <label class="col-sm-12 col-md-2 col-form-label">Paper Exam Name</label>
-                                    <div class="col-sm-12 col-md-10">
-                                        <input class="form-control" type="text" value="{{ $findData->title }}" name="title"  required>
-                                    </div>
-                                </div>
-                            </div>
-                           
-                              <div class="col-md-2 col-sm-12 mt-20">
-                                <div class="form-group row">
-                                    <label class="col-sm-4 col-form-label">Batch</label>
-                                    <div class="col-sm-8">
-                                        <select class="selectpicker form-control" name="bid[]" data-style="btn-outline-secondary" multiple>
-                                            @foreach ($batchData as $batch)
-                                                 <option value="{{ $batch->id }}" {{ in_array($batch->id, $findData->bid) || in_array($batch->id, old('bid', [])) ? 'selected' : '' }}>
-                                                        {{ $batch->bname }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        
-							<div class="col-md-3 col-sm-12 mt-20">
-                                <div class="form-group row">
-                                    <label class="col-sm-4 col-form-label">Publish Date</label>
-                                    <div class="col-sm-8">
-                                        <input class="form-control date-picker" value="{{ $findData->publish_date }}" name="publish_date" placeholder="Select Date" type="text" required>
-                                    </div>
-                                </div>
-                            </div>
-					     </div>
+			</div>
+
+			<div class="page-header">
+				<form action="{{ route('paper-exam.update', $findData->id) }}" method="POST" enctype="multipart/form-data">
+					@csrf
+					@method('PUT')
+					<div class="row">
 
 						<div class="col-md-6 col-sm-12 mt-20">
 							<div class="form-group row">
-								<label class="col-sm-12 col-md-3 col-form-label">Description</label>
-								<div class="col-sm-12 col-md-9">
+								<label class="col-sm-12 col-md-2 col-form-label">Title</label>
+								<div class="col-sm-12 col-md-10">
+									<input class="form-control" type="text" value="{{ $findData->title }}" name="title" required>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-3 col-sm-12 mt-20">
+							<div class="form-group row">
+								<label class="col-sm-4 col-form-label">Batch</label>
+								<div class="col-sm-8">
+									<select class="selectpicker form-control" name="bid[]" data-style="btn-outline-secondary" multiple>
+										@foreach ($batchData as $batch)
+										<option value="{{ $batch->id }}" {{ in_array($batch->id, $findData->bid) || in_array($batch->id, old('bid', [])) ? 'selected' : '' }}>
+											{{ $batch->bname }}
+										</option>
+										@endforeach
+									</select>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-3 col-sm-12 mt-20">
+							<div class="form-group row">
+								<label class="col-sm-4 col-form-label">Publish Date</label>
+								<div class="col-sm-8">
+									<input class="form-control date-picker" value="{{ $findData->publish_date }}" name="publish_date" placeholder="Select Date" type="text" required>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="col-md-6 col-sm-12 mt-20">
+							<div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">Description</label>
+								<div class="col-sm-12 col-md-10">
 									<input class="form-control" type="text" name="description" value="{{ $findData->description }}" required>
 								</div>
 							</div>
@@ -114,8 +114,6 @@
 								<button type="submit" class="btn btn-primary dropdown-toggle no-arrow">Update Paper Exam</button>
 							</div>
 						</div>
-
-
 					</div>
                     </form>
 				</div>
@@ -146,9 +144,9 @@
                                     <td class="table-plus">
                                         <ul>
                                             
-                                             @foreach($batch->bid as $item)
+										@foreach($batch->bid as $item)
 												<li>{{ getBatch($item)->bname }}</li>
-											 @endforeach
+											 @endforeach 
                                             
                                         </ul>
                                     </td>
@@ -161,8 +159,6 @@
 									@else
 									<td><span class="badge badge-warning">Unplublish</span></td>
 									@endif
-									<td>
-                                    <td class="table-plus"></td>
                                     <td>
 									<div class="row">
 										<div class="col">
@@ -180,13 +176,13 @@
 									</div>
 								</td>
 
-							</tr>
-							@endforeach
-						</tbody>
-					</table>
-				</div>
+						</tr>
+						@endforeach
+					</tbody>
+				</table>
 			</div>
 		</div>
+	</div>
 
  @endsection           
  @section('scripts')

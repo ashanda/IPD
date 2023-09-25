@@ -2,80 +2,76 @@
 
 @section('content')
 <div class="main-container">
-		<div class="pd-ltr-20 xs-pd-20-10">
-			<div class="min-height-200px">
-				<div class="page-header">
-					<div class="row">
-						<div class="col-md-6 col-sm-12">
-							<div class="title">
-								<h4>Edit MCQ Exam</h4>
-							</div>
-							<nav aria-label="breadcrumb" role="navigation">
-								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="{{ currentHome() }}">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Edit Exam</li>
-								</ol>
-							</nav>
-						</div>
-						
-					</div>
-				</div>
-                	<div class="page-header">
-                        <form action="{{ route('mcq-exam.update', $findData->id) }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            @method('PUT')
-							<div class="row">
-                            <div class="col-md-6 col-sm-12 mt-20">
-                                <div class="form-group row">
-                                    <label class="col-sm-12 col-md-2 col-form-label">Title</label>
-                                    <div class="col-sm-12 col-md-10">
-                                        <input class="form-control" type="text" name="title" value="{{ $findData->title }}"  required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-2 col-sm-12 mt-20">
-                                <div class="form-group row">
-                                    <label class="col-sm-4 col-form-label">Batch</label>
-                                    <div class="col-sm-8">
-                                        <select class="selectpicker form-control" name="bid[]" data-style="btn-outline-secondary" multiple required>
-                                            @foreach ($batchData as $batch)
-                                                <option value="{{ $batch->id }}" {{ in_array($batch->id, $findData->bid) || in_array($batch->id, old('bid', [])) ? 'selected' : '' }}>
-                                                        {{ $batch->bname }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            </div>
-                            <div class="row">
-                            <div class="col-md-3 col-sm-12 mt-20">
-                                <div class="form-group row">
-                                    <label class="col-sm-12 col-md-2 col-form-label">Time Duration</label>
-                                    <div class="col-sm-12 col-md-10">
-                                        <input name="lms_exam_time_duration" value="{{ $findData->exam_time_duration }}" type="text" placeholder="Enter in minutes" class="form-control form-control-lg" pattern="\d*" value="" required="">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-12 mt-20">
-                                <div class="form-group row">
-                                    <label class="col-sm-12 col-md-2 col-form-label">Questions Per MCQ</label>
-                                    <div class="col-sm-12 col-md-10">
-                                        <input name="lms_exam_question" type="text" value="{{ $findData->exam_question }}" class="form-control form-control-lg" pattern="\d*" value="" required="">
-                                    </div>
-                                </div>
-                            </div>
-                              <div class="col-md-3 col-sm-12 mt-20">
-                                <div class="form-group row">
-                                    <label class="col-sm-12 col-md-2 col-form-label">Publish Date</label>
-                                    <div class="col-sm-12 col-md-10">
-                                        <input class="form-control date-picker" name="publish_date" value="{{ $findData->publish_date }}" placeholder="Select Date" type="text" required="">
-                                    </div>
-                                </div>
-                            </div>
-                            
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="min-height-200px">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="title">
+                            <h4>Edit MCQ Exam</h4>
+                        </div>
+                        <nav aria-label="breadcrumb" role="navigation">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{{ currentHome() }}">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Edit Exam</li>
+                            </ol>
+                        </nav>
+                    </div>
 
+                </div>
+            </div>
+            <div class="page-header">
+                <form action="{{ route('mcq-exam.update', $findData->id) }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+                    <div class="row">
+                        <div class="col-md-4 col-sm-12 mt-20">
+                            <div class="form-group row">
+                                <label class="col-sm-12 col-md-3 col-form-label">Title</label>
+                                <div class="col-sm-12 col-md-9">
+                                    <input class="form-control" type="text" name="title" value="{{ $findData->title }}" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-12 mt-20">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Batch</label>
+                                <div class="col-sm-9">
+                                    <select class="selectpicker form-control" name="bid[]" data-style="btn-outline-secondary" multiple required>
+                                        @foreach ($batchData as $batch)
+                                        <option value="{{ $batch->id }}" {{ in_array($batch->id, $findData->bid) || in_array($batch->id, old('bid', [])) ? 'selected' : '' }}>
+                                            {{ $batch->bname }}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
 
+                        <div class="col-md-4 col-sm-12 mt-20">
+                            <div class="form-group row">
+                                <label class="col-sm-12 col-md-4 col-form-label">Time Duration</label>
+                                <div class="col-sm-12 col-md-8">
+                                    <input name="lms_exam_time_duration" value="{{ $findData->exam_time_duration }}" type="text" placeholder="Enter in minutes" class="form-control form-control-lg" pattern="\d*" value="" required="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-12 mt-20">
+                            <div class="form-group row">
+                                <label class="col-sm-12 col-md-3 col-form-label">Questions Per MCQ</label>
+                                <div class="col-sm-12 col-md-9">
+                                    <input name="lms_exam_question" type="text" value="{{ $findData->exam_question }}" class="form-control form-control-lg" pattern="\d*" value="" required="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-12 mt-20">
+                            <div class="form-group row">
+                                <label class="col-sm-12 col-md-3 col-form-label">Publish Date</label>
+                                <div class="col-sm-12 col-md-9">
+                                    <input class="form-control date-picker" name="publish_date" value="{{ $findData->publish_date }}" placeholder="Select Date" type="text" required="">
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-md-4 col-sm-12 text-right">
                             <div class="dropdown">
                                 <button type="submit" class="btn btn-primary dropdown-toggle no-arrow">Update MCQ Exam</button>
@@ -118,7 +114,6 @@
                                     </td>
 									<td class="table-plus">{{ $batch->exam_time_duration }}</td>
                     <td class="table-plus"><a class="btn btn-info" href="{{ route('mcq-exam.show', $batch->id) }}">Add Questions</a></td>
-                                    <td class="table-plus"></td>
                                     <td>
 									<div class="row">
 										<div class="col">
