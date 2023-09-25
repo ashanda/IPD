@@ -116,10 +116,10 @@
 											<a class="dropdown-item" href="{{ route('coupen.edit', $coupen->id) }}"><i class="dw dw-edit2"></i> Edit</a>
 										</div>
 										<div class="col">
-											<form id="delete-form-{{ $batch->id }}" action="{{ route('coupen.destroy', $coupen->id) }}" method="POST">
+											<form id="delete-form-{{ $coupen->id }}" action="{{ route('coupen.destroy', $coupen->id) }}" method="POST">
 												@csrf
 												@method('DELETE')
-												<button type="button" class="btn btn-link" onclick="showDeleteConfirmation({{ $batch->id }})">
+												<button type="button" class="btn btn-link" onclick="showDeleteConfirmation({{ $coupen->id }})">
 													<i class="dw dw-delete-3"></i> Delete
 												</button>
 											</form>
