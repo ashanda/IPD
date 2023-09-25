@@ -125,7 +125,7 @@ function certificate($id){
 }
 
 function getWorkshop(){
-	$data = Workshop::where('status', 1)->first();
+	$data = Workshop::where('status', 1)->latest()->first();
 	return $data;
 }
 

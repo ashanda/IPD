@@ -30,9 +30,7 @@
                     <li>
                         <a href="/gallery">Gallery</a>
                     </li>
-                    <li>
-                        <a href="/workshop">Workshop</a>
-                    </li>
+                   
 
                     <ul class="mobile-btn float-right">
                         <li>
