@@ -5593,6 +5593,15 @@ body.IE .register-page-wrap .container {
     min-height: auto;
 }
 
+
+/* Admin icon boxes */
+.icon-boxes .icon-copy{
+    margin: auto;
+    font-size: 40px;
+}
+.icon-boxes .progress-data{
+    text-align: center;
+}
 @media (max-width:1760px) {
     #calendar .fc-toolbar-title {
         font-size: 20px;
