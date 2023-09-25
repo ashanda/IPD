@@ -114,7 +114,6 @@
                                     </td>
 									<td class="table-plus">{{ $batch->exam_time_duration }}</td>
                     <td class="table-plus"><a class="btn btn-info" href="{{ route('mcq-exam.show', $batch->id) }}">Add Questions</a></td>
-                                    <td class="table-plus"></td>
                                     <td>
 									<div class="row">
 										<div class="col">

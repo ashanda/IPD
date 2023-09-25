@@ -129,8 +129,7 @@
 									@else
 									<td><span class="badge badge-warning">Unplublish</span></td>
 									@endif
-									<td>
-                                    <td class="table-plus"></td>
+									
                                     <td>
 									<div class="row">
 										<div class="col">
