@@ -36,27 +36,6 @@ class CreateUsersSeeder extends Seeder
                'password'=> bcrypt('IPD$5577a'),
             ],
 
-            [
-
-               'fname'=>'Instructor',
-               'lname'=>'User',
-               'email'=>'instructor@instructor.com',
-               'contact_number' =>'1234567890',
-               'type'=> 2,
-               'password'=> bcrypt('123456'),
-
-            ],
-
-            [
-
-               'fname'=>'Student',
-               'lname'=>'User',
-               'email'=>'user@user.com',
-               'contact_number' =>'0712440342',
-               'type'=>0,
-               'password'=> bcrypt('123456'),
-
-            ],
 
         ];
 
