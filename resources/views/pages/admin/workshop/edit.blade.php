@@ -93,8 +93,8 @@
 								<label class="col-sm-4 col-md-3 col-form-label">Cover</label>
 								<div class="col-sm-8 col-md-9">
 									<div class="custom-file">
-										<input type="file" class="custom-file-input" name="cover" value="{{ $findData->cover }}">
-										<label class="custom-file-label">Choose file</label>
+										<input type="file" class="custom-file-input" name="cover" value="{{ $findData->cover }}" id="cover" onchange="updateLabel()">
+										<label class="custom-file-label" id="fileLabel">Choose file</label>
 									</div>
 								</div>
 							</div>

@@ -106,8 +106,8 @@
 								<label class="col-sm-4 col-form-label">Document</label>
 								<div class="col-sm-8">
 									<div class="custom-file">
-										<input type="file" class="custom-file-input" name="document" value="{{ $findData->document }}">
-										<label class="custom-file-label">Choose file</label>
+										<input type="file" class="custom-file-input" name="document" value="{{ $findData->document }}" id="cover" onchange="updateLabel()">
+										<label class="custom-file-label" id="fileLabel">Choose file</label>
 									</div>
 								</div>
 							</div>

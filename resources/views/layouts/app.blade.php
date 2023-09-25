@@ -66,6 +66,10 @@
 	</script>
 
 
+
+
+
+
 	<script src="{{ asset('assets/scripts/core.js') }}"></script>
 	<script src="{{ asset('assets/scripts/script.min.js') }}"></script>
 	<script src="{{ asset('assets/scripts/process.js') }}"></script>
