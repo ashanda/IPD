@@ -107,7 +107,16 @@ function getAllactiveBatch(){
 
 function getBatch($id){
     $batches = Batch::where('id', $id)->first();
-    return $batches;
+	if (!is_null($batches) && !is_null($batches->bname)) {
+    // The Batch object exists and its 'id' attribute is not null.
+    // You can use $batches as needed.
+	     return $batches;
+	} else {
+        // Handle the case where the Batch object doesn't exist or its 'bname' attribute is null.
+        // Return an empty string for 'bname' to avoid errors.
+        return (object)['bname' => 'Batch Deleted'];
+    }
+    
 }
 
 function certificate($id){
