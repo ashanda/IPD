@@ -36,7 +36,7 @@
                                 </div>
                             </div>
                           
-                              <div class="col-md-2 col-sm-12 mt-20">
+                              <div class="col-md-3 col-sm-12 mt-20">
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-form-label">Batch</label>
                                     <div class="col-sm-8">
@@ -156,8 +156,7 @@
 								@else
 								<td><span class="badge badge-warning">Unplublish</span></td>
 								@endif
-								<td>
-								<td class="table-plus"></td>
+								
 								<td>
 									<div class="row">
 										<div class="col">

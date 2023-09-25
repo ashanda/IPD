@@ -5659,7 +5659,10 @@ body.IE .register-page-wrap .container {
     #calendar .fc-button-group {
         float: none;
     }
-    #calendar .fc-button-group {
+  
+}
+@media (min-width:576px) and (max-width:730px) {
+  #calendar .fc-button-group {
         margin: 5px 0 0 0;
     }
 }

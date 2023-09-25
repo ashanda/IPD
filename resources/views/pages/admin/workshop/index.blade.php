@@ -91,10 +91,13 @@
 								<label class="col-sm-4 col-md-3 col-form-label">Cover</label>
 								<div class="col-sm-8 col-md-9">
 									<div class="custom-file">
-										<input type="file" class="custom-file-input" name="cover" required>
-										<label class="custom-file-label">Choose file</label>
+										<input type="file" class="custom-file-input" name="cover" id="cover" required onchange="updateLabel()">
+										<label class="custom-file-label" for="cover" id="fileLabel">Choose file</label>
 									</div>
 								</div>
+
+
+
 							</div>
 						</div>
 						<div class="col-md-6 col-sm-12 text-right">
