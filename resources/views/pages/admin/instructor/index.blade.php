@@ -147,6 +147,7 @@
 
 
 										@foreach(json_decode($batch->batch) as $item)
+										
 										<li>{{ getBatch($item)->bname }}</li>
 										@endforeach
 
