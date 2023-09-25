@@ -109,7 +109,7 @@
 											<form id="delete-form-{{ $batch->id }}" action="{{ route('course.destroy', $batch->id) }}" method="POST">
 												@csrf
 												@method('DELETE')
-												<button type="button" class="btn btn-link" onclick="showDeleteConfirmation({{ $batch->id }}">
+												<button type="button" class="btn btn-link" onclick="showDeleteConfirmation({{ $batch->id }})">
 													<i class="dw dw-delete-3"></i> Delete
 												</button>
 											</form>
