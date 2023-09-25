@@ -144,6 +144,6 @@ class WorkshopController extends Controller
 
     // Redirect back or to a different page after deletion
     toast('Workshop Delete successfully', 'success');
-    return redirect()->route('batch.index');
+    return redirect()->route('workshop.index');
     }
 }
