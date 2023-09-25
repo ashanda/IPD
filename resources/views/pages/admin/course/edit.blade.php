@@ -70,52 +70,52 @@
                         </div>
 
 
-                    </div>
-                </form>
-            </div>
-            <!-- Simple Datatable start -->
-            <div class="card-box mb-30">
-                <div class="pd-20">
-                    <h4 class="text-blue h4">Courses</h4>
-                </div>
-                <div class="pb-20">
-                    <table class="data-table table stripe hover nowrap">
-                        <thead>
-                            <tr>
-                                <th class="table-plus datatable-nosort">Course name</th>
-                                <th>Batch</th>
-                                <th>Fee</th>
-                                <th class="datatable-nosort">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ( $data as $batch)
-                            <tr>
-                                <td class="table-plus">{{ $batch->cname }}</td>
-                                <td class="table-plus">
-                                    <ul>
-                                        @foreach($batch->bid as $item)
-                                        <li>{{ getBatch($item)->bname }}</li>
-                                        @endforeach
-                                    </ul>
-                                </td>
-                                <td class="table-plus">{{ $batch->fee }}</td>
-                                <td>
-                                    <div class="row">
-                                        <div class="col">
-                                            <a class="dropdown-item" href="{{ route('course.edit', $batch->id) }}"><i class="dw dw-edit2"></i> Edit</a>
-                                        </div>
-                                        <div class="col">
-                                            <form id="delete-form" action="{{ route('course.destroy', $batch->id) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="button" class="btn btn-link" onclick="showDeleteConfirmation()">
-                                                    <i class="dw dw-delete-3"></i> Delete
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </td>
+					</div>
+                    </form>
+				</div>
+				<!-- Simple Datatable start -->
+				<div class="card-box mb-30">
+					<div class="pd-20">
+						<h4 class="text-blue h4">Courses</h4>
+					</div>
+					<div class="pb-20">
+						<table class="data-table table stripe hover nowrap">
+							<thead>
+								<tr>
+									<th class="table-plus datatable-nosort">Course name</th>
+									<th>Batch</th>
+									<th>Fee</th>
+									<th class="datatable-nosort">Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach ( $data as $batch)
+								<tr>
+									<td class="table-plus">{{ $batch->cname }}</td>
+                                    <td class="table-plus">
+                                        <ul>
+                                            @foreach($batch->bid as $item)
+                                                <li>{{ getBatch($item)->bname }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </td>
+                                    <td class="table-plus">{{ $batch->fee }}</td>
+                                    <td>
+									<div class="row">
+										<div class="col">
+											<a class="dropdown-item" href="{{ route('course.edit', $batch->id) }}"><i class="dw dw-edit2"></i> Edit</a>
+										</div>
+										<div class="col">
+											<form id="delete-form-{{ $batch->id }}" action="{{ route('course.destroy', $batch->id) }}" method="POST">
+												@csrf
+												@method('DELETE')
+												<button type="button" class="btn btn-link" onclick="showDeleteConfirmation({{ $batch->id }}">
+													<i class="dw dw-delete-3"></i> Delete
+												</button>
+											</form>
+										</div>
+									</div>
+								</td>
 
                             </tr>
                             @endforeach
@@ -125,26 +125,26 @@
             </div>
         </div>
 
-        @endsection
-        @section('scripts')
-        <script src="{{ asset('vendors/scripts/advanced-components.js')}}"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-        <script>
-            // Function to show the SweetAlert confirmation dialog
-            function showDeleteConfirmation() {
-                Swal.fire({
-                    title: 'Are you sure?',
-                    text: 'You will not be able to recover this course!',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonText: 'Yes, delete it!',
-                    cancelButtonText: 'Cancel'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        // If the user confirms, submit the form for batch deletion
-                        document.getElementById('delete-form').submit();
-                    }
-                });
+ @endsection           
+ @section('scripts')
+ <script src="{{ asset('vendors/scripts/advanced-components.js')}}"></script>
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+    // Function to show the SweetAlert confirmation dialog
+    function showDeleteConfirmation(batchId) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'You will not be able to recover this course!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'Cancel'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // If the user confirms, submit the form for batch deletion
+                document.getElementById('delete-form-' + batchId).submit();
             }
-        </script>
-        @endsection
+        });
+    }
+</script>
+ @endsection 

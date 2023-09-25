@@ -239,6 +239,7 @@
 						<div class="row">
 				
 					<div class="col-md-7 pl-10">
+						
 						@if (paymentCheck() == 0)
 						<form method="POST" action="{{ route('paycourse') }}" enctype="multipart/form-data">
 							@csrf
@@ -259,10 +260,14 @@
 									<input type="radio" id="bank" value="bank" name="customRadio" class="custom-control-input">
 									<label class="custom-control-label" for="bank">Bank Payment</label>
 								</div>
-								<div class="custom-control custom-radio mb-5">
+								
+								@if (couponCheck() == 1)
+									<div class="custom-control custom-radio mb-5">
 									<input type="radio" id="bank_coupen" value="bank_coupen" name="customRadio" class="custom-control-input">
 									<label class="custom-control-label" for="bank_coupen">I have a Coupen Code</label>
-								</div>
+								</div>	
+								@endif
+								
 								{{-- <div class="custom-control custom-radio mb-5">
 									<input type="radio" id="online" value="Online" name="customRadio" class="custom-control-input">
 									<label class="custom-control-label" for="online">Online</label>
@@ -271,8 +276,9 @@
 							</div>
 							</div>
 						</div>
-						<input type="hidden" name="amount" value="{{ $course->fee }}" id="">
-						{{ 'Course Fee Rs:'.$course->fee }}
+						
+						<input type="hidden" name="amount" value="{{ remindPayment() }}" id="">
+						{{ 'Course Fee Rs:'.remindPayment() }}
 						<div class="form-group" id="receiptField">
 							<label>Upload recipt</label>
 							<input type="file" name="slip" class="form-control-file form-control height-auto" >

@@ -18,6 +18,7 @@ class PaymentController extends Controller
         $usersWithPayments = User::where('type', 0)
                             ->join('payments', 'users.index_number', '=', 'payments.index_number')
                             ->select('users.index_number', 'users.fname', 'users.lname','users.batch' ,'payments.*')
+                            ->orderBy('payments.updated_at', 'desc')
                             ->get();
         $batchData = Batch::where('status', 1)->get();                    
         return view('pages.admin.payment.index',compact('usersWithPayments','batchData'));                    
@@ -58,6 +59,8 @@ class PaymentController extends Controller
         $payment->index_number = Auth::user()->index_number;
         $payment->course_id = $request->input('course_id');
         $payment->amount = $request->input('amount');
+        $payment->discount = $request->input('discount');
+        $payment->coupon = auth::user()->coupen_code;
         $payment->batch_id = Auth::user()->batch;
 
         // Handle file upload if a file was selected
@@ -146,6 +149,6 @@ class PaymentController extends Controller
 
     // Redirect back or to a different page after deletion
     toast('Paper Exam Delete successfully', 'success');
-    return redirect()->route('paper-exam.index');
+    return redirect()->route('payment.index');
     }
 }

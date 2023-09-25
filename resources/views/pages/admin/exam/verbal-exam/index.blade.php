@@ -155,35 +155,36 @@
 							@foreach($batch->bid as $item)
 												<li>{{ getBatch($item)->bname }}</li>
 											 @endforeach
-
-							</ul>
-						</td>
-						<td class="table-plus">{{ $batch->publish_date }}</td>
-						<td class="table-plus">{{ $batch->start_time }}</td>
-						<td class="table-plus">{{ $batch->end_time }}</td>
-
-						@if ($batch->status === 1)
-						<td><span class="badge badge-success">Plublish</span></td>
-						@else
-						<td><span class="badge badge-warning">Unplublish</span></td>
-						@endif
-						
-						<td>
-							<div class="row">
-								<div class="col">
-									<a class="dropdown-item" href="{{ route('verbal-exam.edit', $batch->id) }}"><i class="dw dw-edit2"></i> Edit</a>
-								</div>
-								<div class="col">
-									<form id="delete-form" action="{{ route('verbal-exam.destroy', $batch->id) }}" method="POST">
-										@csrf
-										@method('DELETE')
-										<button type="button" class="btn btn-link" onclick="showDeleteConfirmation()">
-											<i class="dw dw-delete-3"></i> Delete
-										</button>
-									</form>
-								</div>
-							</div>
-						</td>
+                                            
+                                        </ul>
+                                    </td>
+									<td class="table-plus">{{ $batch->publish_date }}</td>
+									<td class="table-plus">{{ $batch->start_time }}</td>
+									<td class="table-plus">{{ $batch->end_time }}</td>
+									
+									@if ($batch->status === 1)
+									<td><span class="badge badge-success">Plublish</span></td>		
+									@else
+									<td><span class="badge badge-warning">Unplublish</span></td>
+									@endif
+									<td>
+                                    <td class="table-plus"></td>
+                                    <td>
+									<div class="row">
+										<div class="col">
+											<a class="dropdown-item" href="{{ route('verbal-exam.edit', $batch->id) }}"><i class="dw dw-edit2"></i> Edit</a>
+										</div>
+										<div class="col">
+											<form id="delete-form-{{ $batch->id }}" action="{{ route('verbal-exam.destroy', $batch->id) }}" method="POST">
+												@csrf
+												@method('DELETE')
+												<button type="button" class="btn btn-link" onclick="showDeleteConfirmation({{ $batch->id }})">
+													<i class="dw dw-delete-3"></i> Delete
+												</button>
+											</form>
+										</div>
+									</div>
+								</td>
 
 					</tr>
 					@endforeach
@@ -193,26 +194,26 @@
 	</div>
 </div>
 
-@endsection
-@section('scripts')
-<script src="{{ asset('vendors/scripts/advanced-components.js')}}"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-<script>
-	// Function to show the SweetAlert confirmation dialog
-	function showDeleteConfirmation() {
-		Swal.fire({
-			title: 'Are you sure?',
-			text: 'You will not be able to recover this verbal exam!',
-			icon: 'warning',
-			showCancelButton: true,
-			confirmButtonText: 'Yes, delete it!',
-			cancelButtonText: 'Cancel'
-		}).then((result) => {
-			if (result.isConfirmed) {
-				// If the user confirms, submit the form for batch deletion
-				document.getElementById('delete-form').submit();
-			}
-		});
-	}
-</script>
-@endsection
+ @endsection           
+ @section('scripts')
+ <script src="{{ asset('vendors/scripts/advanced-components.js')}}"></script>
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+ <script>
+    // Function to show the SweetAlert confirmation dialog
+    function showDeleteConfirmation(batchId) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'You will not be able to recover this verbal exam!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'Cancel'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // If the user confirms, submit the form for batch deletion
+                document.getElementById('delete-form-' + batchId).submit();
+            }
+        });
+    }
+ </script>
+ @endsection

@@ -30,10 +30,13 @@
 									<input type="radio" id="bank" value="bank" name="customRadio" class="custom-control-input">
 									<label class="custom-control-label" for="bank">Bank Payment</label>
 								</div>
+								@if (couponCheck() == 1)
 								<div class="custom-control custom-radio mb-5">
 									<input type="radio" id="bank_coupen" value="bank_coupen" name="customRadio" class="custom-control-input">
 									<label class="custom-control-label" for="bank_coupen">I have a Coupen Code</label>
 								</div>
+								
+								@endif
 								{{-- <div class="custom-control custom-radio mb-5">
 									<input type="radio" id="online" value="Online" name="customRadio" class="custom-control-input">
 									<label class="custom-control-label" for="online">Online</label>
@@ -42,8 +45,20 @@
 							</div>
 							</div>
 						</div>
+						@if (couponCheck() == 1)
+						@php
+							$discount = ( couponDiscount(auth::user()->coupon) / 100 ) * $course->fee;
+							$new_fee = $course->fee - $discount;
+						@endphp
+						<input type="hidden" name="amount" value="{{ $new_fee }}" id="">
+						<input type="hidden" name="discount" value="{{ $discount }}" id="">
+						{{ 'Course Fee Rs:'.$new_fee }}
+						@else
 						<input type="hidden" name="amount" value="{{ $course->fee }}" id="">
 						{{ 'Course Fee Rs:'.$course->fee }}
+
+						@endif
+						
 						<div class="form-group" id="receiptField">
 							<label>Upload recipt</label>
 							<input type="file" name="slip" class="form-control-file form-control height-auto" >
