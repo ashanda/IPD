@@ -43,15 +43,15 @@
 								</div>
 							</div>
 						</div>
-						
+
 						<div class="col-md-4 col-sm-12 mt-20">
 							<div class="form-group row">
 								<label class="col-sm-4 col-form-label">Batch</label>
 								<div class="col-sm-8">
 									<select class="selectpicker form-control" name="bid[]" data-style="btn-outline-secondary" multiple>
 										@foreach ($batchData as $batch)
-										
-										 <option value="{{ $batch->id }}"{{ in_array($batch->id, json_decode($findData->batch)) || in_array($batch->id, old('bid', [])) ? 'selected' : '' }}>
+
+										<option value="{{ $batch->id }}" {{ in_array($batch->id, json_decode($findData->batch)) || in_array($batch->id, old('bid', [])) ? 'selected' : '' }}>
 											{{ $batch->bname }}
 										</option>
 										@endforeach
@@ -98,8 +98,10 @@
 							<div class="form-group row">
 								<label class="col-sm-4 col-form-label">Profile Picture</label>
 								<div class="col-sm-8">
-									<input type="file" class="custom-file-input" name="document" value="{{ $findData->document }}">
-									<label class="custom-file-label">Choose file</label>
+									<div class="custom-file">
+										<input type="file" class="custom-file-input" name="document" value="{{ $findData->document }}">
+										<label class="custom-file-label">Choose file</label>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -173,7 +175,7 @@
 		@section('scripts')
 		<script src="{{ asset('vendors/scripts/advanced-components.js')}}"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 		<script>
 			// Function to show the SweetAlert confirmation dialog
 			function showDeleteConfirmation(batchId) {
@@ -191,7 +193,7 @@
 					}
 				});
 			}
-	</script>
+		</script>
 
 
 		@endsection

@@ -77,7 +77,7 @@
 									</div>
 								</div>
 								<div class="col-6">
-									<div class="forgot-password" id="forget"><a href="{{ route('password.request') }}">Forgot Password</a></div>
+									<div class="forgot-password text-left" id="forget"><a href="{{ route('password.request') }}">Forgot Password</a></div>
 								</div>
 							</div>
 							<div class="row">

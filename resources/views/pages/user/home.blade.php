@@ -161,18 +161,19 @@
 				@endif		
 			
 		  </div>
-			<div class="row">
+			<div class="row icon-boxes">
 				<div class="col-xl-3 mb-30">
 					<div class="card-box height-100-p widget-style1">
 						<div class="d-flex flex-wrap align-items-center">
-							<div class="progress-data">
-								<div id="chart"></div>
+							<div class="progress-data my-5">
+								<!-- <div id="chart"></div> -->
+								<i class="icon-copy dw dw-open-book"></i>
 							</div>
                             
 							<div class="widget-data">
                                 <a href="{{ route('userlesson') }}">
 								<div class="h4 mb-0">Lessons</div>
-								<div class="weight-600 font-14">New lessons <span class="badge badge-primary badge-pill">{{ newlesson() }}</span></div>
+								<div class="weight-600 font-14">New lessons <span class="badge badge-primary badge-pill bg-orange">{{ newlesson() }}</span></div>
                                 </a>
 							</div>
                             
@@ -182,14 +183,15 @@
 				<div class="col-xl-3 mb-30">
 					<div class="card-box height-100-p widget-style1">
 						<div class="d-flex flex-wrap align-items-center">
-							<div class="progress-data">
-								<div id="chart2"></div>
+							<div class="progress-data my-5">
+								<!-- <div id="chart2"></div> -->
+								<i class="icon-copy dw dw-edit"></i>
 							</div>
                             
 							<div class="widget-data">
                                 <a href="{{ route('usercoursework') }}">
 								<div class="h4 mb-0">Course work</div>
-								<div class="weight-600 font-14">New course work <span class="badge badge-primary badge-pill">{{ newcoursework() }}</span></div>
+								<div class="weight-600 font-14">New course work <span class="badge badge-primary badge-pill bg-blue">{{ newcoursework() }}</span></div>
                                 </a>
 							</div>
                              
@@ -199,14 +201,15 @@
 				<div class="col-xl-3 mb-30">
 					<div class="card-box height-100-p widget-style1">
 						<div class="d-flex flex-wrap align-items-center">
-							<div class="progress-data">
-								<div id="chart3"></div>
+							<div class="progress-data my-5">
+								<!-- <div id="chart3"></div> -->
+								<i class="icon-copy dw dw-clipboard1"></i>
 							</div>
                             
 							<div class="widget-data">
                                 <a href="{{ route('userexam') }}">
 								<div class="h4 mb-0">Exams</div>
-								<div class="weight-600 font-14">New exams <span class="badge badge-primary badge-pill">{{ newexam() }}</span></div>
+								<div class="weight-600 font-14">New exams <span class="badge badge-primary badge-pill bg-green">{{ newexam() }}</span></div>
                                 </a>
 							</div>
                              
@@ -216,14 +219,15 @@
 				<div class="col-xl-3 mb-30">
 					<div class="card-box height-100-p widget-style1">
 						<div class="d-flex flex-wrap align-items-center">
-							<div class="progress-data">
-								<div id="chart4"></div>
+							<div class="progress-data my-5">
+								<!-- <div id="chart4"></div> -->
+								<i class="icon-copy dw dw-book"></i>
 							</div>
                             
 							<div class="widget-data">
                                 <a href="{{ route('usertute') }}">
 								<div class="h4 mb-0">Tutes</div>
-								<div class="weight-600 font-14">New tutes <span class="badge badge-primary badge-pill">{{ newtute() }}</span></div>
+								<div class="weight-600 font-14">New tutes <span class="badge badge-primary badge-pill bg-secondary">{{ newtute() }}</span></div>
                                  </a>
 							</div>
                            
@@ -301,7 +305,7 @@
 					</div>
 				</div>
 				<div class="col-xl-4 mb-30">
-					<div class="card-box height-100-p pd-20">
+					<div class="card-box height-100-p pd-20 text-center">
 						<h2 class="h4 mb-20">Course Progress</h2>
 						<div class="progress-user">
 						<div class="circular-progress">
