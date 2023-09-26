@@ -37,7 +37,7 @@ class SubmissionController extends Controller
 
     public function getverbalsubmisson(){
        $userBatchArray = json_decode(auth::user()->batch, true);
-        $data = Submission::whereJsonContains('bid',$userBatchArray)->where('type','Course Work')->get();
+        $data = Submission::whereJsonContains('bid',$userBatchArray)->where('type','Verbal Test')->get();
         return view('pages.instructor.submission.index',compact('data'));
     }
 
