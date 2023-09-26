@@ -5673,21 +5673,25 @@ body.IE .register-page-wrap .container {
     }
 }
 
+.calender-points {
+ display: block;
+}
+
 @media only screen and (max-width: 900px) {
  .calender-points {
  display: block;
 }
 }
 
-@media only screen and (max-width: 768px) {
- .calender-points {
- display: block;
+@media only screen and (max-width: 768px) { 
+    .calender-points {
+     display: block;
 }
 }
 
 
 @media only screen and (max-width: 576px) {
  .calender-points {
- display: flex;
+ display: block;
 }
 }
