@@ -95,7 +95,7 @@ class CoupenController extends Controller
     $coupon->percentage = $validatedData['amount'];
     $coupon->valid_date = Carbon::parse($validatedData['valid_date'])->format('Y-m-d');
     $batchIds = $request->input('bid', []);
-    $coupon->bid = json_encode($batchIds); // Make sure 'batch_ids' matches your database column name
+    $coupon->bid = $batchIds; // Make sure 'batch_ids' matches your database column name
 
     $coupon->save();
     toast('Coupon updated successfully', 'success');
