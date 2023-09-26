@@ -5674,7 +5674,7 @@ body.IE .register-page-wrap .container {
 }
 
 .calender-points {
- display: block;
+ display: flex;
 }
 
 @media only screen and (max-width: 900px) {
