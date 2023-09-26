@@ -105,7 +105,7 @@ class InstructorController extends Controller
             'lname' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $id, // Unique check but excluding the current instructor's email
             'cnumber' => 'required|integer',
-            'password' => 'required|string|min:8',
+            'password' => 'required',
             'status' => 'required|in:0,1',
             'batch' => 'array', // Assuming bid is an array of batch IDs
             'document' => 'file|mimes:pdf,doc,docx', // Modify the allowed file types as needed
