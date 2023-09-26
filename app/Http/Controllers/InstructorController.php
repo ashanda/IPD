@@ -57,8 +57,7 @@ class InstructorController extends Controller
         $instructor->cover = $coverPath;
     }
 
-    $batchIds = $request->input('bid', []);
-    $instructor->batch = $batchIds;
+    $instructor->batch = json_encode($request->input('bid'));
     // Save the Instructor
         //try {
             // Attempt to save the instructor
