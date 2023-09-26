@@ -11,7 +11,7 @@
 		</div>
 		<div class="header-right">
 			@if (Auth::user()->type === 'user' && paycount() != 0)
-			<div class="user-notification">
+			{{-- <div class="user-notification">
 				<div class="dropdown">
 					<a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
 						<i class="icon-copy dw dw-notification"></i>
@@ -68,7 +68,7 @@
 
 					</div>
 				</div>
-			</div>
+			</div> --}}
 			@endif
 			<div class="user-info-dropdown">
 				<div class="dropdown">
