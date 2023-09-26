@@ -5628,6 +5628,10 @@ body.IE .register-page-wrap .container {
 .circular-progress {
 	margin: auto;
 }
+/* chat styles */
+.chat-box .chat-desc ul li .chat-body p {
+	width: fit-content;
+}
 @media (max-width:1760px) {
     #calendar .fc-toolbar-title {
         font-size: 20px;
@@ -5655,7 +5659,16 @@ body.IE .register-page-wrap .container {
     #calendar .fc-button-group {
         float: none;
     }
-    #calendar .fc-button-group {
+  
+}
+@media (min-width:576px) and (max-width:730px) {
+  #calendar .fc-button-group {
         margin: 5px 0 0 0;
+    }
+}
+@media (max-width:576px){
+    .form-group {
+        margin-bottom: 20px;
+        margin-top: 0;
     }
 }

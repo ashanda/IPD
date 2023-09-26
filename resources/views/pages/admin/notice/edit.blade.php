@@ -28,8 +28,8 @@
 
 						<div class="col-md-12 col-sm-12 mt-20">
 							<div class="form-group row">
-								<label class="col-sm-12 col-md-2 col-form-label">Notice</label>
-								<div class="col-sm-12 col-md-10">
+								<label class="col-sm-2 col-form-label">Notice</label>
+								<div class="col-sm-10">
 
 									<input class="form-control" type="text" name="notice" value="{{ $findData->notice }}" required>
 								</div>

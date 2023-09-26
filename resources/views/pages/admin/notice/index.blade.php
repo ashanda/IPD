@@ -27,8 +27,8 @@
 
 						<div class="col-md-12 col-sm-12 mt-20">
 							<div class="form-group row">
-								<label class="col-sm-12 col-md-2 col-form-label">Notice</label>
-								<div class="col-sm-12 col-md-10">
+								<label class="col-sm-4 col-md-2 col-form-label">Notice</label>
+								<div class="col-sm-8 col-md-10">
 
 									<input class="form-control" type="text" name="notice" required>
 								</div>

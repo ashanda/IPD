@@ -29,14 +29,14 @@
                         
                             <div class="col-md-6 col-sm-12 mt-20">
                                 <div class="form-group row">
-                                    <label class="col-sm-12 col-md-2 col-form-label">Course Work Name</label>
-                                    <div class="col-sm-12 col-md-10">
+                                    <label class="col-sm-2 col-form-label">Course Work Name</label>
+                                    <div class="col-sm-10">
                                         <input class="form-control" type="text" value="{{ $findData->title }}" name="title"  required>
                                     </div>
                                 </div>
                             </div>
                            
-                              <div class="col-md-2 col-sm-12 mt-20">
+                              <div class="col-md-3 col-sm-12 mt-20">
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-form-label">Batch</label>
                                     <div class="col-sm-8">
@@ -64,8 +64,8 @@
 					<div class="row">
 						<div class="col-md-6 col-sm-12 mt-20">
 							<div class="form-group row">
-								<label class="col-sm-12 col-md-2 col-form-label">Description</label>
-								<div class="col-sm-12 col-md-10">
+								<label class="col-sm-2 col-form-label">Description</label>
+								<div class="col-sm-10">
 									<input class="form-control" type="text" name="description" value="{{ $findData->description }}" required>
 								</div>
 							</div>
@@ -106,8 +106,8 @@
 								<label class="col-sm-4 col-form-label">Document</label>
 								<div class="col-sm-8">
 									<div class="custom-file">
-										<input type="file" class="custom-file-input" name="document" value="{{ $findData->document }}">
-										<label class="custom-file-label">Choose file</label>
+										<input type="file" class="custom-file-input" name="document" value="{{ $findData->document }}" id="cover" onchange="updateLabel()">
+										<label class="custom-file-label" id="fileLabel">Choose file</label>
 									</div>
 								</div>
 							</div>
@@ -164,8 +164,7 @@
 									@else
 									<td><span class="badge badge-warning">Unplublish</span></td>
 									@endif
-									<td>
-                                    <td class="table-plus"></td>
+									
                                     <td>
 									<div class="row">
 										<div class="col">

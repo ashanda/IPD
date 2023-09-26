@@ -28,8 +28,8 @@
 
 						<div class="col-md-6 col-sm-12 mt-20">
 							<div class="form-group row">
-								<label class="col-sm-12 col-md-3 col-form-label">Title</label>
-								<div class="col-sm-12 col-md-9">
+								<label class="col-sm-3 col-form-label">Title</label>
+								<div class="col-sm-9">
 									<input class="form-control" type="text" name="title" value="{{ $findData->title }}" required>
 								</div>
 							</div>
@@ -54,8 +54,8 @@
 
 						<div class="col-md-6 col-sm-12 mt-20">
 							<div class="form-group row">
-								<label class="col-sm-12 col-md-3 col-form-label">Description</label>
-								<div class="col-sm-12 col-md-9">
+								<label class="col-sm-3 col-form-label">Description</label>
+								<div class="col-sm-9">
 									<input class="form-control" type="text" name="description" value="{{ $findData->description }}" required>
 								</div>
 							</div>
@@ -78,8 +78,8 @@
 								<label class="col-sm-3 col-form-label">Document</label>
 								<div class="col-sm-9">
 									<div class="custom-file">
-										<input type="file" class="custom-file-input" name="document" value="{{ $findData->document }}">
-										<label class="custom-file-label">Choose file</label>
+										<input type="file" class="custom-file-input" name="document" value="{{ $findData->document }}" id="cover" onchange="updateLabel()">
+										<label class="custom-file-label" id="fileLabel">Choose file</label>
 									</div>
 								</div>
 							</div>

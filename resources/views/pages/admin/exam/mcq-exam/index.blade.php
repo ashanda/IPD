@@ -26,8 +26,8 @@
                     <div class="row">
                         <div class="col-md-4 col-sm-12 mt-20">
                             <div class="form-group row">
-                                <label class="col-sm-12 col-md-3 col-form-label">Title</label>
-                                <div class="col-sm-12 col-md-9">
+                                <label class="col-sm-4 col-md-3 col-form-label">Title</label>
+                                <div class="col-sm-8 col-md-9">
                                     <input class="form-control" type="text" name="title" required>
                                 </div>
                             </div>
@@ -35,8 +35,8 @@
 
                         <div class="col-md-4 col-sm-12 mt-20">
                             <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Batch</label>
-                                <div class="col-sm-9">
+                                <label class="col-sm-4 col-md-3 col-form-label">Batch</label>
+                                <div class="col-sm-8 col-md-9">
                                     <select class="selectpicker form-control" name="bid[]" data-style="btn-outline-secondary" multiple required>
                                         @foreach ($batchData as $batch)
                                         <option value="{{ $batch->id }}">{{ $batch->bname }}</option>
@@ -48,24 +48,24 @@
 
                         <div class="col-md-4 col-sm-12 mt-20">
                             <div class="form-group row">
-                                <label class="col-sm-12 col-md-4 col-form-label">Time Duration</label>
-                                <div class="col-sm-12 col-md-8">
+                                <label class="col-sm-4 col-form-label">Time Duration</label>
+                                <div class="col-sm-8">
                                     <input name="lms_exam_time_duration" type="text" placeholder="Enter in minutes" class="form-control form-control-lg" pattern="\d*" value="" required="">
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4 col-sm-12 mt-20">
                             <div class="form-group row">
-                                <label class="col-sm-12 col-md-3 col-form-label">Questions Per MCQ</label>
-                                <div class="col-sm-12 col-md-9">
+                                <label class="col-sm-4 col-md-3 col-form-label">Questions Per MCQ</label>
+                                <div class="col-sm-8 col-md-9">
                                     <input name="lms_exam_question" type="text" class="form-control form-control-lg" pattern="\d*" value="" required="">
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4 col-sm-12 mt-20">
                             <div class="form-group row">
-                                <label class="col-sm-12 col-md-3 col-form-label">Publish Date</label>
-                                <div class="col-sm-12 col-md-9">
+                                <label class="col-sm-4 col-md-3 col-form-label">Publish Date</label>
+                                <div class="col-sm-8 col-md-9">
                                     <input class="form-control date-picker" name="publish_date" placeholder="Select Date" type="text" required="">
                                 </div>
                             </div>

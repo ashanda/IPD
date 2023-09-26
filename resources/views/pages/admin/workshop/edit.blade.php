@@ -29,8 +29,8 @@
                         
                             <div class="col-md-6 col-sm-12 mt-20">
                                 <div class="form-group row">
-                                    <label class="col-sm-12 col-md-2 col-form-label">Workshop Name</label>
-                                    <div class="col-sm-12 col-md-10">
+                                    <label class="col-sm-4 col-md-3 col-form-label">Workshop Name</label>
+                                    <div class="col-sm-8 col-md-9">
                                         <input class="form-control" type="text" value="{{ $findData->lesson_name }}" name="lesson_name"  required>
                                     </div>
                                 </div>
@@ -61,8 +61,8 @@
 					<div class="row">
 						<div class="col-md-6 col-sm-12 mt-20">
 							<div class="form-group row">
-								<label class="col-sm-12 col-md-3 col-form-label">Video Link</label>
-								<div class="col-sm-12 col-md-9">
+								<label class="col-sm-4 col-md-3 col-form-label">Video Link</label>
+								<div class="col-sm-8 col-md-9">
 									<input class="form-control" type="text" name="vlink" value="{{ $findData->vlink }}" required>
 								</div>
 							</div>
@@ -90,11 +90,11 @@
 						<div class="col-md-6 col-sm-12 mt-20">
 							<div class="form-group row">
 
-								<label class="col-sm-3 col-form-label">Cover</label>
-								<div class="col-sm-9">
+								<label class="col-sm-4 col-md-3 col-form-label">Cover</label>
+								<div class="col-sm-8 col-md-9">
 									<div class="custom-file">
-										<input type="file" class="custom-file-input" name="cover" value="{{ $findData->cover }}">
-										<label class="custom-file-label">Choose file</label>
+										<input type="file" class="custom-file-input" name="cover" value="{{ $findData->cover }}" id="cover" onchange="updateLabel()">
+										<label class="custom-file-label" id="fileLabel">Choose file</label>
 									</div>
 								</div>
 							</div>

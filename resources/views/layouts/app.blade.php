@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
@@ -22,32 +23,53 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('assets/src/plugins/datatables/css/responsive.bootstrap4.min.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('assets/styles/style.css') }}">
 	<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
-	
+
 
 	@yield('header')
-    
+
 </head>
+
 <body>
-    @include('sweetalert::alert')
+	@include('sweetalert::alert')
 	@include('components.header')
 	@include('components.sidebar')
 	@if (Auth::user()->type === 'user' && paycount() === 0)
-		@include('components.default-user')
+	@include('components.default-user')
 	@else
-		@yield('preload')
+	@yield('preload')
 
-		
-		
-		@yield('content')
+
+
+	@yield('content')
 	@endif
-    
 
-    @include('components.footer')
 
-	
-    	<!-- js -->
-	
-	
+	@include('components.footer')
+
+
+	<!-- js -->
+	<script>
+		function updateLabel() {
+			// Get the selected file input and fileLabel element by their IDs
+			const fileInput = document.getElementById('cover');
+			const fileLabel = document.getElementById('fileLabel');
+
+			// Check if a file is selected
+			if (fileInput.files.length > 0) {
+				// Set the label text to the selected file name
+				fileLabel.textContent = fileInput.files[0].name;
+			} else {
+				// If no file is selected, reset the label text
+				fileLabel.textContent = 'Choose file';
+			}
+		}
+	</script>
+
+
+
+
+
+
 	<script src="{{ asset('assets/scripts/core.js') }}"></script>
 	<script src="{{ asset('assets/scripts/script.min.js') }}"></script>
 	<script src="{{ asset('assets/scripts/process.js') }}"></script>
@@ -67,16 +89,18 @@
 	<script src="{{ asset('assets/src/plugins/datatables/js/pdfmake.min.js') }}"></script>
 	<script src="{{ asset('assets/src/plugins/datatables/js/vfs_fonts.js') }}"></script>
 	<!-- Datatable Setting js -->
-	<script src="{{ asset('assets/vendors/scripts/datatable-setting.js') }}"></script></body>
-	<script src="{{ asset('assets/scripts/dashboard.js') }}"></script>
-	
-	<script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js'></script>
-	<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
-	
-	
-	
-
-	
-    @yield('scripts')
+	<script src="{{ asset('assets/vendors/scripts/datatable-setting.js') }}"></script>
 </body>
+<script src="{{ asset('assets/scripts/dashboard.js') }}"></script>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js'></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+
+
+
+
+
+@yield('scripts')
+</body>
+
 </html>

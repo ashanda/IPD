@@ -27,17 +27,17 @@
 
 						<div class="col-md-4 col-sm-12 mt-20">
 							<div class="form-group row">
-								<label class="col-sm-12 col-md-4 col-form-label">First name</label>
+								<label class="col-sm-4 col-form-label">First name</label>
 								<input type="hidden" name="index_number" value="{{ substr(Illuminate\Support\Str::uuid(), 0, 10) }}" required>
-								<div class="col-sm-12 col-md-8">
+								<div class="col-sm-8">
 									<input class="form-control" type="text" name="fname" required>
 								</div>
 							</div>
 						</div>
 						<div class="col-md-4 col-sm-12 mt-20">
 							<div class="form-group row">
-								<label class="col-sm-12 col-md-4 col-form-label">Last Name</label>
-								<div class="col-sm-12 col-md-8">
+								<label class="col-sm-4 col-form-label">Last Name</label>
+								<div class="col-sm-8">
 									<input class="form-control" type="text" name="lname" required>
 								</div>
 							</div>
@@ -68,8 +68,8 @@
 
 						<div class="col-md-4 col-sm-12 mt-20">
 							<div class="form-group row">
-								<label class="col-sm-12 col-md-4 col-form-label">Contact Number</label>
-								<div class="col-sm-12 col-md-8">
+								<label class="col-sm-4 col-form-label">Contact Number</label>
+								<div class="col-sm-8">
 									<input class="form-control" type="tel" name="cnumber" required>
 								</div>
 							</div>
@@ -103,8 +103,8 @@
 								<label class="col-sm-4 col-form-label">Document</label>
 								<div class="col-sm-8">
 									<div class="custom-file">
-										<input type="file" class="custom-file-input" name="cover">
-										<label class="custom-file-label">Choose file</label>
+										<input type="file" class="custom-file-input" name="cover" id="cover" onchange="updateLabel()">
+										<label class="custom-file-label" id="fileLabel">Choose file</label>
 									</div>
 								</div>
 
@@ -162,8 +162,6 @@
 								@else
 								<td><span class="badge badge-warning">Unplublish</span></td>
 								@endif
-								<td>
-								<td class="table-plus"></td>
 								<td>
 									<div class="row">
 										<div class="col">
