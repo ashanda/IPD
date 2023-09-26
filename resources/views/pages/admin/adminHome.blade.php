@@ -48,7 +48,7 @@
 				<div class="card-box pd-20 height-100-p mb-30">
 					<div id='calendar'></div>
 					   <div class="calender d-flex">
- <div class="calender-points ">
+ <div class="calender-points">
 
  <div class="colors-c d-flex">
  <span style="margin: 5px 2px 5px 2px;font-size: 9px;">Lessons</span>
