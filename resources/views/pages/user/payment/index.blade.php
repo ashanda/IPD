@@ -43,7 +43,7 @@
                                     <td class="table-plus" >{{ $result->amount }}</td>
                                     @if ( $result->status === 1)
                                     @php
-                                      $status = '<span class="badge badge-success">Pending</span>';
+                                      $status = '<span class="badge badge-success">Active</span>';
                                     @endphp
                                         
                                     @elseif ( $result->status === 2)
@@ -53,7 +53,7 @@
                                        
                                     @else
                                     @php
-                                      $status = '<span class="badge badge-denger">Pending</span>';
+                                      $status = '<span class="badge badge-denger">Reject</span>';
                                     @endphp
                                         
                                     @endif

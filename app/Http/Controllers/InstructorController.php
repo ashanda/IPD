@@ -57,11 +57,12 @@ class InstructorController extends Controller
         $instructor->cover = $coverPath;
     }
 
-    $instructor->batch = json_encode($request->input('bid'));
+    $batchIds = $request->input('bid', []);
+    $instructor->batch = $batchIds;
     // Save the Instructor
         //try {
             // Attempt to save the instructor
-            $instructor->save();
+    $instructor->save();
 
             // Display success toast and redirect to the instructor index page
             toast('Instructor created successfully', 'success');
@@ -122,7 +123,7 @@ class InstructorController extends Controller
         $instructor->password = bcrypt($request->input('password'));
         $instructor->status = $request->input('status');
         $batchIds = $request->input('bid', []);
-        $instructor->batch = json_encode($batchIds);
+        $instructor->batch = $batchIds;
         // Handle the 'document' file upload
         if ($request->hasFile('document')) {
             $documentPath = $request->file('document')->store('documents', 'public'); // Modify the storage path as needed
