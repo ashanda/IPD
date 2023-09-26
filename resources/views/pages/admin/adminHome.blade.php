@@ -47,6 +47,36 @@
 			<div class="col-sm-4 mb-30">
 				<div class="card-box pd-20 height-100-p mb-30">
 					<div id='calendar'></div>
+					   <div class="calender d-flex">
+ <div class="calender-points d-flex">
+
+ <div class="colors-c d-flex">
+ <span style="margin: 5px 2px 5px 2px;font-size: 9px;">Lessons</span>
+ <span class="color-code" style="background-color: orange; border-radius: 50%; margin: 7px; width: 10px; height: 10px;"></span>
+</div>
+
+ <div class="colors-c d-flex">
+ <span style="margin: 5px 2px 5px 2px;font-size: 9px;">MCQ exams</span>
+ <span class="color-code" style="background-color: purple; border-radius: 50%; margin: 7px; width: 10px; height: 10px;"></span>
+ </div>
+
+ 
+ <div class="colors-c d-flex">
+ <span style="margin: 5px 2px 5px 2px;font-size: 9px;">Paper exams</span>
+ <span class="color-code" style="background-color: green; border-radius: 50%; margin: 7px; width: 10px; height: 10px;"></span>
+ </div>
+ 
+
+ <div class="colors-c d-flex">
+ <span style="margin: 5px 2px 5px 2px;font-size: 9px;">Course works</span>
+ <span class="color-code" style="background-color: blue; border-radius: 50%; margin: 7px; width: 10px; height: 10px;"></span>
+ </div>
+
+ <div class="colors-c d-flex">
+ <span style="margin: 5px 2px 5px 2px;font-size: 10px;">Verbal exams</span>
+ <span class="color-code" style="background-color: black; border-radius: 50%; margin: 8px; width: 12px; height: 12px;"></span></div>
+ </div> 
+ </div>
 				</div>
 			</div>
 		</div>
