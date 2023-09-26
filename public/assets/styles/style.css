@@ -5672,3 +5672,22 @@ body.IE .register-page-wrap .container {
         margin-top: 0;
     }
 }
+
+@media only screen and (max-width: 900px) {
+ .calender-points {
+ display: block;
+}
+}
+
+@media only screen and (max-width: 768px) {
+ .calender-points {
+ display: block;
+}
+}
+
+
+@media only screen and (max-width: 576px) {
+ .calender-points {
+ display: flex;
+}
+}
